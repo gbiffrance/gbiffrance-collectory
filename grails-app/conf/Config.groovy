@@ -21,13 +21,14 @@ println "default_config = ${default_config}"
 \******************************************************************************/
 if (!skin.layout) {
     //skin.layout = 'ala2'
-    skin.layout = 'generic'
+    //skin.layout = 'generic'
+    skin.layout = 'alf'
 }
 if (!skin.orgNameLong) {
-    skin.orgNameLong = "Atlas of Living Australia"
+    skin.orgNameLong = "Atlas of Living France"
 }
 if (!skin.orgNameShort) {
-    skin.orgNameShort = "ALA"
+    skin.orgNameShort = "GBIF France"
 }
 if (!skin.includeBaseUrl) {
     // whether crumb trail should include a home link that is external to this webabpp - ala.baseUrl is used if true
@@ -51,16 +52,16 @@ if (!bie.searchPath) {
     bie.searchPath = "/search"
 }
 if (!biocacheUiURL) {
-    biocacheUiURL = "http://biocache.ala.org.au"
+    biocacheUiURL = "http://10.1.1.2/generic-hub/"
 }
 if(!biocacheServicesUrl){
-    biocacheServicesUrl = "http://biocache.ala.org.au/ws"
+    biocacheServicesUrl = "http://10.1.1.2/biocache-service/"
 }
 if (!spatial.baseURL) {
     spatial.baseURL = "http://spatial.ala.org.au/"
 }
 if (!ala.baseURL) {
-    ala.baseURL = "http://www.ala.org.au"
+    ala.baseURL = "http://10.1.1.2"
 }
 if (!headerAndFooter.baseURL) {
     headerAndFooter.baseURL = "http://www2.ala.org.au/commonui"
@@ -93,10 +94,10 @@ reloadable.cfgs = ["file:/data/${appName}/config/${appName}-config.properties"]
 *  TEMPLATES
 \******************************************************************************/
 if (!citation.template) {
-    citation.template = 'Records provided by @entityName@, accessed through ALA website.'
+    citation.template = 'Enregistrement fourni par @entityName@, accessible via le portail du GBIF France.'
 }
 if (!citation.link.template) {
-    citation.link.template = 'For more information: @link@'
+    citation.link.template = 'Pour plus d\'information : @link@'
 }
 if (!citation.rights.template) {
     citation.rights.template = ''
@@ -108,47 +109,47 @@ if (!resource.publicArchive.url.template) {
 *  ADDITIONAL CONFIG
 \******************************************************************************/
 if(!projectNameShort){
-    projectNameShort="Atlas"
+    projectNameShort="GBIF France"
 }
 if(!projectName){
-    projectName="Atlas of Living Australia"
+    projectName="Atlas of Living France"
 }
 if(!regionName){
-    regionName="Australia"
+    regionName="France"
 }
 if(!collectionsMap.centreMapLon){
-    collectionsMap.centreMapLon = '134'
+    collectionsMap.centreMapLon = '46.6'
 }
 if(!collectionsMap.centreMapLat){
-    collectionsMap.centreMapLat = '-28.2'
+    collectionsMap.centreMapLat = '2.4'
 }
 if(!collectionsMap.defaultZoom){
     collectionsMap.defaultZoom = '2'
 }
 if(!eml.organizationName){
-    eml.organizationName="Atlas of Living Australia (ALA)"
+    eml.organizationName="GBIF France"
 }
 if(!eml.deliveryPoint){
-    eml.deliveryPoint="CSIRO Black Mountain Laboratories, Clunies Ross Street, ACTON"
+    eml.deliveryPoint="GBIF France, 43 rue Buffon, 75005 Paris"
 }
 if(!eml.city){
-    eml.city="Canberra"
+    eml.city="Paris"
 }
 if(!eml.administrativeArea){
-    eml.administrativeArea="ACT"
+    eml.administrativeArea="IDF"
 }
 if(!eml.postalCode){
-    eml.postalCode="2601"
+    eml.postalCode="75005"
 }
 if(!eml.country){
-    eml.country="Australia"
+    eml.country="France"
 }
 if(!eml.electronicMailAddress){
-    eml.electronicMailAddress = "info@ala.org.au"
+    eml.electronicMailAddress = "gbif@gbif.fr"
 }
 //
 ///******* standard grails **********/
-grails.project.groupId = 'au.org.ala' // change this to alter the default package name and Maven publishing destination
+grails.project.groupId = '10.1.1.2' // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = true
 grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
@@ -239,7 +240,7 @@ environments {
     }
 }
 
-logging.dir = (System.getProperty('catalina.base') ? System.getProperty('catalina.base') + '/logs'  : '/var/log/tomcat6')
+logging.dir = (System.getProperty('catalina.base') ? System.getProperty('catalina.base') + '/logs'  : '/var/log/tomcat7')
 
 log4j = {
     appenders {

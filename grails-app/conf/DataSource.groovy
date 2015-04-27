@@ -18,7 +18,7 @@ environments {
         dataSource {
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
             dbCreate = "update" // one of 'create', 'create-drop','update'
-            url = "jdbc:mysql://localhost:3306/collectory?autoReconnect=true&connectTimeout=0"
+            url = "jdbc:mysql://10.1.1.2:3306/collectory?autoReconnect=true&connectTimeout=0"
             username = "root"
             password = ""
             //logSql = true
@@ -28,7 +28,7 @@ environments {
         dataSource {
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
             dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/collectory?autoReconnect=true&connectTimeout=0"
+            url = "jdbc:mysql://10.1.1.2:3306/collectory?autoReconnect=true&connectTimeout=0"
             logSql = false
             username = "root"
             password = ""
@@ -46,20 +46,20 @@ environments {
     }
     production {
         dataSource {
-            dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-            dbCreate = "update"
-            url = "jdbc:mysql://alaproddb1-cbr.vm.csiro.au:3306/collectory?autoReconnect=true&connectTimeout=0"
-            logSql = false
-            properties {
-                maxActive = 50
-                maxIdle = 25
-                minIdle = 5
-                initialSize = 5
-                minEvictableIdleTimeMillis = 60000
-                timeBetweenEvictionRunsMillis = 60000
-                maxWait = 10000
-                validationQuery = ""
-            }
+            // dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+            // dbCreate = "update"
+            // url = "jdbc:mysql://alaproddb1-cbr.vm.csiro.au:3306/collectory?autoReconnect=true&connectTimeout=0"
+            // logSql = false
+            // properties {
+            //     maxActive = 50
+            //     maxIdle = 25
+            //     minIdle = 5
+            //     initialSize = 5
+            //     minEvictableIdleTimeMillis = 60000
+            //     timeBetweenEvictionRunsMillis = 60000
+            //     maxWait = 10000
+            //     validationQuery = ""
+            // }
         }
     }
 }
