@@ -9,32 +9,38 @@
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.3&sensor=false"></script>
     </head>
     <body onload="initializeLocationMap('${instance.canBeMapped()}',${instance.latitude},${instance.longitude});">
-    <style>
-    #mapCanvas {
-      width: 200px;
-      height: 170px;
-      float: right;
-    }
-    </style>
-        <div class="nav">
-            <ul>
-            <li><span class="menuButton"><cl:homeLink/></span></li>
-            <li><span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span></li>
-            <li><span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span></li>
+      <div class="container-fluid">
+      <div class="col-md-3 col-lg-3">
+          <div class="region-menu-gauche">
+            <ul class="menu nav">
+              <li><g:link controller="manage" action="index"><g:message code="default.home.label"/></g:link></li>
+              <li><g:link action="list"><g:message code="default.list.label" args="[entityName]"/></g:link></li> 
+              %{-- <li><g:link action="myList"><g:message code="default.myList.label" args="[entityName]"/></g:link></li> --}%
+              <li><g:link action="create"><g:message code="default.new.label" args="[entityName]"/></g:link> </li> 
+              <li><g:link controller="public" action="show" id="${instance?.uid}"><g:message code="default.show.public.label" args="[entityName]"/></g:link> </li>  
+              <li><cl:jsonSummaryLink uid="${instance.uid}"/></li>
+              <li><cl:jsonDataLink uid="${instance.uid}"/></li>
             </ul>
+          </div>
+          <div class="buttons">
+            <g:form class="form-delete">
+              <g:hiddenField name="id" value="${instance?.id}"/>
+              %{-- <cl:ifGranted role="${ProviderGroup.ROLE_ADMIN}"> --}%
+              <g:actionSubmit class="delete btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', args: [entityName], default: 'Supprimer la collection')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Êtes vous sur ?')}');"/>
+              %{-- </cl:ifGranted> --}%
+            </g:form>
+          </div>          
         </div>
-        <div class="body">
-            <g:if test="${flash.message}">
+        <div class="col-md-9">
+          <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
-            </g:if>
-            <div class="dialog emulate-public">
+          </g:if>
+          <div class="dialog emulate-public">
               <!-- base attributes -->
               <div class="show-section well">
-                <!-- Name --><!-- Acronym -->
-                <h1>${fieldValue(bean: instance, field: "name")}<cl:valueOrOtherwise value="${instance.acronym}"> (${fieldValue(bean: instance, field: "acronym")})</cl:valueOrOtherwise></h1>
 
                 <!-- GUID    -->
-                <p><span class="category"><g:message code="collection.show.span.lsid" />:</span> <cl:guid target="_blank" guid='${fieldValue(bean: instance, field: "guid")}'/></p>
+                <p id="first-section"><span class="category"><g:message code="collection.show.span.lsid" />:</span> <cl:guid target="_blank" guid='${fieldValue(bean: instance, field: "guid")}'/></p>
 
                 <!-- UID    -->
                 <p><span class="category"><g:message code="collection.show.span.uid" />:</span> ${fieldValue(bean: instance, field: "uid")}</p>
@@ -60,7 +66,7 @@
 
               <!-- description -->
               <div class="show-section well">
-                <h2><g:message code="collection.show.title.description" /></h2>
+                <h2 class="admin-h2"><g:message code="collection.show.title.description" /></h2>
 
                 <!-- Pub Desc -->
                 <div class="source">[Public description]</div><div style="clear:both;"></div>
@@ -79,7 +85,7 @@
 
               <!-- members -->
               <div class="show-section well">
-                <h2><g:message code="datahub.show.title02" /></h2>
+                <h2 class="admin-h2"><g:message code="datahub.show.title02" /></h2>
                 <g:if test="${instance.listMemberInstitutions()}">
                     <h3><g:message code="dataHub.memberInstitutions.label" /></h3>
                     <ul class='simple'>
@@ -124,18 +130,7 @@
               <!-- change history -->
               <g:render template="/shared/changes" model="[changes: changes, instance: instance]"/>
 
-            </div>
-            <div class="buttons">
-              <g:form>
-                <g:hiddenField name="id" value="${instance?.id}"/>
-                %{-- <cl:ifGranted role="${ProviderGroup.ROLE_ADMIN}"> --}%
-                  <span class="button"><g:actionSubmit class="delete btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/></span>
-                %{-- </cl:ifGranted> --}%
-                <span class="button"><cl:viewPublicLink uid="${instance?.uid}"/></span>
-                <span class="button"><cl:jsonSummaryLink uid="${instance.uid}"/></span>
-                <span class="button"><cl:jsonDataLink uid="${instance.uid}"/></span>
-              </g:form>
-            </div>
         </div>
+      </div>
     </body>
 </html>

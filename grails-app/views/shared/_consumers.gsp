@@ -1,6 +1,6 @@
 <%@ page import="au.org.ala.collectory.ProviderGroup" %>
 <div class="show-section  well">
-  <h2><g:message code="shared.consumers.title01" /></h2>
+  <h2 class="admin-h2"><g:message code="shared.consumers.title01" /></h2>
   <p><g:message code="shared.consumers.des01" args="[ProviderGroup.textFormOfEntityType(instance.uid)]" />.
   <br/>
     <g:message code="shared.consumers.des02" />.

@@ -9,46 +9,47 @@
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.3&sensor=false"></script>
     </head>
     <body onload="initializeLocationMap('${instance.canBeMapped()}',${instance.latitude},${instance.longitude});">
-    <style>
-    #mapCanvas {
-      width: 200px;
-      height: 170px;
-      float: right;
-    }
-    </style>
-        <div class="nav">
-
-            <p class="pull-right">
-            <span class="button"><cl:viewPublicLink uid="${instance?.uid}"/></span>
-            <span class="button"><cl:jsonSummaryLink uid="${instance.uid}"/></span>
-            <span class="button"><cl:jsonDataLink uid="${instance.uid}"/></span>
-            </p>
-
-            <ul>
-            <li><span class="menuButton"><cl:homeLink/></span></li>
-            <li><span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span></li>
-            <li><span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span></li>
-            </ul>
+    <div class="container-fluid">
+      <h1 id="metadata-header">
+        <g:message code="collection.label" /> : ${fieldValue(bean: instance, field: "name")}
+          <cl:valueOrOtherwise value="${instance.acronym}"> (${fieldValue(bean: instance, field: "acronym")})
+          </cl:valueOrOtherwise>
+      </h1>
+      <div class="col-md-3 col-lg-3">
+        <div class="region-menu-gauche">
+          <ul class="menu nav">
+            <li><g:link controller="manage" action="index"><g:message code="default.home.label"/></g:link></li>
+            <li><g:link action="list"><g:message code="default.list.label" args="[entityName]"/></g:link></li> 
+            %{-- <li><g:link action="myList"><g:message code="default.myList.label" args="[entityName]"/></g:link></li> --}%
+            <li><g:link action="create"><g:message code="default.new.label" args="[entityName]"/></g:link> </li> 
+            <li><g:link controller="public" action="show" id="${instance?.uid}"><g:message code="default.show.public.label" args="[entityName]"/></g:link> </li>  
+            <li><cl:jsonSummaryLink uid="${instance.uid}"/></li>
+            <li><cl:jsonDataLink uid="${instance.uid}"/></li>
+          </ul>
         </div>
-        <div class="body">
-            <g:if test="${flash.message}">
+        <div class="buttons">
+          <g:form class="form-delete">
+            <g:hiddenField name="id" value="${instance?.id}"/>
+            %{-- <cl:ifGranted role="${ProviderGroup.ROLE_ADMIN}"> --}%
+            <g:actionSubmit class="delete btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', args: [entityName], default: 'Supprimer la collection')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Êtes vous sur ?')}');"/>
+            %{-- </cl:ifGranted> --}%
+          </g:form>
+        </div>  
+        <div class="col-md-9">
+          <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
-            </g:if>
-            <div class="dialog emulate-public">
+          </g:if>  
+           <div class="dialog emulate-public">
               <!-- base attributes -->
-              <div class="show-section well  titleBlock">
-                <!-- Name --><!-- Acronym -->
-                <h1 style="display:inline">${fieldValue(bean: instance, field: "name")}<cl:valueOrOtherwise value="${instance.acronym}"> (${fieldValue(bean: instance, field: "acronym")})</cl:valueOrOtherwise></h1>
-                <cl:partner test="${instance.isALAPartner}"/><br/>
-
-                <!-- GUID    -->
-                <p><span class="category"><g:message code="collection.show.span.lsid" />:</span> <cl:guid target="_blank" guid='${fieldValue(bean: instance, field: "guid")}'/></p>
+              <div class="show-section well"> 
+                              <!-- GUID    -->
+                <p id="first-section"><span class="category"><g:message code="collection.show.span.lsid" /> :</span> <cl:guid target="_blank" guid='${fieldValue(bean: instance, field: "guid")}'/></p>
 
                 <!-- UID    -->
-                <p><span class="category"><g:message code="providerGroup.uid.label" />:</span> ${fieldValue(bean: instance, field: "uid")}</p>
+                <p><span class="category"><g:message code="providerGroup.uid.label" /> :</span> ${fieldValue(bean: instance, field: "uid")}</p>
 
                 <!-- Web site -->
-                <p><span class="category"><g:message code="collection.show.span.cw" />:</span> <cl:externalLink href="${fieldValue(bean:instance, field:'websiteUrl')}"/></p>
+                <p><span class="category"><g:message code="collection.show.span.cw" /> :</span> <cl:externalLink href="${fieldValue(bean:instance, field:'websiteUrl')}"/></p>
 
                 <!-- Networks -->
                 <g:if test="${instance.networkMembership}">
@@ -61,15 +62,14 @@
                 </g:if>
 
                 <!-- last edit -->
-                <p><span class="category"><g:message code="datahub.show.lastchange" />:</span> ${fieldValue(bean: instance, field: "userLastModified")} on ${fieldValue(bean: instance, field: "lastUpdated")}</p>
+                <p><span class="category"><g:message code="datahub.show.lastchange" /> :</span> ${fieldValue(bean: instance, field: "userLastModified")} on ${fieldValue(bean: instance, field: "lastUpdated")}</p>
 
                 <cl:editButton uid="${instance.uid}" page="/shared/base"/>
-              </div>
-
-              <!-- description -->
+              </div>  
+                            <!-- description -->
               <div class="show-section well">
                 <!-- Pub Desc -->
-                <h2><g:message code="collection.show.title.description" /></h2>
+                <h2 class="admin-h2"><g:message code="collection.show.title.description" /></h2>
                 <span class="category"><g:message code="collection.show.span04" /></span><br/>
                 <cl:formattedText body="${instance.pubDescription?:'Not provided'}"/>
 
@@ -82,11 +82,10 @@
                 <cl:formattedText body="${instance.focus?:'Not provided'}"/>
 
                 <cl:editButton uid="${instance.uid}" page="description"/>
-              </div>
-
+              </div>  
               <div class="well">
                 <!-- Resources -->
-                <h2>Data resources</h2>
+                <h2 class="admin-h2">Data resources</h2>
                 <ul class='fancy'>
                   <g:each in="${instance.getResources().sort{it.name}}" var="c">
                       <li><g:link controller="dataResource" action="show" id="${c.uid}">${c?.name}</g:link></li>
@@ -95,8 +94,7 @@
                 <p>
                     <g:link controller="dataResource"  class="btn" action="create" params='[dataProviderUid: "${instance.uid}"]'><g:message code="dataprovider.show.link01" /></g:link>
                 </p>
-              </div>
-
+              </div> 
               <!-- images -->
               <g:render template="/shared/images" model="[target: 'logoRef', image: instance.logoRef, title:'Logo', instance: instance]"/>
               <g:render template="/shared/images" model="[target: 'imageRef', image: instance.imageRef, title:'Representative image', instance: instance]"/>
@@ -117,6 +115,18 @@
               <g:render template="/shared/changes" model="[changes: changes, instance: instance]"/>
 
             </div>
+      </div>
+        
+
+
+
+
+
+
+
+              
+
+              
             <div class="buttons">
               <g:form>
                 <g:hiddenField name="id" value="${instance?.id}"/>

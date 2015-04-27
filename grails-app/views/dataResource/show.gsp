@@ -9,47 +9,40 @@
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.3&sensor=false"></script>
     </head>
     <body onload="initializeLocationMap('${instance.canBeMapped()}',${instance.latitude},${instance.longitude});">
-    <style>
-    #mapCanvas {
-      width: 200px;
-      height: 170px;
-      float: right;
-    }
-    </style>
-        <div class="nav">
-
-            <p class="pull-right">
-            <span class="button"><cl:viewPublicLink uid="${instance?.uid}"/></span>
-            <span class="button"><cl:jsonSummaryLink uid="${instance.uid}"/></span>
-            <span class="button"><cl:jsonDataLink uid="${instance.uid}"/></span>
-            </p>
-
-            <ul>
-            <li><span class="menuButton"><cl:homeLink/></span></li>
-            <li><span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span></li>
-            <li><span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span></li>
+      <div class="container-fluid">
+        <h1 id="metadata-header">${fieldValue(bean: instance, field: "name")}<cl:valueOrOtherwise value="${instance.acronym}"> (${fieldValue(bean: instance, field: "acronym")})</cl:valueOrOtherwise></h1>
+        <div class="col-md-3 col-lg-3">
+          <div class="region-menu-gauche">
+            <ul class="menu nav">
+              <li><g:link controller="manage" action="index"><g:message code="default.home.label"/></g:link></li>
+              <li><g:link action="list"><g:message code="default.list.label" args="[entityName]"/></g:link></li> 
+              %{-- <li><g:link action="myList"><g:message code="default.myList.label" args="[entityName]"/></g:link></li> --}%
+              <li><g:link action="create"><g:message code="default.new.label" args="[entityName]"/></g:link> </li> 
+              <li><g:link controller="public" action="show" id="${instance?.uid}"><g:message code="default.show.public.label" args="[entityName]"/></g:link> </li>  
+              <li><cl:jsonSummaryLink uid="${instance.uid}"/></li>
+              <li><cl:jsonDataLink uid="${instance.uid}"/></li>
             </ul>
-
+          </div>
+          <div class="buttons">
+            <g:form class="form-delete">
+              <g:hiddenField name="id" value="${instance?.id}"/>
+              %{-- <cl:ifGranted role="${ProviderGroup.ROLE_ADMIN}"> --}%
+              <g:actionSubmit class="delete btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', args: [entityName], default: 'Supprimer la collection')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Êtes vous sur ?')}');"/>
+              %{-- </cl:ifGranted> --}%
+            </g:form>
+          </div>          
         </div>
-
-
-        <div class="body">
-            <g:if test="${flash.message}">
+        <div class="col-md-9">
+          <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
-            </g:if>
-
-            <div class="dialog emulate-public">
+          </g:if>
+          <div class="dialog emulate-public">
               <!-- base attributes -->
               <div class="show-section well titleBlock">
-                <!-- Name --><!-- Acronym -->
-                <h1>${fieldValue(bean: instance, field: "name")}<cl:valueOrOtherwise value="${instance.acronym}"> (${fieldValue(bean: instance, field: "acronym")})</cl:valueOrOtherwise></h1>
-
-                <!-- Data Provider --><!-- ALA Partner -->
+               <!-- Data Provider --><!-- ALA Partner -->
                 <g:if test="${instance.dataProvider}">
                     <h2 style="display:inline"><g:link controller="dataProvider" action="show" id="${instance.dataProvider?.id}">${instance.dataProvider?.name}</g:link></h2>
-                </g:if>
-
-                <cl:partner test="${instance.dataProvider?.isALAPartner}"/><br/>
+                </g:if> 
 
                 <!-- Institution -->
                 <g:if test="${instance.institution}">
@@ -86,7 +79,7 @@
 
               <!-- description -->
               <div class="show-section well">
-                <h2><g:message code="collection.show.title.description" /></h2>
+                <h2 class="admin-h2"><g:message code="collection.show.title.description" /></h2>
 
                 <!-- Pub Desc -->
                 <span class="category"><g:message code="collection.show.span04" /></span><br/>
@@ -114,7 +107,7 @@
 
               <!-- taxonomic range -->
               <div class="show-section well">
-                <h2>Taxonomic range</h2>
+                <h2 class="admin-h2">Taxonomic range</h2>
 
                 <!-- range -->
                 <cl:taxonomicRangeDescription obj="${instance.taxonomyHints}" key="range"/>
@@ -124,7 +117,7 @@
 
               <!-- mobilisation -->
               <div class="show-section well">
-                <h2><g:message code="dataresource.show.title01" /></h2>
+                <h2 class="admin-h2"><g:message code="dataresource.show.title01" /></h2>
 
                 <!-- contributor -->
                 <p><span class="category"><g:message code="dataresource.show.ac" />: </span><cl:tickOrCross test="${instance.status == 'dataAvailable' || instance.status == 'linksAvailable'}">yes|no</cl:tickOrCross></p>
@@ -181,13 +174,13 @@
               </div>
 
               <div class="well">
-                  <h3><g:message code="dataresource.show.title03" /></h3>
+                  <h2 class="admin-h2"><g:message code="dataresource.show.title03" /></h3>
                   <g:link controller="dataResource" action="upload" class="btn" id="${instance.uid}"><i class="icon-upload"></i> <g:message code="dataresource.show.link.upload" /></g:link>
               </div>
 
               <!-- rights -->
               <div class="show-section well">
-                <h2><g:message code="dataresource.show.title04" /></h2>
+                <h2 class="admin-h2"><g:message code="dataresource.show.title04" /></h2>
 
                 <!-- citation -->
                 <p><span class="category"><g:message code="dataResource.citation.label" />: </span> ${fieldValue(bean: instance, field: "citation")}</p>
@@ -251,21 +244,6 @@
               <g:render template="/shared/changes" model="[changes: changes, instance: instance]"/>
 
             </div>
-            <div class="buttons">
-
-              <div class="pull-right">
-                <span class="button"><cl:viewPublicLink uid="${instance?.uid}"/></span>
-                <span class="button"><cl:jsonSummaryLink uid="${instance.uid}"/></span>
-                <span class="button"><cl:jsonDataLink uid="${instance.uid}"/></span>
-              </div>
-              <g:form>
-                <g:hiddenField name="id" value="${instance?.id}"/>
-                %{-- <cl:ifGranted role="${ProviderGroup.ROLE_ADMIN}"> --}%
-                  <span><g:actionSubmit class="delete btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/></span>
-                %{-- </cl:ifGranted> --}%
-              </g:form>
-            </div>
-
-        </div>
+      </div>
     </body>
 </html>

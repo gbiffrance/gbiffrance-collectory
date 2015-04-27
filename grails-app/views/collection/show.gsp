@@ -10,7 +10,9 @@
 </head>
 <body>
  <div class="container-fluid">
-    <h1 id="metadata-header"><g:message code="collection.label" /> : ${fieldValue(bean: instance, field: "name")}<cl:valueOrOtherwise value="${instance.acronym}"> (${fieldValue(bean: instance, field: "acronym")})</cl:valueOrOtherwise></h1>
+    <h1 id="metadata-header">
+      <g:message code="collection.label" /> : ${fieldValue(bean: instance, field: "name")} <cl:valueOrOtherwise value="${instance.acronym}"> (${fieldValue(bean: instance, field: "acronym")}) </cl:valueOrOtherwise>
+    </h1>
 
     <div class="col-md-3 col-lg-3">
       <div class="region-menu-gauche">
