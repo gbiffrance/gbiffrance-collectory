@@ -27,8 +27,8 @@
                 <g:hiddenField name="id" value="${command?.id}" />
                 <g:hiddenField name="version" value="${command.version}" />
                 <table class="span12">
+                  test
                     <tbody>
-
                     <!-- public description -->
                     <tr class="prop">
                         <td valign="top" class="name span2">
