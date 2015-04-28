@@ -83,7 +83,7 @@
 <body class="${pageProperty(name:'body.class')?:'nav-collections'}" id="${pageProperty(name:'body.id')}" onload="${pageProperty(name:'body.onload')}">
 
     <header class="${fluidLayout?'row-fluid':'container'}">
-        <a href="http://www.gbif.fr"><img src="/generic-collectory/images/header_gbif_site.png" alt="GBIF France"></a>
+        <a href="http://www.gbif.fr"><img src="/collectory/images/header_gbif_site.png" alt="GBIF France"></a>
     </header>
 
     <div class="navbar navbar-inverse navbar-static ">
@@ -210,22 +210,22 @@
         <div class="row vertical-align" id="logo-partenaire">
             <div class="col-md-3">
                 <div>   <a href="http://www.ala.org.au/" target="_blank">
-                    <img src="/generic-collectory/images/ala-white.png" class="img-responsive center-block" alt="Atlas of Living Australia">
+                    <img src="/collectory/images/ala-white.png" class="img-responsive center-block" alt="Atlas of Living Australia">
                 </a> </div>
             </div>
             <div class="col-md-3">
                 <a href="https://crowdin.com/" target="_blank">
-                    <img src="/generic-collectory/images/crowdin-white.png" class="img-responsive center-block" alt="Crowdin">
+                    <img src="/collectory/images/crowdin-white.png" class="img-responsive center-block" alt="Crowdin">
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="http://www.gbif.org/" target="_blank">
-                    <img src="/generic-collectory/images/logo-gbif.jpg" class="img-responsive center-block" alt="GBIF">
+                    <img src="/collectory/images/logo-gbif.jpg" class="img-responsive center-block" alt="GBIF">
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="http://www.gbif.fr/" target="_blank">
-                    <img src="/generic-collectory/images/gbif-fr.png" class="img-responsive center-block" alt="GBIF France">
+                    <img src="/collectory/images/gbif-fr.png" class="img-responsive center-block" alt="GBIF France">
                 </a>
             </div>
         </div>
@@ -236,17 +236,17 @@
             <ul>
                 <li>
                     <a target="_blank" href="http://twitter.com/gbiffrance" title="Rejoignez sous sur Twitter !">
-                        <img width="16" height="16" src="/generic-collectory/images/twitter.png" alt="twitter logo">
+                        <img width="16" height="16" src="/collectory/images/twitter.png" alt="twitter logo">
                     </a>
                 </li>
                 <li>
                     <a target="_blank" href="/news.xml" title="Suivez notre actualité (Flux RSS)">
-                        <img width="16" height="16" src="/generic-collectory/images/rss.png" alt="RSS logo">
+                        <img width="16" height="16" src="/collectory/images/rss.png" alt="RSS logo">
                     </a>
                 </li>
                 <li>
                     <a target="_blank" title="Page Facebook du GBIF" href="https://www.facebook.com/gbifnews">
-                        <img width="16" height="16" src="/generic-collectory/images/facebook.png" alt="Facebook logo">
+                        <img width="16" height="16" src="/collectory/images/facebook.png" alt="Facebook logo">
                     </a> 
                 </li>
             </ul>

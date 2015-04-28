@@ -571,6 +571,7 @@ abstract class ProviderGroupController {
 
     def uploadDataFile = {
 
+        console.log "ici : uploadDataFile"
         //get the UID
         def dataResource = get(params.id)
 

@@ -104,6 +104,7 @@ class AdminController {
     }
 
     def getConnectionParameters = {
+        console.log "Je suis ici"
         render metadataService.getConnectionParameters() as JSON
     }
 

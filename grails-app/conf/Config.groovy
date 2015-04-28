@@ -19,6 +19,11 @@ println "default_config = ${default_config}"
 /******************************************************************************\
 *  SKINNING
 \******************************************************************************/
+
+if(!gbifApiUrl){
+    gbifApiUrl="http://api.gbif.org/v1"
+}
+
 if (!skin.layout) {
     //skin.layout = 'ala2'
     //skin.layout = 'generic'

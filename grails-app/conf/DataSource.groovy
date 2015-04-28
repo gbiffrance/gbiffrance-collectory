@@ -18,7 +18,7 @@ environments {
         dataSource {
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
             dbCreate = "update" // one of 'create', 'create-drop','update'
-            url = "jdbc:mysql://localhost:3306/collectory?autoReconnect=true&connectTimeout=0"
+            url = "jdbc:mysql://10.1.1.2:3306/collectory?autoReconnect=true&connectTimeout=0"
             username = "root"
             password = ""
             //logSql = true
@@ -28,7 +28,7 @@ environments {
         dataSource {
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
             dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/collectory?autoReconnect=true&connectTimeout=0"
+            url = "jdbc:mysql://10.1.1.2:3306/collectory?autoReconnect=true&connectTimeout=0"
             logSql = false
             username = "root"
             password = ""

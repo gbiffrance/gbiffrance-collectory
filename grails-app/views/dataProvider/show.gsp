@@ -35,6 +35,7 @@
             %{-- </cl:ifGranted> --}%
           </g:form>
         </div>  
+      </div>
         <div class="col-md-9">
           <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
