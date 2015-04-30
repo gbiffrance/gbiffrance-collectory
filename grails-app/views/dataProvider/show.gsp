@@ -93,7 +93,7 @@
                   </g:each>
                 </ul>
                 <p>
-                    <g:link controller="dataResource"  class="btn" action="create" params='[dataProviderUid: "${instance.uid}"]'><g:message code="dataprovider.show.link01" /></g:link>
+                    <g:link controller="dataResource"  class="edit-btn btn btn-sm" action="create" params='[dataProviderUid: "${instance.uid}"]'><g:message code="dataprovider.show.link01" /></g:link>
                 </p>
               </div> 
               <!-- images -->
@@ -117,28 +117,6 @@
 
             </div>
       </div>
-        
-
-
-
-
-
-
-
-              
-
-              
-            <div class="buttons">
-              <g:form>
-                <g:hiddenField name="id" value="${instance?.id}"/>
-                %{-- <cl:ifGranted role="${ProviderGroup.ROLE_ADMIN}"> --}%
-                  <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/></span>
-                %{-- </cl:ifGranted> --}%
-                <span class="button"><cl:viewPublicLink uid="${instance?.uid}"/></span>
-                <span class="button"><cl:jsonSummaryLink uid="${instance.uid}"/></span>
-                <span class="button"><cl:jsonDataLink uid="${instance.uid}"/></span>
-              </g:form>
-            </div>
         </div>
     </body>
 </html>

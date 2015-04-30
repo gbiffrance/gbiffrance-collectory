@@ -9,7 +9,7 @@
 <h1><g:message code="manage.gbiflc.title01" /></h1>
 <div id="baseForm">
     <g:form action="loadAllGbifForCountry" controller="manage">
-            <div class="span6">
+            <div class="col-md-6">
                     <table>
                         <tr class="prop">
                             <td valign="top" class="name"><label for="country"><g:message code="manage.gbiflc.label01" />:</label></td>
@@ -34,7 +34,7 @@
                 <span class="button"><input type="submit" name="performGBIFLoad" value="Load" class="save btn"></span>
             </div>
 
-            <div class="well pull-right span5">
+            <div class="well pull-right col-md-6">
                 <p>
                     <g:message code="manage.gbiflc.des01" />.<br/>
                     <g:message code="manage.gbiflc.des02" />.

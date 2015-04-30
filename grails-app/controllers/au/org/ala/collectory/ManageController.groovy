@@ -41,9 +41,13 @@ class ManageController {
      */
     def loadAllGbifForCountry(){
         log.debug(params)
+        log.debug("PLOOOOOOP")
         if(params.gbifUsername && params.gbifPassword){
+            log.debug("IIIIICCCCCCIIIIII")
             Integer maxResources = params.maxResources ? params.getInt("maxResources") : null
+            log.debug("LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + maxResources)
             gbifService.loadResourcesFor(params.country,params.gbifUsername, params.gbifPassword, maxResources)
+            log.debug("YAAAHAHHA")
             redirect(action: 'gbifCountryLoadStatus', params: [country:params.country])
         }
     }

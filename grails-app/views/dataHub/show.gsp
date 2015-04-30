@@ -3,20 +3,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="${grailsApplication.config.skin.layout}" />
-        <g:set var="entityName" value="${instance.ENTITY_TYPE}" />
+        <g:set var="entityName" value="${message(code: 'datahub.label.lower', default: 'centres de données')}" />
+        <g:set var="entityNameSing" value="${message(code: 'datahub.label.lower.sing', default: 'centre de donnée')}" />
         <g:set var="entityNameLower" value="${cl.controller(type: instance.ENTITY_TYPE)}"/>
-        <title><g:message code="default.show.label" args="[entityName]" /></title>
+        <title><g:message code="default.show.label" args="[entityNameSing]" /> <g:message code="default.list.label.end" /></title>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.3&sensor=false"></script>
     </head>
     <body onload="initializeLocationMap('${instance.canBeMapped()}',${instance.latitude},${instance.longitude});">
       <div class="container-fluid">
+         <h1 id="metadata-header"><g:message code="datahub.label.lower.sing" /> : ${fieldValue(bean: instance, field: "name")}<cl:valueOrOtherwise value="${instance.acronym}"> (${fieldValue(bean: instance, field: "acronym")})</cl:valueOrOtherwise></h1>
       <div class="col-md-3 col-lg-3">
           <div class="region-menu-gauche">
             <ul class="menu nav">
               <li><g:link controller="manage" action="index"><g:message code="default.home.label"/></g:link></li>
               <li><g:link action="list"><g:message code="default.list.label" args="[entityName]"/></g:link></li> 
               %{-- <li><g:link action="myList"><g:message code="default.myList.label" args="[entityName]"/></g:link></li> --}%
-              <li><g:link action="create"><g:message code="default.new.label" args="[entityName]"/></g:link> </li> 
+              <li><g:link action="create"><g:message code="default.new.masculin.label" args="[entityNameSing]"/></g:link> </li> 
               <li><g:link controller="public" action="show" id="${instance?.uid}"><g:message code="default.show.public.label" args="[entityName]"/></g:link> </li>  
               <li><cl:jsonSummaryLink uid="${instance.uid}"/></li>
               <li><cl:jsonDataLink uid="${instance.uid}"/></li>
@@ -40,13 +42,13 @@
               <div class="show-section well">
 
                 <!-- GUID    -->
-                <p id="first-section"><span class="category"><g:message code="collection.show.span.lsid" />:</span> <cl:guid target="_blank" guid='${fieldValue(bean: instance, field: "guid")}'/></p>
+                <p id="first-section"><span class="category"><g:message code="collection.show.span.lsid" /> :</span> <cl:guid target="_blank" guid='${fieldValue(bean: instance, field: "guid")}'/></p>
 
                 <!-- UID    -->
-                <p><span class="category"><g:message code="collection.show.span.uid" />:</span> ${fieldValue(bean: instance, field: "uid")}</p>
+                <p><span class="category"><g:message code="collection.show.span.uid" /> :</span> ${fieldValue(bean: instance, field: "uid")}</p>
 
                 <!-- Web site -->
-                <p><span class="category"><g:message code="collection.show.span.cw" />:</span> <cl:externalLink href="${fieldValue(bean:instance, field:'websiteUrl')}"/></p>
+                <p><span class="category"><g:message code="collection.show.span.cw" /> :</span> <cl:externalLink href="${fieldValue(bean:instance, field:'websiteUrl')}"/></p>
 
                 <!-- Networks -->
                 <g:if test="${instance.networkMembership}">
@@ -59,9 +61,9 @@
                 </g:if>
 
                 <!-- last edit -->
-                <p><span class="category"><g:message code="datahub.show.lastchange" />:</span> ${fieldValue(bean: instance, field: "userLastModified")} on ${fieldValue(bean: instance, field: "lastUpdated")}</p>
+                <p><span class="category"><g:message code="datahub.show.lastchange" /> :</span> ${fieldValue(bean: instance, field: "userLastModified")} on ${fieldValue(bean: instance, field: "lastUpdated")}</p>
 
-                <div><span class="buttons"><g:link class="edit btn" action='edit' params="[page:'/shared/base']" id="${instance.id}">${message(code: 'default.button.edit.label', default: 'Edit')}</g:link></span></div>
+                <div><g:link class="edit-btn btn btn-sm" action='edit' params="[page:'/shared/base']" id="${instance.id}">${message(code: 'default.button.edit.label', default: 'Edit')}</g:link></div>
               </div>
 
               <!-- description -->
@@ -69,18 +71,18 @@
                 <h2 class="admin-h2"><g:message code="collection.show.title.description" /></h2>
 
                 <!-- Pub Desc -->
-                <div class="source">[Public description]</div><div style="clear:both;"></div>
+                <div class="source">Public description :</div><div style="clear:both;"></div>
                 <cl:formattedText body="${instance.pubDescription}"/>
 
                 <!-- Tech Desc -->
-                <div class="source">[Technical description]</div><div style="clear:both;"></div>
+                <div class="source">Technical description :</div><div style="clear:both;"></div>
                 <cl:formattedText body="${instance.techDescription}"/>
 
                 <!-- Contribution -->
-                <div class="source">[Contribution]</div><div style="clear:both;"></div>
+                <div class="source">Contribution :</div><div style="clear:both;"></div>
                 <cl:formattedText>${fieldValue(bean: instance, field: "focus")}</cl:formattedText>
 
-                <div><span class="buttons"><g:link class="edit btn" action='edit' params="[page:'description']" id="${instance.id}">${message(code: 'default.button.edit.label', default: 'Edit')}</g:link></span></div>
+                <div><g:link class="edit-btn btn btn-sm" action='edit' params="[page:'description']" id="${instance.id}">${message(code: 'default.button.edit.label', default: 'Edit')}</g:link></div>
               </div>
 
               <!-- members -->
@@ -111,7 +113,7 @@
                     </ul>
                 </g:if>
 
-                <div><span class="buttons"><g:link class="edit btn" action='edit' params="[page:'members']" id="${instance.id}">${message(code: 'default.button.edit.label', default: 'Edit')}</g:link></span></div>
+                <div><g:link class="edit-btn btn btn-sm" action='edit' params="[page:'members']" id="${instance.id}">${message(code: 'default.button.edit.label', default: 'Edit')}</g:link></div>
             </div>
 
               <!-- images -->

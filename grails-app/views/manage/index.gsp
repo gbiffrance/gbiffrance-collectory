@@ -7,7 +7,6 @@
     
     <body>
       <div class="floating-content manage">
-    
         <div style="float:right;">
             <g:link class="mainLink" controller="public" action="map"><g:message code="manage.index.link" /></g:link>
         </div>

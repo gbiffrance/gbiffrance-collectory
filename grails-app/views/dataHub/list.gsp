@@ -2,7 +2,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="${grailsApplication.config.skin.layout}" />
-        <g:set var="entityName" value="${message(code: 'dataprovider.label', default: 'fournisseur de données')}" />
+        <g:set var="entityName" value="${message(code: 'datahub.label.lower', default: 'centres de donnée')}" />
         %{-- <g:set var="entityNameLower" value="${cl.controller(type: entityType)}"/> --}%
         <title><g:message code="default.list.label" args="[entityName]" /><g:message code="default.list.label.end" /></title>
     </head>

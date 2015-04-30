@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="${grailsApplication.config.skin.layout}" />
         <g:set var="entityName" value="${message(code: 'institution.label', default: 'institution')}" />
-        <title><g:message code="default.show.label" args="[entityName]" /></title>
+        <title><g:message code="default.show.label" args="[entityName]" />  <g:message code="default.list.label.end" /></title>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.3&sensor=false"></script>
         <r:require module="collectory"/>
     </head>
@@ -53,13 +53,13 @@
               </g:each>
             </g:if>
             <!-- GUID    -->
-            <p><span class="category"><g:message code="collection.show.span.lsid" />:</span> <cl:guid target="_blank" guid='${(fieldValue(bean: instance, field: "guid"))?:'Not supplied'}'/></p>
+            <p id="first-section"><span class="category"><g:message code="collection.show.span.lsid" /> : </span> <cl:guid target="_blank" guid='${(fieldValue(bean: instance, field: "guid"))?:'Not supplied'}'/></p>
 
             <!-- UID    -->
-            <p><span class="category"><g:message code="providerGroup.uid.label" />:</span> ${fieldValue(bean: instance, field: "uid")}</p>
+            <p><span class="category"><g:message code="providerGroup.uid.label" /> : </span> ${fieldValue(bean: instance, field: "uid")}</p>
 
             <!-- Web site -->
-            <p><span class="category"><g:message code="collection.show.span.cw" />:</span> <cl:externalLink href="${fieldValue(bean:instance, field:'websiteUrl')}"/></p>
+            <p><span class="category"><g:message code="collection.show.span.cw" /> : </span> <cl:externalLink href="${fieldValue(bean:instance, field:'websiteUrl')}"/></p>
 
             <!-- Networks -->
             <g:if test="${instance.networkMembership}">
@@ -80,19 +80,19 @@
           <div class="show-section well">
             <!-- Pub Desc -->
             <h2 class="admin-h2">Description</h2>
-            <div class="category"><g:message code="collection.show.span04" /></div><div style="clear:both;"></div>
+            <div class="category"><g:message code="collection.show.span04" /> : </div><div style="clear:both;"></div>
             <cl:formattedText body="${instance.pubDescription}"/>
 
             <!-- Tech Desc -->
-            <div class="category"><g:message code="collection.show.span05" /></div><div style="clear:both;"></div>
+            <div class="category"><g:message code="collection.show.span05" /> : </div><div style="clear:both;"></div>
             <cl:formattedText body="${instance.techDescription}"/>
 
             <!-- Contribution -->
-            <div class="category"><g:message code="dataprovider.show.span06" /></div><div style="clear:both;"></div>
+            <div class="category"><g:message code="dataprovider.show.span06" /> : </div><div style="clear:both;"></div>
             <cl:formattedText>${fieldValue(bean: instance, field: "focus")}</cl:formattedText>
 
             <!-- Institution type -->
-            <p><span class="category"><g:message code="institution.edit.span07" />:</span> ${fieldValue(bean: instance, field: "institutionType")}</p>
+            <p><span class="category"><g:message code="institution.edit.span07" /> : </span> ${fieldValue(bean: instance, field: "institutionType")}</p>
 
             <!-- Collections -->
             <h2 class="admin-h2">Collections</h2>
@@ -102,7 +102,7 @@
                 </g:each>
               </ul>
               <p>
-                <g:link controller="collection" action="create" class="btn" params='[institutionUid: "${instance.uid}"]'>create a new collection for this institution</g:link>
+                <g:link controller="collection" action="create" class="edit-btn btn btn-sm" params='[institutionUid: "${instance.uid}"]'>Créer une nouvelle collection pour cette institution</g:link>
               </p>
 
               <cl:editButton uid="${instance.uid}" page="description"/>

@@ -5,7 +5,7 @@
     <meta name="layout" content="${grailsApplication.config.skin.layout}" />
     <g:set var="entityName" value="${message(code: 'collection.label.lower', default: 'collection')}" />
     %{-- <g:set var="entityNameLower" value="${message(code: 'collection.label', default: 'collection')}" /> --}%
-    <title><g:message code="default.list.label" args="[entityName]" /><g:message code="default.list.label.end" /></title>
+    <title><g:message code="default.list.label" args="[entityName]" /> <g:message code="default.list.label.end" /></title>
 </head>
 <body>
     <div class="body">

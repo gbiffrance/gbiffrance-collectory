@@ -16,7 +16,7 @@
         </g:if>
 
         <div class="row-fluid">
-            <div class=".col-md-9">
+            <div class="col-md-12">
 
 %{--                 <div id="yourMetadata" class="infoSection hide">
                     <g:if test="${show == 'user'}">
@@ -174,9 +174,15 @@
 
                         <p class="mainText"><g:message code="manage.list.addtools.des03" /></p>
                         <g:form controller="collection" action="searchList" method="get">
-                            <div class="input-append">
-                                <g:textField class="mainText" name="term" placeholder="Rechercher une collection..."/>
-                                <g:submitButton class="btn" name="search" value="Search"/>
+                            <div  class="controls">
+                                <div  id="search-col" class="col-md-12">
+                                    <div class="input-group col-md-4">
+                                        <g:textField class="form-control input-sm" name="term" placeholder="Rechercher une collection"/>
+                                        <span class="input-group-btn">
+                                            <g:submitButton class="btn btn-default search-collection btn-sm" name="search" value="Rechercher"/>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </g:form>
                     </div>

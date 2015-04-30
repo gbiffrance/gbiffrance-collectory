@@ -292,6 +292,25 @@ ul.nav ul > li {
     color: white;
 }
 
+#search-col{
+    margin-bottom: 10px;
+    padding-left: 0;
+}
+
+.search-collection{
+    border: 1px solid rgba(136, 126, 124, 1);
+    border-radius: 4px;
+    background-color: rgba(136, 126, 124, 1);
+    background-image: none;
+    border: 1px solid rgba(136, 126, 124, 1);
+    color: white;
+}
+
+.search-collection:hover {
+    background-color: rgba(136, 126, 124, 1);
+    border: 1px solid rgba(136, 126, 124, 1); 
+    color: white;
+}
 /* COLLECTION : LISTE COLLECTION */
 
 #index{
@@ -360,7 +379,18 @@ td a:hover{
     color: white;
     margin-top: 10px;
 }
-.edit-btn:hover, .edit-btn:focus{
+
+.delete-btn{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #cc424e;
+    background-image: none;
+    border: 1px solid #cc424e;
+    border-radius: 4px;
+    color: white;
+    margin-top: 10px;
+}
+.edit-btn:hover, .edit-btn:focus, .delete-btn:hover, .delete-btn:focus{
     color: white;
     text-decoration: none;
 }
@@ -400,6 +430,25 @@ td a:hover{
     margin-top: 5px;
 }
 
+/* COLLECTION : CONTACT */
+
+.name{
+    font-weight: bold;
+}
+
+.edit-contact-form{
+    padding-bottom: 10px;
+}
+
+/* COLLECTION : PROVIDER CODE */
+
+#entete{
+    margin-top: 10px;
+}
+
+#code-field{
+    width: 177px;
+}
 /* FOOTER */
 
 footer{
