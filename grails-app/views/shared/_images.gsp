@@ -15,13 +15,13 @@
   <g:elseif test="${instance instanceof DataHub}">
     <g:set var="dir" value="data/dataHub"/>
   </g:elseif>
-
   <h2 class="admin-h2">${title?:'Not title provided'}</h2>
 
   <g:if test="${fieldValue(bean: image, field: 'file')}">
 
     <div class="media">
       <a class="pull-left" href="#">
+        plop
         <img class="showImage img-polaroid" alt="${fieldValue(bean: image, field: "file")}"
             src="${resource(absolute: "true", dir: dir, file: image.file)}"/>
       </a>

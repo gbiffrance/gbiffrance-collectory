@@ -154,6 +154,10 @@ ul.nav ul > li {
     visibility: hidden;
 }
 
+.caret{
+    padding-bottom: 2px;
+}
+
 /* FIL D'ARIANE */
 
 #block-block-6{
@@ -369,7 +373,7 @@ td a:hover{
   float: right;
 }
 
-.edit-btn{
+.edit-btn, .save-btn{
     padding-left: 20px;
     padding-right: 20px;
     background-color: rgba(136, 126, 124, 1);
@@ -380,6 +384,22 @@ td a:hover{
     margin-top: 10px;
 }
 
+.save-btn{
+    width: 100%;
+
+}
+
+.cancel-btn{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #a6ac1a;
+    background-image: none;
+    border: 1px solid #a6ac1a;
+    border-radius: 4px;
+    color: white;
+    margin-top: 10px;
+    width: 100%;
+}
 .delete-btn{
     padding-left: 20px;
     padding-right: 20px;
@@ -389,8 +409,12 @@ td a:hover{
     border-radius: 4px;
     color: white;
     margin-top: 10px;
+    width: 100%;
 }
-.edit-btn:hover, .edit-btn:focus, .delete-btn:hover, .delete-btn:focus{
+.edit-btn:hover, .edit-btn:focus, 
+.delete-btn:hover, .delete-btn:focus, 
+.cancel-btn:hover, .cancel-btn:focus, 
+.save-btn:hover, .save-btn:focus{
     color: white;
     text-decoration: none;
 }
@@ -449,7 +473,20 @@ td a:hover{
 #code-field{
     width: 177px;
 }
+
+/* COLLECTION : PARTIE EDITABLE */
+#first-field{
+    padding-top: 10px;
+}
+
 /* FOOTER */
+
+.vcenter{
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    width: 24.7%;
+}
 
 footer{
     left: 0;
@@ -515,7 +552,7 @@ footer ul li{
 
 .footer-margin{
 	margin-bottom: 5px;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 .social{

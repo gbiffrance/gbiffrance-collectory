@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="nav">
-        <h1><g:message code="collection.title.editing" />: ${command.name}</h1>
+        <h1><g:message code="collection.title.editing" /> <em> ${command.name} </em></h1>
         </div>
         <div id="baseForm" class="body">
             <g:if test="${message}">

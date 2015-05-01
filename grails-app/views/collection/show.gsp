@@ -120,7 +120,7 @@
     </div>
 
     <!-- images -->
-    <g:render template="/shared/images" model="[target: 'imageRef', image: instance.imageRef, title:'Representative image', instance: instance]"/>
+    <g:render template="/shared/images" model="[target: 'imageRef', image: instance.imageRef, title:'Image représentative', instance: instance]"/>
 
     <!-- location -->
     <g:render template="/shared/location" model="[instance: instance]"/>

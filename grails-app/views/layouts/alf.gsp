@@ -19,13 +19,6 @@
    <%--
       <r:require modules="jquery, jquery_i18n, bootstrap, application, collectory" />
       --%>
-      <style type="text/css">
-      #footer {
-        margin: 20px;
-        padding-top: 10px;
-        border-top: 1px solid #CCC;
-        font-size: 12px;
-    }
 
     </style>
     <r:script disposition='head'>
@@ -207,26 +200,34 @@
             </div>
         </div>
         <g:layoutBody />
-        <div class="row vertical-align" id="logo-partenaire">
-            <div class="col-md-3">
-                <div>   <a href="http://www.ala.org.au/" target="_blank">
-                    <img src="/collectory/images/ala-white.png" class="img-responsive center-block" alt="Atlas of Living Australia">
-                </a> </div>
+        <div class="row-fluid">
+            <div class="col-md-3 vcenter">
+                <div>   
+                    <a href="http://www.ala.org.au/" target="_blank">
+                        <img src="/collectory/images/ala-white.png" class="img-responsive center-block" alt="Atlas of Living Australia">
+                    </a> 
+                </div>
             </div>
-            <div class="col-md-3">
-                <a href="https://crowdin.com/" target="_blank">
-                    <img src="/collectory/images/crowdin-white.png" class="img-responsive center-block" alt="Crowdin">
-                </a>
+            <div class="col-md-3 vcenter">
+                <div>
+                    <a href="https://crowdin.com/" target="_blank">
+                        <img src="/collectory/images/crowdin-white.png" class="img-responsive center-block" alt="Crowdin">
+                    </a>
+                </div>
             </div>
-            <div class="col-md-3">
-                <a href="http://www.gbif.org/" target="_blank">
-                    <img src="/collectory/images/logo-gbif.jpg" class="img-responsive center-block" alt="GBIF">
-                </a>
+            <div class="col-md-3 vcenter">
+                <div>
+                    <a href="http://www.gbif.org/" target="_blank">
+                        <img src="/collectory/images/logo-gbif.jpg" class="img-responsive center-block" alt="GBIF">
+                    </a>
+                </div>
             </div>
-            <div class="col-md-3">
-                <a href="http://www.gbif.fr/" target="_blank">
-                    <img src="/collectory/images/gbif-fr.png" class="img-responsive center-block" alt="GBIF France">
-                </a>
+            <div class="col-md-3 vcenter">
+                <div>
+                    <a href="http://www.gbif.fr/" target="_blank">
+                        <img src="/collectory/images/gbif-fr.png" class="img-responsive center-block" alt="GBIF France">
+                    </a>
+                </div>
             </div>
         </div>
     </div><!--/.container-->

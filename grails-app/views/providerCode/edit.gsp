@@ -4,7 +4,7 @@
 	<head>
 		<meta name="layout" content="${grailsApplication.config.skin.layout}" />
 		<g:set var="entityName" value="${message(code: 'providerCode.label', default: 'ProviderCode')}" />
-		<title><g:message code="default.edit.label" args="[entityName]" /></title>
+		<title><g:message code="default.edit.label" args="[entityName]" /> <g:message code="default.list.label.end" /></title>
 	</head>
 	<body>
 		<div class="container-fluid">

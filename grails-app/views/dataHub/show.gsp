@@ -71,15 +71,15 @@
                 <h2 class="admin-h2"><g:message code="collection.show.title.description" /></h2>
 
                 <!-- Pub Desc -->
-                <div class="source">Public description :</div><div style="clear:both;"></div>
+                <div class="source category">Public description :</div><div style="clear:both;"></div>
                 <cl:formattedText body="${instance.pubDescription}"/>
 
                 <!-- Tech Desc -->
-                <div class="source">Technical description :</div><div style="clear:both;"></div>
+                <div class="source category">Technical description :</div><div style="clear:both;"></div>
                 <cl:formattedText body="${instance.techDescription}"/>
 
                 <!-- Contribution -->
-                <div class="source">Contribution :</div><div style="clear:both;"></div>
+                <div class="source category">Contribution :</div><div style="clear:both;"></div>
                 <cl:formattedText>${fieldValue(bean: instance, field: "focus")}</cl:formattedText>
 
                 <div><g:link class="edit-btn btn btn-sm" action='edit' params="[page:'description']" id="${instance.id}">${message(code: 'default.button.edit.label', default: 'Edit')}</g:link></div>

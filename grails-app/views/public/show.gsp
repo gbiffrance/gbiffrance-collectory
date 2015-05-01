@@ -29,22 +29,13 @@
           });
         </r:script>
     </head>
-    <body class="two-column-right">
+    <body>
       <div id="content">
-
-        <div id="header" class="collectory">
-          <!--Breadcrumbs-->
-%{--           <div id="breadcrumb">
-            <ol class="breadcrumb">
-                <li><cl:breadcrumbTrail/> <span class=" icon icon-arrow-right"></span></li>
-                <li><cl:pageOptionsLink>${fieldValue(bean:instance,field:'name')}</cl:pageOptionsLink></li>
-            </ol>
-          </div> --}%
-
+        <div id="header">
           <cl:pageOptionsPopup instance="${instance}"/>
           <div class="row-fluid">
-            <div class="span8">
-              <cl:h1 value="${instance.name}"/>
+          <cl:h1 value="${instance.name}" />
+            <div class="col-md-8">
               <g:set var="inst" value="${instance.getInstitution()}"/>
               <g:if test="${inst}">
                 <h3><g:link action="show" id="${inst.uid}">${inst.name}</g:link></h3>
