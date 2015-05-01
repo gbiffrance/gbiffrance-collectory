@@ -31,43 +31,25 @@
 <body class="nav-datasets">
 <div id="content">
 <div id="header">
-    <!--Breadcrumbs-->
-    <div id="breadcrumb">
-        <ol class="breadcrumb">
-            <li><cl:breadcrumbTrail home="dataSets"/> <span class=" icon icon-arrow-right"></span></li>
-            <li><cl:pageOptionsLink>${fieldValue(bean:instance,field:'name')}</cl:pageOptionsLink></li>
-        </ol>
-    </div>
     <cl:pageOptionsPopup instance="${instance}"/>
+    <cl:h1 value="${instance.name}"/>
     <div class="row-fluid">
-        <div class="span8">
-            <cl:h1 value="${instance.name}"/>
+        
+        <div class="col-md-8" id="row-public">
+            
             <g:set var="dp" value="${instance.dataProvider}"/>
             <g:if test="${dp}">
-                <h2><g:link action="show" id="${dp.uid}">${dp.name}</g:link></h2>
+                <p>Fournisseur de données : <g:link action="show" id="${dp.uid}">${dp.name}</g:link></p>
             </g:if>
             <g:if test="${instance.institution}">
-                <h2><g:link action="show" id="${instance.institution.uid}">${instance.institution.name}</g:link></h2>
+                <p>Institution : <g:link action="show" id="${instance.institution.uid}">${instance.institution.name}</g:link></p>
             </g:if>
             <cl:valueOrOtherwise value="${instance.acronym}"><span
                     class="acronym">Acronym: ${fieldValue(bean: instance, field: "acronym")}</span></cl:valueOrOtherwise>
-            <g:if test="${instance.guid}">
-                <span class="lsid"><a href="#lsidText" id="lsid" class="local"
-                                  title="Life Science Identifier (pop-up)"><g:message code="public.lsid" /></a></span>
-            </g:if>
-            <div style="display:none; text-align: left;">
-                <div id="lsidText" style="text-align: left;">
-                    <b><a class="external_icon" href="http://lsids.sourceforge.net/"
-                          target="_blank"><g:message code="public.lsidtext.link" />:</a></b>
-
-                    <p><cl:guid target="_blank" guid='${fieldValue(bean: instance, field: "guid")}'/></p>
-
-                    <p><g:message code="public.lsidtext.des" />.</p>
-                </div>
-            </div>
+            <cl:valueOrOtherwise value="${instance.guid}"><p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p></cl:valueOrOtherwise>
         </div>
 
-        <div class="span4">
+        <div class="col-md-4">
         <!-- provider -->
             <g:if test="${dp?.logoRef?.file}">
                 <g:link action="show" id="${dp.uid}">
@@ -79,8 +61,8 @@
         </div>
     </div>
 </div><!--close header-->
-<div class="row-fluid">
-    <div class="span8">
+<div class="row" >
+    <div class="col-md-8">
         <g:if test="${instance.pubDescription || instance.techDescription || instance.focus}">
             <h2><g:message code="public.des" /></h2>
         </g:if>
@@ -90,10 +72,10 @@
         <cl:dataResourceContribution resourceType="${instance.resourceType}" status="${instance.status}" tag="p"/>
 
         <g:if test="${instance.contentTypes}">
-            <h2><g:message code="public.sdr.content.label02" /></h2>
+            <h2 class="admin-h2"><g:message code="public.sdr.content.label02" /></h2>
             <cl:contentTypes types="${instance.contentTypes}"/>
         </g:if>
-        <h2><g:message code="public.sdr.content.label03" /></h2>
+        <h2 class="admin-h2"><g:message code="public.sdr.content.label03" /></h2>
         <g:if test="${instance.citation}">
             <cl:formattedText>${fieldValue(bean: instance, field: "citation")}</cl:formattedText>
         </g:if>
@@ -102,7 +84,7 @@
         </g:else>
 
         <g:if test="${instance.rights || instance.creativeCommons}">
-            <h2><g:message code="public.sdr.content.label04" /></h2>
+            <h2 class="admin-h2"><g:message code="public.sdr.content.label04" /></h2>
             <cl:formattedText>${fieldValue(bean: instance, field: "rights")}</cl:formattedText>
             <g:if test="${instance.creativeCommons}">
                 <p><cl:displayLicenseType type="${instance.licenseType}" version="${instance.licenseVersion}"/></p>
@@ -110,12 +92,12 @@
         </g:if>
 
         <g:if test="${instance.dataGeneralizations}">
-            <h2><g:message code="public.sdr.content.label05" /></h2>
+            <h2 class="admin-h2"><g:message code="public.sdr.content.label05" /></h2>
             <cl:formattedText>${fieldValue(bean: instance, field: "dataGeneralizations")}</cl:formattedText>
         </g:if>
 
         <g:if test="${instance.informationWithheld}">
-            <h2><g:message code="public.sdr.content.label06" /></h2>
+            <h2 class="admin-h2"><g:message code="public.sdr.content.label06" /></h2>
             <cl:formattedText>${fieldValue(bean: instance, field: "informationWithheld")}</cl:formattedText>
         </g:if>
 
@@ -136,7 +118,7 @@
 
         <g:if test="${instance.resourceType == 'website' || instance.resourceType == 'records'}">
             <div id='usage-stats'>
-                <h2><g:message code="public.sdr.usagestats.labe" /></h2>
+                <h2 class="admin-h2"><g:message code="public.sdr.usagestats.labe" /></h2>
 
                 <div id='usage'>
                     <p><g:message code="public.usage.des" />...</p>
@@ -148,7 +130,7 @@
         </g:if>
 
         <g:if test="${instance.resourceType == 'records'}">
-            <h2><g:message code="public.sdr.content.label09" /></h2>
+            <h2 class="admin-h2"><g:message code="public.sdr.content.label09" /></h2>
 
             <div>
                 <p><span
@@ -164,7 +146,7 @@
         <g:if test="${instance.resourceType == 'records'}">
             <div id="recordsBreakdown" class="section vertical-charts">
                 <g:if test="${!grailsApplication.config.disableOverviewMap}">
-                    <h3><g:message code="public.sdr.content.label10" /></h3>
+                    <h3 class="public-h3"><g:message code="public.sdr.content.label10" /></h3>
                     <cl:recordsMapDirect uid="${instance.uid}"/>
                 </g:if>
                 <div id="tree" class="well"></div>
@@ -173,7 +155,7 @@
         </g:if>
         <cl:lastUpdated date="${instance.lastUpdated}"/>
     </div><!--close column-one-->
-    <div class="span4">
+    <div class="col-md-4">
         <g:if test="${fieldValue(bean: instance, field: 'imageRef') && fieldValue(bean: instance, field: 'imageRef.file')}">
             <div class="section">
                 <img alt="${fieldValue(bean: instance, field: "imageRef.file")}"
@@ -201,7 +183,7 @@
 
         <g:if test="${address != null && !address?.isEmpty()}">
             <div class="section">
-                <h3><g:message code="public.location" /></h3>
+                <h3 class="public-h3"><g:message code="public.location" /></h3>
 
                 <g:if test="${!address?.isEmpty()}">
                     <p>
@@ -228,7 +210,7 @@
     <!-- web site -->
         <g:if test="${instance.resourceType == 'species-list'}">
             <div class="section">
-                <h3><g:message code="public.sdr.content.label12" /></h3>
+                <h3 class="public-h3"><g:message code="public.sdr.content.label12" /></h3>
                 <div class="webSite">
                     <a class='external_icon' target="_blank"
                        href="${grailsApplication.config.speciesListToolUrl}${instance.uid}"><g:message code="public.sdr.content.link03" /></a>
@@ -237,7 +219,7 @@
         </g:if>
         <g:elseif test="${instance.websiteUrl}">
             <div class="section">
-                <h3><g:message code="public.website" /></h3>
+                <h3 class="public-h3"><g:message code="public.website" /></h3>
                 <div class="webSite">
                     <a class='external_icon' target="_blank"
                        href="${instance.websiteUrl}"><g:message code="public.sdr.content.link04" /></a>
@@ -248,7 +230,7 @@
     <!-- network membership -->
         <g:if test="${instance.networkMembership}">
             <div class="section">
-                <h3><g:message code="public.network.membership.label" /></h3>
+                <h3 class="public-h3"><g:message code="public.network.membership.label" /></h3>
                 <g:if test="${instance.isMemberOf('CHAEC')}">
                     <p><g:message code="public.network.membership.des01" /></p>
                     <img src="${resource(absolute: "true", dir: "data/network/", file: "butflyyl.gif")}"/>
@@ -283,7 +265,6 @@
             </div>
         </g:if>
     </div>
-</div>
 </div>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">google.load('visualization', '1.0', {'packages':['corechart']});</script>

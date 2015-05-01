@@ -32,39 +32,23 @@
 <body>
 <div id="content">
     <div id="header" class="collectory">
-        <!--Breadcrumbs-->
-        <div id="breadcrumb">
-            <ol class="breadcrumb">
-                <li><cl:breadcrumbTrail/> <span class=" icon icon-arrow-right"></span></li>
-                <li><cl:pageOptionsLink>${fieldValue(bean:instance,field:'name')}</cl:pageOptionsLink></li>
-            </ol>
-        </div>
         <cl:pageOptionsPopup instance="${instance}"/>
+        <cl:h1 value="${instance.name}"/>
         <div class="row-fluid">
-            <div class="span8">
-                <cl:h1 value="${instance.name}"/>
+            <div class="col-md-8" id="row-public">
                 <g:set var="parents" value="${instance.listParents()}"/>
                 <g:each var="p" in="${parents}">
-                    <h2><g:link action="show" id="${p.uid}">${p.name}</g:link></h2>
+                    <p><g:link action="show" id="${p.uid}">${p.name}</g:link></p>
                 </g:each>
-                <cl:valueOrOtherwise value="${instance.acronym}"><span
-                        class="acronym">Acronym: ${fieldValue(bean: instance, field: "acronym")}</span></cl:valueOrOtherwise>
-                <g:if test="${instance.guid?.startsWith('urn:lsid:')}">
-                    <span class="lsid"><a href="#lsidText" id="lsid" class="local"
-                                          title="Life Science Identifier (pop-up)"><g:message code="public.lsid" /></a></span>
-
-                    <div style="display:none; text-align: left;">
-                        <div id="lsidText" style="text-align: left;">
-                            <b><a class="external_icon" href="http://lsids.sourceforge.net/"
-                                  target="_blank"><g:message code="public.lsidtext.link" />:</a></b>
-                            <p><cl:guid target="_blank" guid='${fieldValue(bean: instance, field: "guid")}'/></p>
-                            <p><g:message code="public.lsidtext.des" />.</p>
-                        </div>
-                    </div>
-                </g:if>
+                <cl:valueOrOtherwise value="${instance.acronym}">
+                    <p>Acronym: ${fieldValue(bean: instance, field: "acronym")}</p>
+                </cl:valueOrOtherwise>
+                <cl:valueOrOtherwise value="${instance.guid}">
+                    <p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p>
+                </cl:valueOrOtherwise>
             </div>
 
-            <div class="span4">
+            <div class="col-md-4">
                 <g:if test="${fieldValue(bean: instance, field: 'logoRef') && fieldValue(bean: instance, field: 'logoRef.file')}">
                     <img class="institutionImage"
                          src='${resource(absolute: "true", dir: "data/institution/", file: fieldValue(bean: instance, field: 'logoRef.file'))}'/>
@@ -72,18 +56,18 @@
             </div>
         </div>
     </div><!--close header-->
-    <div class="row-fluid">
-            <div class="span8">
+    <div class="row">
+            <div class="col-md-8">
                 <g:if test="${instance.pubDescription}">
-                    <h2><g:message code="public.des" /></h2>
+                    <h2 class="admin-h2"><g:message code="public.des" /></h2>
                     <cl:formattedText>${fieldValue(bean: instance, field: "pubDescription")}</cl:formattedText>
                     <cl:formattedText>${fieldValue(bean: instance, field: "techDescription")}</cl:formattedText>
                 </g:if>
                 <g:if test="${instance.focus}">
-                    <h2><g:message code="public.si.content.label02" /></h2>
+                    <h2 class="admin-2"><g:message code="public.si.content.label02" /></h2>
                     <cl:formattedText>${fieldValue(bean: instance, field: "focus")}</cl:formattedText>
                 </g:if>
-                <h2><g:message code="public.si.content.label03" /></h2>
+                <h2 class="admin-h2"><g:message code="public.si.content.label03" /></h2>
                 <ol>
                     <g:each var="c" in="${instance.listCollections().sort { it.name }}">
                         <li><g:link controller="public" action="show"
@@ -92,14 +76,14 @@
                 </ol>
 
                 <div id='usage-stats'>
-                    <h2><g:message code="public.usagestats.label" /></h2>
+                    <h2 class="admin-h2"><g:message code="public.usagestats.label" /></h2>
 
                     <div id='usage'>
                         <p><g:message code="public.usage.des" />...</p>
                     </div>
                 </div>
 
-                <h2><g:message code="public.si.content.label04" /></h2>
+                <h2 class="admin-h2"><g:message code="public.si.content.label04" /></h2>
 
                 <div>
                     <p style="padding-bottom:8px;"><span
@@ -116,7 +100,7 @@
                 <cl:lastUpdated date="${instance.lastUpdated}"/>
 
             </div><!--close section-->
-            <div class="span4">
+            <div class="col-md-4">
                 <g:if test="${fieldValue(bean: instance, field: 'imageRef') && fieldValue(bean: instance, field: 'imageRef.file')}">
                     <div class="section">
                         <img alt="${fieldValue(bean: instance, field: "imageRef.file")}"
@@ -135,7 +119,7 @@
                 </div>
 
                 <div class="section">
-                    <h3><g:message code="public.location" /></h3>
+                    <h3 class="public-h3"><g:message code="public.location" /></h3>
                     <g:if test="${instance.address != null && !instance.address.isEmpty()}">
                         <p>
                             <cl:valueOrOtherwise
@@ -160,7 +144,7 @@
             <!-- web site -->
                 <g:if test="${instance.websiteUrl}">
                     <div class="section">
-                        <h3><g:message code="public.website" /></h3>
+                        <h3 class="public-h3"><g:message code="public.website" /></h3>
 
                         <div class="webSite">
                             <a class='external' target="_blank"
@@ -173,7 +157,7 @@
             <!-- network membership -->
                 <g:if test="${instance.networkMembership}">
                     <div class="section">
-                        <h3><g:message code="public.network.membership.label" /></h3>
+                        <h3 class="public-h3"><g:message code="public.network.membership.label" /></h3>
                         <g:if test="${instance.isMemberOf('CHAEC')}">
                             <p><g:message code="public.network.membership.des01" /></p>
                             <img src="${resource(absolute: "true", dir: "data/network/", file: "chaec-logo.png")}"/>

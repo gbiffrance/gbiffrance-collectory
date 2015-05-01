@@ -1,6 +1,6 @@
 <g:if test="${it?.size() > 0}">
   <div class="section">
-    <h3>Contact</h3>
+    <h3 class="public-h3">Contact</h3>
     <g:each in="${it}" var="cf">
       <div class="contact">
         <p>

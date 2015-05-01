@@ -33,36 +33,32 @@
       <div id="content">
         <div id="header">
           <cl:pageOptionsPopup instance="${instance}"/>
-          <div class="row-fluid">
           <cl:h1 value="${instance.name}" />
+          <div class="row">
             <div class="col-md-8">
               <g:set var="inst" value="${instance.getInstitution()}"/>
               <g:if test="${inst}">
-                <h3><g:link action="show" id="${inst.uid}">${inst.name}</g:link></h3>
+                <p>Institution <g:link action="show" id="${inst.uid}"> : ${inst.name}</g:link></p>
               </g:if>
-              <span style="display:none;">
-                <cl:valueOrOtherwise value="${instance.acronym}"><span class="acronym"><g:message code="public.show.header.acronym" />: ${fieldValue(bean: instance, field: "acronym")}</span></cl:valueOrOtherwise>
-                  <span class="lsid"><a href="#lsidText" id="lsid" class="local" title="Life Science Identifier (pop-up)"><g:message code="public.lsid" /></a></span>
+              <span style="">
+              <cl:valueOrOtherwise value="${instance.acronym}"><p><g:message code="public.show.header.acronym" /> : ${fieldValue(bean: instance, field: "acronym")}</p></cl:valueOrOtherwise>
+              <cl:valueOrOtherwise value="${instance.guid}"><p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p></cl:valueOrOtherwise>
+                  %{-- <span class="lsid"><a href="#lsidText" id="lsid" class="local" title="Life Science Identifier (pop-up)"><g:message code="public.lsid" /></a></span> --}%
               </span>
-              <div style="display:none; text-align: left;">
-                  <div id="lsidText" style="text-align: left;">
-                      <b><a class="external_icon" href="http://lsids.sourceforge.net/" target="_blank"><g:message code="public.lsidtext.link" />:</a></b>
-                      <p style="margin: 10px 0;"><cl:guid target="_blank" guid='${fieldValue(bean: instance, field: "guid")}'/></p>
-                      <p style="font-size: 12px;"><g:message code="public.lsidtext.des" />. </p>
-                  </div>
-              </div>
             </div>
-            <div class="span4">
+            <div class="col-md-4">
               <!-- institution logo -->
               <g:if test="${inst?.logoRef?.file}">
                 <g:link action="showInstitution" id="${inst.id}">
                   <img class="institutionImage" src='${resource(absolute:"true", dir:"data/institution/",file:fieldValue(bean: inst, field: 'logoRef.file'))}' />
                 </g:link>
-                <!--div style="clear: both;"></div-->
               </g:if>
             </div>
           </div>
         </div><!--close header-->
+
+
+
 
         <div class="tabbable">
             <ul class="nav nav-tabs" id="overviewTabs">
@@ -73,16 +69,16 @@
         </div>
 
         <div class="tab-content">
-            <div id="overviewTab" class="tab-pane active row-fluid">
-               <div id="overview-content" class="span8">
-                  <h2><g:message code="public.des" /></h2>
+            <div id="overviewTab" class="tab-pane active row">
+               <div id="overview-content" class="col-md-8">
+                  <h2 class="admin-h2"><g:message code="public.des" /></h2>
                   <cl:formattedText body="${instance.pubDescription}"/>
                   <cl:formattedText>${fieldValue(bean: instance, field: "techDescription")}</cl:formattedText>
                   <g:if test="${instance.startDate || instance.endDate}">
                       <p><cl:temporalSpanText start='${fieldValue(bean: instance, field: "startDate")}' end='${fieldValue(bean: instance, field: "endDate")}'/></p>
                   </g:if>
 
-                  <h2><g:message code="public.show.oc.label02" /></h2>
+                  <h2 class="admin-h2" ><g:message code="public.show.oc.label02" /></h2>
                   <g:if test="${fieldValue(bean: instance, field: 'focus')}">
                     <cl:formattedText>${fieldValue(bean: instance, field: "focus")}</cl:formattedText>
                   </g:if>
@@ -95,7 +91,7 @@
                   </g:if>
 
                   <g:if test="${instance?.geographicDescription || instance.states}">
-                    <h2><g:message code="public.show.oc.label03" /></h2>
+                    <h2 class="admin-h2"><g:message code="public.show.oc.label03" /></h2>
                     <g:if test="${fieldValue(bean: instance, field: 'geographicDescription')}">
                       <p>${fieldValue(bean: instance, field: "geographicDescription")}</p>
                     </g:if>
@@ -117,7 +113,7 @@
                   </g:if>
 
                   <g:set var="nouns" value="${cl.nounForTypes(types:instance.listCollectionTypes())}"/>
-                  <h2><g:message code="public.show.oc.label04" /> <cl:nounForTypes types="${instance.listCollectionTypes()}"/> <g:message code="public.show.oc.label05" /></h2>
+                  <h2 class="admin-h2"><g:message code="public.show.oc.label04" /> <cl:nounForTypes types="${instance.listCollectionTypes()}"/> <g:message code="public.show.oc.label05" /></h2>
                   <g:if test="${fieldValue(bean: instance, field: 'numRecords') != '-1'}">
                     <p><g:message code="public.show.oc.des07" /> ${nouns} in <cl:collectionName prefix="the " name="${instance.name}"/> <g:message code="public.show.oc.des08" /> ${fieldValue(bean: instance, field: "numRecords")}.</p>
                   </g:if>
@@ -128,21 +124,21 @@
                   <p><g:message code="public.show.oc.des13" />.</p>
 
                   <g:if test="${instance.listSubCollections()?.size() > 0}">
-                    <h2><g:message code="public.show.oc.label06" /></h2>
+                    <h2 class="admin-h2"><g:message code="public.show.oc.label06" /></h2>
                     <p><cl:collectionName prefix="The " name="${instance.name}"/> <g:message code="public.show.oc.des14" />:</p>
                     <cl:subCollectionList list="${instance.subCollections}"/>
                   </g:if>
 
                   <g:if test="${biocacheRecordsAvailable && !grailsApplication.config.disableLoggerLinks?.asBoolean()}">
                   <div id='usage-stats' style="">
-                    <h2><g:message code="public.show.oc.label07" /></h2>
+                    <h2 class="admin-h2"><g:message code="public.show.oc.label07" /></h2>
                     <div id='usage'></div>
                   </div>
                   </g:if>
 
                   <cl:lastUpdated date="${instance.lastUpdated}"/>
                </div>
-               <div id="overview-sidebar" class="span4">
+               <div id="overview-sidebar" class="col-md-4">
                   <g:if test="${fieldValue(bean: instance, field: 'imageRef') && fieldValue(bean: instance, field: 'imageRef.file')}">
                     <div class="section">
                       <img style="max-width:100%;max-height:350px;" alt="${fieldValue(bean: instance, field: "imageRef.file")}"
@@ -158,7 +154,7 @@
                   </div>
 
                   <div class="section">
-                    <h3><g:message code="public.location" /></h3>
+                    <h3 class="public-h3"><g:message code="public.location" /></h3>
                     <!-- use parent location if the collection is blank -->
                     <g:set var="address" value="${instance.address}"/>
                     <g:if test="${address == null || address.isEmpty()}">
@@ -187,7 +183,7 @@
                   <!-- web site -->
                   <g:if test="${instance.websiteUrl || instance.institution?.websiteUrl}">
                     <div class="section">
-                      <h3><g:message code="public.website" /></h3>
+                      <h3 class="public-h3"><g:message code="public.website" /></h3>
                       <g:if test="${instance.websiteUrl}">
                         <div class="webSite">
                           <a class='external' rel='nofollow' target="_blank" href="${instance.websiteUrl}"><g:message code="public.show.osb.link01" /></a>
@@ -205,7 +201,7 @@
                   <!-- network membership -->
                   <g:if test="${instance.networkMembership}">
                     <div class="section">
-                      <h3><g:message code="public.network.membership.label" /></h3>
+                      <h3 class="public-h3"><g:message code="public.network.membership.label" /></h3>
                       <g:if test="${instance.isMemberOf('CHAEC')}">
                         <p><g:message code="public.network.membership.des01" /></p>
                         <img src="${resource(absolute:"true", dir:"data/network/",file:"chaec-logo.png")}"/>
@@ -229,14 +225,14 @@
                   <g:set var='attribs' value='${instance.getAttributionList()}'/>
                   <g:if test="${attribs.size() > 0}">
                     <div class="section" id="infoSourceList">
-                      <h4><g:message code="public.show.osb.label04" /></h4>
-                      <ul>
+                      <h3 class="public-h3"><g:message code="public.show.osb.label04" /></h3>
+                      <ul class="list-group">
                         <g:each var="a" in="${attribs}">
                           <g:if test="${a.url}">
-                            <li><cl:wrappedLink href="${a.url}">${a.name}</cl:wrappedLink></li>
+                            <li class="list-group-item list-contrib"><cl:wrappedLink href="${a.url}">${a.name}</cl:wrappedLink></li>
                           </g:if>
                           <g:else>
-                            <li>${a.name}</li>
+                            <li class="list-group-item list-contrib">${a.name}</li>
                           </g:else>
                         </g:each>
                       </ul>
@@ -245,11 +241,11 @@
                </div>
             </div>
             <div id="recordsTab" class="tab-pane">
-              <h2><g:message code="public.show.rt.title" /></h2>
-              <div class="row-fluid">
-                  <div class="span8">
+              <h2 class="admin-h2"><g:message code="public.show.rt.title" /></h2>
+              <div class="row">
+                  <div class="col-md-8">
                     <g:if test="${instance.numRecords != -1}">
-                      <p><cl:collectionName prefix="The " name="${instance.name}"/> has an estimated ${fieldValue(bean: instance, field: "numRecords")} ${nouns}.
+                      <p><cl:collectionName prefix="La " name="${instance.name}"/> has an estimated ${fieldValue(bean: instance, field: "numRecords")} ${nouns}.
                         <g:if test="${instance.numRecordsDigitised != -1}">
                           <br/><g:message code="public.show.rt.des01" /> <cl:percentIfKnown dividend='${instance.numRecordsDigitised}' divisor='${instance.numRecords}'/> <g:message code="public.show.rt.des02" /> (${fieldValue(bean: instance, field: "numRecordsDigitised")} <g:message code="public.show.rt.des03" />).
                         </g:if>
@@ -276,17 +272,17 @@
                           <div id="iehack"></div>
                     </g:if>
                   </div>
-                  <div class="span4">
+                  <div class="col-md-4">
                     <div id="progress" class="well">
                         <div class="progress">
-                          <div id="progressBar" class="bar bar-success" style="width: 0%;"></div>
+                          <div id="progressBar" class="progress-bar progress-bar-success" style="width: 0%;"><span></span></div>
                         </div>
                         <p class="caption"><span id="speedoCaption"><g:message code="public.show.speedocaption" />.</span></p>
                     </div>
                   </div>
               </div>
             </div>
-            <div id="imagesTab" class="tab-pane">
+            %{-- <div id="imagesTab" class="tab-pane">
                <style type="text/css">
                    #imagesList { margin:0; }
                    #imagesList .imgCon { display: inline-block;
@@ -300,10 +296,10 @@
                    }
                    #imagesList .imgCon img { max-height:150px; }
                </style>
-               <h2><g:message code="public.show.it.title"/></h2>
+               <h2 class="admin-h2"><g:message code="public.show.it.title"/></h2>
                <div id="imagesSpiel"></div>
                <div id="imagesList"></div>
-            </div>
+            </div> --}%
         </div>
       </div>
     <r:script type="text/javascript">
@@ -391,7 +387,7 @@ function onLoadCallback() {
             drawFacetCharts(data, facetChartOptions);
             if(data.totalRecords > 0){
                 $('#dataAccessWrapper').css({display:'block'});
-                $('#totalRecordCountLink').html(data.totalRecords.toLocaleString() + ' records');
+                $('#totalRecordCountLink').html(data.totalRecords.toLocaleString() + ' enregistrements');
             }
         }
     }
@@ -457,7 +453,7 @@ function biocacheRecordsHandler(response) {
       noBiocacheData();
     }
     drawDecadeChart(response.decades, "${instance.uid}", {
-      width: 470,
+      width: 100,
       chartArea:  {left: 50, width:"88%", height: "75%"}
     });
   } else {
@@ -480,7 +476,7 @@ function setPercentAgeNumbers(totalBiocacheRecords, totalRecords) {
   switch (totalBiocacheRecords) {
     case 0: recordsClause = "No records"; break;
     case 1: recordsClause = "1 record"; break;
-    default: recordsClause = addCommas(totalBiocacheRecords) + " records";
+    default: recordsClause = addCommas(totalBiocacheRecords) + " enregistrements";
   }
   $('#numBiocacheRecords').html(recordsClause);
 
@@ -528,15 +524,15 @@ function decadeBreakdownRequestHandler(response) {
 function setProgress(percentage){
   var captionText = "";
   if (${instance.numRecords < 1}) {
-    captionText = "There is no estimate of the total number<br/>of ${nouns} in this collection.";
+    captionText = "Il n'y a pas d'estimation du nombre total de ${nouns} dans cette collection";
   } else if (percentage == 0) {
-    captionText = "No records are available for viewing in the Atlas.";
+    captionText = "Aucun enregistrement sont accessibles via l'Altas.";
   } else {
     var displayPercent = percentage.toFixed(1);
     if (percentage < 0.1) {displayPercent = percentage.toFixed(2)}
     if (percentage > 20) {displayPercent = percentage.toFixed(0)}
     if (percentage > 100) {displayPercent = "over 100"}
-    captionText = "Approximately, records for " + displayPercent + "% of ${nouns} are available for viewing in the Atlas.";
+    captionText = "Approximativement, " + displayPercent + "%  des enregistrements de ${nouns} de cette collection sont accessibles sur l'atlas.";
   }
   $('#speedoCaption').html(captionText);
   if (percentage > 100) {
