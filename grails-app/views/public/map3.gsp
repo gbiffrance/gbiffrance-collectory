@@ -63,9 +63,9 @@
             </h4>
           </div>
 
-          <div id="adminLink" class="dropdown" style="margin-top:110px;">
+          %{-- <div id="adminLink" class="dropdown" style="margin-top:110px;">
               <g:link controller="manage" action="list" style="color:#DDDDDD; margin-top:80px;"><g:message code="public.map3.adminlink" /></g:link>
-          </div>
+          </div> --}%
         </div><!--close column-one-->
 
         <div class="col-xs-12 col-md-8" id="map-list-col">

@@ -21,7 +21,6 @@
 
     <div class="media">
       <a class="pull-left" href="#">
-        plop
         <img class="showImage img-polaroid" alt="${fieldValue(bean: image, field: "file")}"
             src="${resource(absolute: "true", dir: dir, file: image.file)}"/>
       </a>

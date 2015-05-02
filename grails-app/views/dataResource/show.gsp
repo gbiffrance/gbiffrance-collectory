@@ -41,7 +41,7 @@
               <div class="show-section well titleBlock">
                <!-- Data Provider --><!-- ALA Partner -->
                 <g:if test="${instance.dataProvider}">
-                    <h2 style="display:inline"><g:link controller="dataProvider" action="show" id="${instance.dataProvider?.id}">${instance.dataProvider?.name}</g:link></h2>
+                    <p><g:link controller="dataProvider" action="show" id="${instance.dataProvider?.id}">${instance.dataProvider?.name}</g:link></p>
                 </g:if> 
 
                 <!-- Institution -->

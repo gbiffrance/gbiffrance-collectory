@@ -160,15 +160,14 @@ class ProviderMapController {
     }
 
     protected boolean isAuthorisedToEdit(uid) {
-        log.debug(isAdmin())
-        if (grailsApplication.config.security.cas.bypass || isAdmin()) {
+        // if (grailsApplication.config.security.cas.bypass || isAdmin()) {
             return true
-        } else {
-            def email = RequestContextHolder.currentRequestAttributes()?.getUserPrincipal()?.attributes?.email
-            if (email) {
-                return ProviderGroup._get(uid)?.isAuthorised(email)
-            }
-        }
-        return false
+        // } else {
+        //     def email = RequestContextHolder.currentRequestAttributes()?.getUserPrincipal()?.attributes?.email
+        //     if (email) {
+        //         return ProviderGroup._get(uid)?.isAuthorised(email)
+        //     }
+        // }
+        // return false
     }
 }
