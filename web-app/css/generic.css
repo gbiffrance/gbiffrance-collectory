@@ -247,6 +247,12 @@ ul.nav ul > li {
     margin-top: 0;
 }
 
+/* DATASET */
+
+#data-set-list .row {
+    margin-top: 10px;
+    margin-left: 5px;
+}
 /* COLLECTION : ADMINISTRATION  */
 
 #admin-header{
