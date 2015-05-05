@@ -57,16 +57,16 @@ if (!bie.searchPath) {
     bie.searchPath = "/search"
 }
 if (!biocacheUiURL) {
-    biocacheUiURL = "http://10.1.1.2/generic-hub/"
+    biocacheUiURL = "http://185.26.127.140/generic-hub/"
 }
 if(!biocacheServicesUrl){
-    biocacheServicesUrl = "http://10.1.1.2/biocache-service/"
+    biocacheServicesUrl = "http://185.26.127.140/biocache-service/"
 }
 if (!spatial.baseURL) {
     spatial.baseURL = "http://spatial.ala.org.au/"
 }
 if (!ala.baseURL) {
-    ala.baseURL = "http://10.1.1.2"
+    ala.baseURL = "http://185.26.127.140"
 }
 if (!headerAndFooter.baseURL) {
     headerAndFooter.baseURL = "http://www2.ala.org.au/commonui"
@@ -154,7 +154,7 @@ if(!eml.electronicMailAddress){
 }
 //
 ///******* standard grails **********/
-grails.project.groupId = '10.1.1.2' // change this to alter the default package name and Maven publishing destination
+grails.project.groupId = '185.26.127.140' // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = true
 grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
