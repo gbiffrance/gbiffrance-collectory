@@ -18,7 +18,7 @@ modules = {
         resource url:[dir:'css', file:'bootstrap.css', plugin: 'collectory-plugin'], attrs:[media:'screen, projection, print']
         resource url:[dir:'css', file:'bootstrap-responsive.css', plugin: 'collectory-plugin'], attrs:[media:'screen', id:'responsiveCss']
     }
-     bootstrap3 {
+    bootstrap3 {
         resource url:[dir:'js', file:'bootstrap3.js', plugin: 'collectory-plugin', disposition: 'head']
         resource url:[dir:'css', file:'bootstrap3.css', plugin: 'collectory-plugin'], attrs:[media:'screen, projection, print']
     }
