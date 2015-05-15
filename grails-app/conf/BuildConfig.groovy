@@ -21,7 +21,7 @@ grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
     }
-    log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    log "debug" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
     legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
@@ -38,7 +38,7 @@ grails.project.dependency.resolution = {
 
     plugins {
         build ":release:3.0.1"
-        runtime ":collectory:1.2"
+        runtime ":collectory:1.3.2"
         build ":tomcat:7.0.52.1"
     }
 }
