@@ -74,6 +74,9 @@
                 <!-- last edit -->
                 <p><span class="category"><g:message code="datahub.show.lastchange" />: </span> ${fieldValue(bean: instance, field: "userLastModified")} on ${fieldValue(bean: instance, field: "lastUpdated")}</p>
 
+              <g:if test="${instance.gbifDataset}">
+                  <p>This dataset was downloaded from GBIF. <a href="http://www.gbif.org/dataset/${instance.guid}">View details on GBIF.org</a></p>
+              </g:if>
                 <cl:editButton uid="${instance.uid}" page="/shared/base" notAuthorisedMessage="You are not authorised to edit this resource."/>
               </div>
 

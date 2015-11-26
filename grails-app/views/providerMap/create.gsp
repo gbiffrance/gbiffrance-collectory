@@ -30,18 +30,36 @@
                 <g:hiddenField name="returnTo" value="${returnTo}" />
                 <div class="col-md-12 edit-contact-form">
                     <div class="col-md-3">
-                        <label for="collection"><g:message code="providerMap.providerGroup.label" default="Provider Group" /></label>
+                        <label for="institution"><g:message code="providerMap.institution.label" default="Institution" /></label>
                     </div>
                     <div class="col-md-9 value ${hasErrors(bean: providerMapInstance, field: 'providerGroup', 'errors')}">
-                        <g:select name="collection.id" from="${au.org.ala.collectory.Collection.list([sort: 'name'])}" optionKey="id" value="${providerMapInstance?.collection?.id}"  />
+                        <g:select id="institutionSelect" name="institution.id" class="input-xxlarge"
+                                  from="${au.org.ala.collectory.Institution.list([sort: 'name'])}"
+                                  optionKey="id"
+                                  value="${providerMapInstance?.collection?.id}"
+                                  noSelection="${['null':'---- sélectionner une institution -----']}"
+                        />
                     </div>
                  </div>
+                <div class="col-md-12 edit-contact-form">
+                    <div class="col-md-3">
+                        <label for="collection"><g:message code="providerMap.collection.label" default="Collection" /></label>
+                    </div>
+                    <div class="col-md-9 value ${hasErrors(bean: providerMapInstance, field: 'providerGroup', 'errors')}">
+                        <g:select id="collectionSelect" name="collection.id" class="input-xxlarge"
+                                  from="${au.org.ala.collectory.Collection.list([sort: 'name'])}"
+                                  optionKey="id"
+                                  value="${providerMapInstance?.collection?.id}"
+                                  noSelection="${['null':'---- sélectionner une collection -----']}"
+                        />
+                    </div>
+                </div>
                  <div class="col-md-12 edit-contact-form">
                     <div class="col-md-3">
                         <label for="institutionCodes"><g:message code="providerMap.institutionCodes.label" default="Institution Codes" /></label>
                     </div>
                      <div class="col-md-9  value ${hasErrors(bean: providerMapInstance, field: 'institutionCodes', 'errors')}">
-                        <g:select name="institutionCodes" from="${au.org.ala.collectory.ProviderCode.list([sort:'code'])}" multiple="yes" optionKey="id" size="5" value="${providerMapInstance?.institutionCodes*.id}" />
+                        <g:select name="institutionCodes"  from="${au.org.ala.collectory.ProviderCode.list([sort:'code'])}" multiple="yes" optionKey="id" size="5" value="${providerMapInstance?.institutionCodes*.id}" />
                     </div>
                 </div>
                 <div class="col-md-12 edit-contact-form">
@@ -49,7 +67,7 @@
                         <label for="collectionCodes"><g:message code="providerMap.collectionCodes.label" default="Collection Codes" /></label>
                     </div>
                      <div class="col-md-9 value ${hasErrors(bean: providerMapInstance, field: 'collectionCodes', 'errors')}">
-                        <g:select name="collectionCodes" from="${au.org.ala.collectory.ProviderCode.list([sort:'code'])}" multiple="yes" optionKey="id" size="5" value="${providerMapInstance?.collectionCodes*.id}" />
+                        <g:select name="collectionCodes"  from="${au.org.ala.collectory.ProviderCode.list([sort:'code'])}" multiple="yes" optionKey="id" size="5" value="${providerMapInstance?.collectionCodes*.id}" />
                     </div>
                 </div>
                 <div class="col-md-12 edit-contact-form">

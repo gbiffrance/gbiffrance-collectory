@@ -57,16 +57,16 @@ if (!bie.searchPath) {
     bie.searchPath = "/search"
 }
 if (!biocacheUiURL) {
-    biocacheUiURL = "http://demo.vagrant1.ala.org.au//generic-hub/"
+    biocacheUiURL = "http://185.26.127.140/generic-hub/"
 }
 if(!biocacheServicesUrl){
-    biocacheServicesUrl = "http://demo.vagrant1.ala.org.au//biocache-service/"
+    biocacheServicesUrl = "http://185.26.127.140/generic-hub/biocache-service/"
 }
 if (!spatial.baseURL) {
     spatial.baseURL = "http://spatial.ala.org.au/"
 }
 if (!ala.baseURL) {
-    ala.baseURL = "http://demo.vagrant1.ala.org.au/"
+    ala.baseURL = "http://185.26.127.140/generic-hub/"
 }
 if (!headerAndFooter.baseURL) {
     headerAndFooter.baseURL = "http://www2.ala.org.au/commonui"

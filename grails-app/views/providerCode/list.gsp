@@ -40,8 +40,9 @@
 						</tbody>
 					</table>
 					<div class="pagination">
-						<g:paginate total="${providerCodeInstanceTotal}" />
+						<g:paginate total="${providerCodeInstanceTotal}" maxsteps="6"/>
 					</div>
+
 				</div>
 			</div>
 	</body>
