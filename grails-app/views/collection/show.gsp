@@ -50,7 +50,7 @@
           %{-- <cl:partner test="${instance.institution?.isALAPartner}"/><br/> --}%
 
           <!-- GUID    -->
-          <p><span class="category"><g:message code="collection.show.span.lsid" /> : </span> <cl:guid target="_blank" guid='${fieldValue(bean: instance, field: "guid")}'/></p>
+          <p><span class="category"><g:message code="collection.show.span.guid" /> : </span> <cl:guid target="_blank" guid='${fieldValue(bean: instance, field: "guid")}'/></p>
 
           <!-- UID    -->
           <p><span class="category"><g:message code="collection.show.span.uid" /> : </span> ${fieldValue(bean: instance, field: "uid")}</p>
@@ -109,6 +109,12 @@
           </g:if>
           <g:if test="${!instance.listKeywords().contains('microbes')}">
             (<g:link action="addKeyword" id="${instance.id}" params="[keyword:'microbes']"><g:message code="collection.show.link.addmicrobes" /></g:link>)
+          </g:if>
+          <g:if test="${!instance.listKeywords().contains('paleo')}">
+            (<g:link action="addKeyword" id="${instance.id}" params="[keyword:'paleo']"><g:message code="collection.show.link.addfungis" /></g:link>)
+          </g:if>
+          <g:if test="${!instance.listKeywords().contains('fungi')}">
+            (<g:link action="addKeyword" id="${instance.id}" params="[keyword:'fungi']"><g:message code="collection.show.link.addpaleo" /></g:link>)
           </g:if>
         </p>
 
@@ -182,13 +188,16 @@
       <!-- estimate of records -->
       <h2 class="admin-h2"><g:message code="collection.show.title.numberof" /> <cl:nounForTypes types="${instance.listCollectionTypes()}"/> <g:message code="collection.show.title.inthecollection" /></h2>
       <g:if test="${fieldValue(bean: instance, field: 'numRecords') != '-1'}">
-        <p><g:message code="collection.show.des07" /> <cl:nounForTypes types="${instance.listCollectionTypes()}"/> <g:message code="collection.show.des08" /> <cl:collectionName prefix="the " name="${instance.name}"/> <g:message code="collection.show.des09" /> ${fieldValue(bean: instance, field: "numRecords")}.</p>
+        <p><g:message code="collection.show.des07" /> <cl:nounForTypes types="${instance.listCollectionTypes()}"/> <g:message code="collection.show.des08" /> <cl:collectionName prefix="the " name="${instance.name}"/> <g:message code="collection.show.des09" /> ${fieldValue(bean: instance, field: "numRecords")}
       </g:if>
 
       <g:if test="${fieldValue(bean: instance, field: 'numRecordsDigitised') != '-1'}">
-        <p><g:message code="collection.show.des10" args="[fieldValue(bean: instance, field: "numRecordsDigitised")]" />.
-        <g:message code="collection.show.des11" /> <cl:percentIfKnown dividend='${instance.numRecordsDigitised}' divisor='${instance.numRecords}' /> <g:message code="collection.show.des12" />.</p>
+        <g:message code="collection.show.des10" args="[fieldValue(bean: instance, field: "numRecordsDigitised")]" />.
+        <g:message code="collection.show.des11" /> <cl:percentIfKnown dividend='${instance.numRecordsDigitised}' divisor='${instance.numRecords}' /> <g:message code="collection.show.des12" /> :</p>
       </g:if>
+      <g:else>
+        .</p>
+      </g:else>
 
       %{--<!-- actual biocache records -->--}%
       %{--<p><span id="numBiocacheRecords">Looking up... the number of records that</span> can be accessed through the Atlas of Living Australia.--}%

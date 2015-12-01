@@ -654,3 +654,19 @@ footer ul li{
 .pagination .gap{
     border: none;
 }
+
+.button-ext{
+    text-align: center;
+}
+
+.button-int{
+    display: inline-block;
+}
+
+.region-menu-gauche .delete-btn{
+    width: 100%;
+}
+
+#lookup-desc{
+    margin-top: 5px;
+}

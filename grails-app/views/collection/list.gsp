@@ -16,7 +16,7 @@
                 <div class="region-menu-gauche">
                     <ul class="menu nav">
                         <li><g:link controller="manage" action="index"><g:message code="default.home.label"/></g:link></li>
-                        <li><g:link action="create"><g:message code="default.new.label" args="[entityName]"/></g:link> </li>  
+                        <li><g:link action="create"><g:message code="default.new.label.fem" args="[entityName]"/></g:link> </li>
                         %{-- <li><g:link action="myList"><g:message code="default.myList.label" args="[entityName]"/></g:link></li> --}%
                     </ul>
                 </div>

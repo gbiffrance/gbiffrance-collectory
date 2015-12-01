@@ -96,13 +96,12 @@
                 </table>
             </div>
             <div class="col-md-12">
-                <div class="col-md-4"></div>
-                <div class="col-md-5">
+                <div class="buttons button-ext">
                     <g:form>
                         <g:hiddenField name="id" value="${providerMapInstance?.id}" />
                         <g:hiddenField name="returnTo" value="${returnTo}" />
-                        <g:actionSubmit class="save-btn btn btn-sm" action="edit" value="${message(code: 'default.button.edit.label', default: 'Edit')}" />
-                        <g:actionSubmit class="delete-btn btn btn-sm" action="delete" value="${message(code: 'default.button.delete.label.masc', args:[entityName], default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                        <span class="button button-int"><g:actionSubmit class="save-btn btn btn-sm" action="edit" value="${message(code: 'default.button.edit.label', default: 'Edit')}" /></span>
+                        <span class="button button-int"><g:actionSubmit class="delete-btn btn btn-sm" action="delete" value="${message(code: 'default.button.delete.label', args:[entityName], default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
                     </g:form>
                 </div>
             </div>

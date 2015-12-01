@@ -28,7 +28,7 @@
 </head>
 <body>
 <g:if test="${gbifSummary}">
-<h1>${gbifSummary.isLoadRunning() ? 'Automatically' : 'Finished'} loading ${gbifSummary.loads.size} resources for ${country}
+<h1 id="admin-header">${gbifSummary.isLoadRunning() ? 'Automatically' : 'Finished'} loading ${gbifSummary.loads.size} resources for ${country}
 </h1>
 <h3><g:message code="manage.gbifcls.title.completed" /> <g:formatNumber number="${gbifSummary.getPercentageComplete()}" format="#0.00"/> %</h3>
 <h4><g:message code="manage.gbifcls.title.started" />: ${gbifSummary.startTime}

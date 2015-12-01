@@ -46,7 +46,7 @@
             <div class="col-md-12 edit-contact-form">
               <div class="col-md-3">
                 <label for="name"><g:message code="collection.name.label" default="Name" />
-                <br/><span class=hint>* required field</span>
+                <br/><span class=hint><g:message code="collection.name.required" default="* champ obligatoire" /></span>
               </div>
               <div class="col-md-9 value ${hasErrors(bean: command, field: 'name', 'errors')}">
                 <g:textField name="name" class="form-control" value="${command?.name}"/>

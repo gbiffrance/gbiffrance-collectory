@@ -109,7 +109,7 @@
                             <div class="col-md-2"></div>
                             <div class="col-md-8">
                                 <g:actionSubmit class="edit-btn btn btn-sm" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                                <g:actionSubmit class="delete-btn btn btn-sm" action="delete" value="${message(code: 'default.button.delete.label.masc', args: [entityName], default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                                <g:actionSubmit class="delete-btn btn btn-sm" action="delete" value="${message(code: 'default.button.delete.label', args: [entityName], default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                             </div>
                             <div class="col-md-2"></div>
                         </div>

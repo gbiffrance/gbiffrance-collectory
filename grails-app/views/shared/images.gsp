@@ -5,7 +5,7 @@
         <meta name="layout" content="${grailsApplication.config.skin.layout}" />
         <g:set var="entityName" value="${command.ENTITY_TYPE}"/>
         <g:set var="entityNameLower" value="${command.urlForm()}"/>
-        <title><g:message code="collection.base.label" default="Edit ${entityNameLower} image metadata" /></title>
+        <title><g:message code="collection.base.label" default="Edit ${entityName} image metadata" /></title>
     </head>
     <body>
         <h1 id="metadata-header"><g:message code="shared.images.title01" /> <em>${command.name}</em></h1>

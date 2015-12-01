@@ -6,7 +6,7 @@
     <title><g:message code="manage.gbiflc.title" /></title>
 </head>
 <body>
-<h1><g:message code="manage.gbiflc.title01" /></h1>
+<h1 id="admin-header"><g:message code="manage.gbiflc.title01" /></h1>
 <div id="baseForm">
     <g:form action="loadAllGbifForCountry" controller="manage">
             <div class="col-md-6">

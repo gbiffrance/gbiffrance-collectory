@@ -147,7 +147,7 @@
                 <cl:helpText code="collection.longitude"/>
                 <cl:helpTD/>
               </div>
-              <input type="button" class="edit-btn btn" onclick="return codeAddress();" value="Lookup"/> <g:message code="shared.location.lookup" />. <br /> <g:message code="shared.location.main.des01" /> ${entityNameLower}.<g:message code="shared.location.main.des02" />.
+              <input type="button" class="edit-btn btn" onclick="return codeAddress();" value="Recherche"/> <p id="lookup-desc"> <g:message code="shared.location.lookup" />. <br /> <g:message code="shared.location.main.des01" /> ${entityNameLower}. <br /><g:message code="shared.location.main.des02" />. </p>
               <g:if test="${command.ENTITY_TYPE == 'Collection'}">
                 <g:if test="${(command.latitude == -1 || command.longitude == -1) && command.inheritedLatLng()}">
                   <input type="button" class="classicButton" onclick="return useInherited();" value="Use inherited"/> <g:message code="shared.location.button.useinherited" />.<div style="width:100%;"></div>
@@ -242,5 +242,6 @@ function initialize() {
 }
 
 </script>
+    </div>
 </body>
 </html>
