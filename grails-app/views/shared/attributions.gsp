@@ -1,4 +1,4 @@
-<%@ page import="au.org.ala.collectory.ProviderGroup" %>
+r<%@ page import="au.org.ala.collectory.ProviderGroup" %>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -15,10 +15,10 @@
     float: right;
   }
   </style>
-<div class="nav">
-  <h1>Editing: ${fieldValue(bean: command, field: "name")}</h1>
-</div>
-<div class="body">
+  <div class="container-fluid">
+    <h1 id="metadata-header"><g:message code="shared.title.editing" /> <em> ${fieldValue(bean: command, field: "name")} </em></h1>
+
+
   <g:if test="${message}">
     <div class="message">${message}</div>
   </g:if>
@@ -31,63 +31,24 @@
     <g:hiddenField name="id" value="${command?.id}"/>
     <g:hiddenField name="version" value="${command.version}"/>
     <div class="dialog">
-      <table>
-        <tbody>
-
-        <!-- BCI -->
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="BCI"><g:message code="shared.attributes.label01" /></label>
-          </td>
-          <td valign="top" class="value">
-            <g:checkBox name="BCI" value="${BCI}"/>
-            <cl:helpText code="providerGroup.attribution.BCI"/>
-          </td>
-          <cl:helpTD/>
-        </tr>
-
-        <!-- CHAH -->
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="CHAH"><g:message code="shared.attributes.label02" /></label>
-          </td>
-          <td valign="top" class="value">
-            <g:checkBox name="CHAH" value="${CHAH}"/>
-            <cl:helpText code="providerGroup.attribution.CHAH"/>
-          </td>
-          <cl:helpTD/>
-        </tr>
-
-        <!-- CHACM -->
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="CHACM"><g:message code="shared.attributes.label03" /></label>
-          </td>
-          <td valign="top" class="value">
-            <g:checkBox name="CHACM" value="${CHACM}"/>
-            <cl:helpText code="providerGroup.attribution.CHACM"/>
-          </td>
-          <cl:helpTD/>
-        </tr>
-
-        <!-- institution -->
-        <tr class="prop">
-          <td valign="top" class="name">
+      <div class="col-md-3">
+        <div class="region-menu-gauche">
+          <input type="submit" name="_action_updateAttributions" value="${message(code:"shared.images.button.update")}" class="save-btn btn btn-sm">
+          <input type="submit" name="_action_cancel" value="${message(code:"shared.images.button.cancel")}" class="cancel-btn btn btn-sm">
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="col-md-12 edit-contact-form" id="first-field">
+          <div class="col-md-5">
             <label for="institution"><g:message code="shared.attributes.label04" /></label>
-          </td>
-          <td valign="top" class="value">
+          </div>
+          <div class="col-md-7 value">
             <g:checkBox disabled="true" name="institution" value="${true}"/>
             <cl:helpText code="providerGroup.attribution.institution"/>
-          </td>
+          </div>
           <cl:helpTD/>
-        </tr>
-
-        </tbody>
-      </table>
-    </div>
-    <div class="buttons">
-      <span class="button"><input type="submit" name="_action_updateAttributions" value="Update" class="save"></span>
-      <span class="button"><input type="submit" name="_action_cancel" value="Cancel" class="cancel"></span>
+        </div>
+      </div>
     </div>
   </g:form>
 </div>

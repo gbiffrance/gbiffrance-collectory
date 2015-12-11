@@ -8,102 +8,88 @@
   <title><g:message code="default.show.label" args="[entityName]"/></title>
 </head>
 <body>
-  <div class="nav">
-    <h1><g:message code="shared.title.editing" />: ${command.name}</h1>
-  </div>
-  <div class="body">
+  <div class="container-fluid">
+    <h1 id="metadata-header"><g:message code="shared.title.editing" />  <em>${command.name} </em></h1>
+
     <g:if test="${flash.message}">
       <div class="message">${flash.message}</div>
     </g:if>
-    <div class="dialog emulate-public">
-      <h2><g:message code="shared.scontact.title01" /></h2>
-      <g:each var="cf" in="${command.getContacts()}">
-        <div class="show-section well">
-          <!-- Name -->
-          <div><span class="contactName">${cf.contact.buildName()}</span></div>
-          <table class="shy">
-            <colgroup><col width="68%"><col width="32%"></colgroup>
-            <!-- details -->
-            <tr><td>
-              <ul class="detailList">
-                <cl:valueOrOtherwise value="${cf.contact.email}"><li>${cf.contact.email}</li></cl:valueOrOtherwise>
-                <cl:valueOrOtherwise value="${cf.contact.phone}"><li>Ph: ${cf.contact.phone}</li></cl:valueOrOtherwise>
-                <cl:valueOrOtherwise value="${cf.contact.mobile}"><li>Mob: ${cf.contact.mobile}</li></cl:valueOrOtherwise>
-                <cl:valueOrOtherwise value="${cf.contact.fax}"><li>Fax: ${cf.contact.fax}</li></cl:valueOrOtherwise>
-              </ul>
-            </td>
-            <td style="padding-bottom:20px;">
-              <span class="contactButton buttonRight">
-                <g:link class="edit-small btn" controller="contact" action='edit' id="${cf.contact.id}"
-                        params='[returnTo: "/${command.urlForm()}/edit/${command.id}?page=/shared/showContacts"]'>
-                  ${message(code: 'default.button.editContact.label', default: "Edit the contact's details")}
-                </g:link>
-              </span>
-            </td></tr>
 
-            <!-- role -->
-            <tr><td colspan="2"><span class="label"><g:message code="shared.scontact.label01" />:</span></td></tr>
-            <tr><td>
-                <ul class="detailList">
-                  <li><cl:valueOrOtherwise value="${cf.role}" otherwise="No role defined"><g:message code="shared.scontact.li01" /> ${cf.role}</cl:valueOrOtherwise></li>
-                  <li><cl:valueOrOtherwise value="${cf.administrator}" otherwise="Not allowed to edit"><img src="${resource(dir:'images/ala', file:'olive-tick.png')}"/><g:message code="shared.scontact.li02" /></cl:valueOrOtherwise></li>
-                  <li><cl:valueOrOtherwise value="${cf.notify}" otherwise="Dont notify"><img src="${resource(dir:'images/ala', file:'olive-tick.png')}"/><g:message code="shared.scontact.li03" /></cl:valueOrOtherwise></li>
-                  <cl:valueOrOtherwise value="${cf.primaryContact}"><li><img src="${resource(dir:'images/ala', file:'olive-tick.png')}"/><g:message code="shared.scontact.li04" /></li></cl:valueOrOtherwise>
-                </ul>
-            </td>
-            <td>
-              <span class="contactButton buttonRight">
-                <g:link class="edit-small btn" action='editRole' id="${cf.id}"
-                  params='[returnTo: "/${command.urlForm()}/edit/${command.id}?page=/shared/showContacts"]'>
-                  <g:message code="shared.scontact.link.edit" /> ${entityNameLower}
-                </g:link>
-              </span>
-            </td></tr>
-
-            <!-- remove -->
-            <tr><td></td><td>
-              <span class="contactButton">
-                <g:link class="removeSmallAction btn btn-danger" action='removeContact' id="${command.id}" onclick="return confirm('Remove ${cf.contact?.buildName()} as a contact for this ${entityNameLower}?');"
-                        params='[idToRemove: "${cf.id}"]'><g:message code="shared.scontact.link.remove" /> ${entityNameLower}</g:link>
-              </span>
-            </td></tr>
-
-          </table>
-        </div>
-      </g:each>
-      <!-- add existing contact -->
-      <h2><g:message code="shared.scontact.title02" /></h2>
-      <div class="show-section">
-        <g:form action="addContact" id="${command.id}">
-          <table class="shy">
-            <colgroup><col width="68%"><col width="32%"></colgroup>
-            <tr><td colspan="2"><g:message code="shared.scontact01.cell0101" /></td></tr>
-            <tr><td>
-              <g:select name="addContact" from="${Contact.listOrderByLastName()}" optionKey="id" noSelection="${['null':'Select one to add']}" />
-            </td><td>
-              <input type="submit" onclick="return anySelected('addContact','You must select a contact to add.');" class="addAction btn" value="Add existing contact"/>
-            </td></tr>
-          </table>
-        </g:form>
-        OR:<br/>
-        <table class="shy">
-          <colgroup><col width="68%"><col width="32%"></colgroup>
-          <tr><td><g:message code="shared.scontact02.cell0101" /> ${entityNameLower}:</td>
-          <td>
-          <span class="button">
-            <g:link class="addAction btn" controller="contact" action='create' params='[returnTo:"/${command.urlForm()}/addNewContact/${command.id}"]' id="${command.id}">${message(code: 'default.button.addContact.label', default: 'Add new contact')}</g:link>
-          </span>
-          </td></tr>
-        </table>
+    <div class="col-md-3">
+      <div class="region-menu-gauche">
+        <ul class="menu nav">
+          <g:form>
+            <g:hiddenField name="id" value="${command.id}"/>
+            <li><g:link class="return-action " controller="${command.urlForm()}" action='show' id="${command.id}"><g:message code="default.contact.home.collection"/></g:link></li>
+          </g:form>
+        </ul>
       </div>
     </div>
 
-    <div class="buttons">
-      <g:form>
-        <g:hiddenField name="id" value="${command.id}"/>
-        <span class="button"><g:link class="returnAction btn" controller="${command.urlForm()}" action='show' id="${command.id}">Return to ${command.name}</g:link></span>
-      </g:form>
+    <div class="col-md-9">
+      <h2 class="admin-h2"><g:message code="shared.scontact.title03" /> <g:message code="shared.scontact02.cell0101.fem"/> ${entityNameLower} </h2>
+        <g:form action="addContact" id="${command.id}">
+          <div class="col-md-12">
+            <div class="col-md-4">
+              <g:message code="shared.scontact01.cell0101" />
+            </div>
+            <div class="col-md-8">
+              <g:select name="addContact" from="${Contact.listOrderByLastName()}" optionKey="id" noSelection="${['null':'Select un contact à ajouter']}" class="form-control"/>
+            </div>
+          </div>
+          <div class="col-md-12 button-ext">
+            <div class=" button-int">
+              <input type="submit" onclick="return anySelected('addContact','Vous devez sélectionner un contact à ajouter.');" class="edit-btn btn btn-sm" value="Ajouter un contact existant"/>
+            </div>
+          </div>
+        </g:form>
+      <div class="col-md-12" id="add-contact-div">
+        <div class="col-md-12">
+          <g:message code="shared.scontact02.cell0101"/> <g:message code="shared.scontact02.cell0101.fem"/> ${entityNameLower} :
+        </div>
+        <div class="col-md-12 button-ext">
+          <div class=" button-int">
+            <g:link class="edit-btn btn btn-sm" controller="contact" action='create' params='[returnTo:"/${command.urlForm()}/addNewContact/${command.id}"]' id="${command.id}">${message(code: 'default.button.addContact.label', default: 'Add new contact')}</g:link>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="admin-h2"><g:message code="shared.scontact.title04" /> <g:message code="shared.scontact02.cell0101.fem"/> ${entityNameLower}</h2>
+      <g:each var="cf" in="${command.getContacts()}">
+        <div class="col-md-12">
+          <div class="col-md-7">
+            <!-- Name -->
+            <div class="category">${cf.contact.buildName()}</div>
+            <div class="contact-detail">
+              <cl:valueOrOtherwise value="${cf.contact.email}" otherwise="Pas d'adresse email définie">${cf.contact.email}</cl:valueOrOtherwise> <br />
+              <cl:valueOrOtherwise value="${cf.contact.phone}" otherwise="Pas de numéro de téléphone défini">Tél: ${cf.contact.phone}</cl:valueOrOtherwise><br />
+              <cl:valueOrOtherwise value="${cf.contact.mobile}" otherwise="Pas de numéro de téléphone protable défini">Port: ${cf.contact.mobile}</cl:valueOrOtherwise><br />
+              <cl:valueOrOtherwise value="${cf.contact.fax}" otherwise="Pas de numéro de fax défini">Fax: ${cf.contact.fax}</cl:valueOrOtherwise><br />
+            </div>
+            <div>
+              <cl:valueOrOtherwise value="${cf.role}" otherwise="Aucun rôle défini"><g:message code="shared.scontact.li01" /> ${cf.role}</cl:valueOrOtherwise> <br />
+              <cl:valueOrOtherwise value="${cf.administrator}" otherwise="Pas autorisé à éditer"><img src="${resource(dir:'images/ala', file:'olive-tick.png')}"/><g:message code="shared.scontact.li02" /></cl:valueOrOtherwise><br />
+              <cl:valueOrOtherwise value="${cf.notify}" otherwise="Ne pas envoyer de notification"><img src="${resource(dir:'images/ala', file:'olive-tick.png')}"/><g:message code="shared.scontact.li03" /></cl:valueOrOtherwise><br />
+              <cl:valueOrOtherwise value="${cf.primaryContact}"><img src="${resource(dir:'images/ala', file:'olive-tick.png')}"/><g:message code="shared.scontact.li04" /></cl:valueOrOtherwise><br />
+            </div>
+          </div>
+          <div class="col-md-5">
+            <g:link class="edit-btn btn btn-sm btn-contact" controller="contact" action='edit' id="${cf.contact.id}"
+                    params='[returnTo: "/${command.urlForm()}/edit/${command.id}?page=/shared/showContacts"]'>
+              ${message(code: 'default.button.editContact.label', default: "Edit the contact's details")}
+            </g:link>
+            <g:link class="edit-btn btn btn-sm btn-contact" action='editRole' id="${cf.id}"
+                    params='[returnTo: "/${command.urlForm()}/edit/${command.id}?page=/shared/showContacts"]'>
+              <g:message code="shared.scontact.link.edit" /> <g:message code="shared.scontact02.cell0101.fem" /> ${entityNameLower}
+            </g:link>
+            <g:link class="delete-btn btn btn-sm btn-contact" action='removeContact' id="${command.id}" onclick="return confirm('Supprimer ${cf.contact?.buildName()} comme contact pour cette ${entityNameLower}?');"
+                    params='[idToRemove: "${cf.id}"]'><g:message code="shared.scontact.link.remove" /> <g:message code="shared.scontact02.cell0101.fem" /> ${entityNameLower}</g:link>
+          </div>
+        </div>
+      </g:each>
     </div>
-  </div>
+
+    </div>
+
 </body>
 </html>

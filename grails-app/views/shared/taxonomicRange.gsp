@@ -7,9 +7,9 @@
         <r:require modules="jstree, jquery_tools, debug"/>
     </head>
     <body>
-        <div class="title-bar">
-            <h1><g:message code="shared.title.editing" />: ${command.name}</h1>
-        </div>
+        <div class="container-fluid">
+            <h1 id="metadata-header"><g:message code="shared.title.editing" /> <em>${command.name}</em></h1>
+
         <div id="baseForm" class="body">
             <g:if test="${message}">
             <div class="message">${message}</div>

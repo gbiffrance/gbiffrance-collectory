@@ -21,10 +21,10 @@
           </g:if>
           <div class="hrgroup">
             <h2 id="metadata-header"><g:message code="public.map3.header.title" /></h2>
-            <p><g:message code="public.map3.header.des01" /> ${grailsApplication.config.projectNameShort} <g:message code="public.map3.header.des02" args="[grailsApplication.config.regionName]"/>.</p>
+            <p><g:message code="public.map3.header.des01" /> <g:message code="public.map3.header.desc.du" /> ${grailsApplication.config.projectNameShort} <g:message code="public.map3.header.des02" args="[grailsApplication.config.regionName]"/>.</p>
           </div><!--close hrgroup-->
           <div class="section">
-            <p><g:message code="public.map3.des01" />.</p>
+            <p id="choix_filtre"><g:message code="public.map3.des01" />.</p>
           </div>
         </div><!--close section-->
       </div><!--close header-->

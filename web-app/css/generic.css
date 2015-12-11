@@ -344,7 +344,7 @@ ul.nav ul > li {
     color: ;
 }
 
-.region-menu-gauche a {
+.region-menu-gauche a{
     border-bottom: 1px solid #f5f5f5;
     color: #5c5c5c;
     font-weight: 400;
@@ -371,14 +371,12 @@ td a:hover{
     margin-top: 20px;
 }
 
-#institutionCodes, #collectionCodes{
-    width: inherit;
-}
+
 /* ADMINISTRATION : COLLECTION ADD / EDIT */
 
 #mapCanvas {
   width: 200px;
-  height: 170px;
+  height: 170px;x
   float: right;
 }
 
@@ -669,4 +667,49 @@ footer ul li{
 
 #lookup-desc{
     margin-top: 5px;
+}
+
+.return-action{
+    color: #887E7C !important;
+    font-size: 14px;
+    font-weight: 700 !important;
+    padding: 10px;
+    display: block;
+}
+
+.return-action:focus, .return-action:hover{
+    text-decoration: none;
+    color: #887E7C;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.contact-detail{
+    padding-bottom: 10px;
+}
+
+#add-contact-div{
+    margin-top: 10px;
+}
+
+.btn-contact{
+    width: 100%;
+}
+
+.filter-buttons .fungis a {
+    background: transparent url(../images/filtre/mycetes_button_bgwd.png) no-repeat;
+    background-size: 100%;
+}
+
+.filter-buttons .paleontology a {
+    background: transparent url(../images/filtre/paleontology_button_bgwd.png) no-repeat;
+    background-size: 100%;
+}
+
+#choix_filtre{
+    margin: 0px 0px 20px;
+}
+
+.taxo-hint{
+    border: none;
 }
