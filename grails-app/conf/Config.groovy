@@ -16,6 +16,8 @@ if (new File(default_config).exists()) {
 println "[${appName}] (*) grails.config.locations = ${grails.config.locations}"
 println "default_config = ${default_config}"
 
+security.cas.bypass=true
+
 /******************************************************************************\
 *  SKINNING
 \******************************************************************************/
@@ -26,8 +28,8 @@ if(!gbifApiUrl){
 
 if (!skin.layout) {
     //skin.layout = 'ala2'
-    //skin.layout = 'generic'
-    skin.layout = 'alf'
+    skin.layout = 'generic'
+    //skin.layout = 'alf'
 }
 if (!skin.orgNameLong) {
     skin.orgNameLong = "Atlas of Living France"
