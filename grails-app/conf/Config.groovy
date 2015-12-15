@@ -26,8 +26,8 @@ if(!gbifApiUrl){
 
 if (!skin.layout) {
     //skin.layout = 'ala2'
-    //skin.layout = 'generic'
-    skin.layout = 'alf'
+    skin.layout = 'generic'
+    //skin.layout = 'alf'
 }
 if (!skin.orgNameLong) {
     skin.orgNameLong = "Atlas of Living France"
@@ -152,6 +152,8 @@ if(!eml.country){
 if(!eml.electronicMailAddress){
     eml.electronicMailAddress = "gbif@gbif.fr"
 }
+
+security.cas.bypass=true
 //
 ///******* standard grails **********/
 grails.project.groupId = 'demo.vagrant1.ala.org.au/' // change this to alter the default package name and Maven publishing destination
