@@ -697,12 +697,12 @@ footer ul li{
 }
 
 .filter-buttons .fungis a {
-    background: transparent url(../images/filtre/mycetes_button_bgwd.png) no-repeat;
+    background: transparent url(../images/ala/mycetes_button_bgwd.png) no-repeat;
     background-size: 100%;
 }
 
 .filter-buttons .paleontology a {
-    background: transparent url(../images/filtre/paleontology_button_bgwd.png) no-repeat;
+    background: transparent url(../images/ala/paleontology_button_bgwd.png) no-repeat;
     background-size: 100%;
 }
 
@@ -712,4 +712,100 @@ footer ul li{
 
 .taxo-hint{
     border: none;
+}
+
+.dataset-search{
+    border : 1px solid #DDD;
+    padding: 15px;
+}
+.advanced-search-occurrence, .advanced-search-occurrence:focus, .advanced-search-occurrence:hover{
+    border: 1px solid rgba(136, 126, 124, 1);
+    border-radius: 4px;
+    background-color: rgba(136, 126, 124, 1);
+    background-image: none;
+    border: 1px solid rgba(136, 126, 124, 1);
+    color: white;
+    text-shadow: none;
+}
+
+.search-occurrence, .search-occurrence:active, .search-occurrence:focus, .search-occurrence:hover{
+    border: 1px solid rgba(136, 126, 124, 1);
+    border-radius: 4px;
+    line-height: 1.42857;
+    background-color: rgba(136, 126, 124, 1);
+    background-image: none;
+    border: 1px solid rgba(136, 126, 124, 1);
+    color: white;
+    text-shadow: none;
+}
+
+.access-data, .access-data:active, .access-data:focus, .access-data:hover {
+    border: 1px solid rgba(136, 126, 124, 1);
+    border-radius: 4px;
+    background-image: none;
+    color: rgba(136, 126, 124, 1);
+    text-shadow: none;
+    font-size:10px;
+}
+
+#resultsReturned {
+    font-size: 16px !important;
+}
+
+.resultsReturnedDataset{
+    margin: 10px;
+}
+
+.rowA a{
+    color: #a6ac1a;
+    text-transform: uppercase;
+    font-size: 15px;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+}
+
+.sidebar-header h3{
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+    font-size: 1.5em;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1.2em;
+}
+
+#sidebarBoxXXX hr{
+    margin-top: 10px;
+}
+
+#dsFacets h4, #currentFilter h4{
+    font-size: 1em;
+    font-weight: 300;
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+    margin-top: 0px;
+    border-bottom: 1px dotted rgb(203, 59, 89);
+    text-transform: uppercase;
+    color: rgb(203, 59, 89);
+}
+
+#currentFilter a{
+    color: rgb(203, 59, 89);
+}
+
+#subnavlist {
+    font-size: 1em;
+    font-weight: 300;
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+    margin-top: 0px;
+}
+
+#subnavlist ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#more, #less{
+    margin-top:10px;
 }

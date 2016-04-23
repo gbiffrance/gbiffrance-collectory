@@ -75,13 +75,13 @@
                     </g:each>
                 </ol>
 
-                <div id='usage-stats'>
-                    <h2 class="admin-h2"><g:message code="public.usagestats.label" /></h2>
+                %{--<div id='usage-stats'>--}%
+                    %{--<h2 class="admin-h2"><g:message code="public.usagestats.label" /></h2>--}%
 
-                    <div id='usage'>
-                        <p><g:message code="public.usage.des" />...</p>
-                    </div>
-                </div>
+                    %{--<div id='usage'>--}%
+                        %{--<p><g:message code="public.usage.des" />...</p>--}%
+                    %{--</div>--}%
+                %{--</div>--}%
 
                 <h2 class="admin-h2"><g:message code="public.si.content.label04" /></h2>
 
@@ -148,36 +148,35 @@
 
                         <div class="webSite">
                             <a class='external' target="_blank"
-                               href="${instance.websiteUrl}"><g:message code="public.si.website.link01" /> <cl:institutionType
-                                    inst="${instance}"/><g:message code="public.si.website.link02" /></a>
+                               href="${instance.websiteUrl}"><g:message code="public.si.website.link01" /> <g:message code="public.si.website.link02.voy" /><cl:institutionType value="${instance.name}"/></a>
                         </div>
                     </div>
                 </g:if>
 
             <!-- network membership -->
-                <g:if test="${instance.networkMembership}">
-                    <div class="section">
-                        <h3 class="public-h3"><g:message code="public.network.membership.label" /></h3>
-                        <g:if test="${instance.isMemberOf('CHAEC')}">
-                            <p><g:message code="public.network.membership.des01" /></p>
-                            <img src="${resource(absolute: "true", dir: "data/network/", file: "chaec-logo.png")}"/>
-                        </g:if>
-                        <g:if test="${instance.isMemberOf('CHAH')}">
-                            <p><g:message code="public.network.membership.des02" /></p>
-                            <a target="_blank" href="http://www.chah.gov.au"><img style="padding-left:25px;"
-                                                                                  src="${resource(absolute: "true", dir: "data/network/", file: "CHAH_logo_col_70px_white.gif")}"/>
-                            </a>
-                        </g:if>
-                        <g:if test="${instance.isMemberOf('CHAFC')}">
-                            <p><g:message code="public.network.membership.des03" /></p>
-                            <img src="${resource(absolute: "true", dir: "data/network/", file: "CHAFC_sm.jpg")}"/>
-                        </g:if>
-                        <g:if test="${instance.isMemberOf('CHACM')}">
-                            <p><g:message code="public.network.membership.des04" /></p>
-                            <img src="${resource(absolute: "true", dir: "data/network/", file: "chacm.png")}"/>
-                        </g:if>
-                    </div>
-                </g:if>
+                %{--<g:if test="${instance.networkMembership}">--}%
+                    %{--<div class="section">--}%
+                        %{--<h3 class="public-h3"><g:message code="public.network.membership.label" /></h3>--}%
+                        %{--<g:if test="${instance.isMemberOf('CHAEC')}">--}%
+                            %{--<p><g:message code="public.network.membership.des01" /></p>--}%
+                            %{--<img src="${resource(absolute: "true", dir: "data/network/", file: "chaec-logo.png")}"/>--}%
+                        %{--</g:if>--}%
+                        %{--<g:if test="${instance.isMemberOf('CHAH')}">--}%
+                            %{--<p><g:message code="public.network.membership.des02" /></p>--}%
+                            %{--<a target="_blank" href="http://www.chah.gov.au"><img style="padding-left:25px;"--}%
+                                                                                  %{--src="${resource(absolute: "true", dir: "data/network/", file: "CHAH_logo_col_70px_white.gif")}"/>--}%
+                            %{--</a>--}%
+                        %{--</g:if>--}%
+                        %{--<g:if test="${instance.isMemberOf('CHAFC')}">--}%
+                            %{--<p><g:message code="public.network.membership.des03" /></p>--}%
+                            %{--<img src="${resource(absolute: "true", dir: "data/network/", file: "CHAFC_sm.jpg")}"/>--}%
+                        %{--</g:if>--}%
+                        %{--<g:if test="${instance.isMemberOf('CHACM')}">--}%
+                            %{--<p><g:message code="public.network.membership.des04" /></p>--}%
+                            %{--<img src="${resource(absolute: "true", dir: "data/network/", file: "chacm.png")}"/>--}%
+                        %{--</g:if>--}%
+                    %{--</div>--}%
+                %{--</g:if>--}%
             </div>
         </div><!--close content-->
 </div>

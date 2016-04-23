@@ -1,15 +1,15 @@
 <g:form action="save" method="post" >
     <g:hiddenField name="returnTo" value="${returnTo}" />
+    <g:hiddenField name="id" value="${providerMapInstance?.id}" />
     <div class="col-md-12 edit-contact-form">
         <div class="col-md-3">
             <label for="institutionSelect"><g:message code="providerMap.institution.label" default="Institution" /></label>
         </div>
-        ${au.org.ala.collectory.Institution.list([sort: 'name'])}
         <div class="col-md-9 value ${hasErrors(bean: providerMapInstance, field: 'providerGroup', 'errors')}">
             <g:select id="institutionSelect" name="institution.id" class="form-control"
                       from="${au.org.ala.collectory.Institution.list([sort: 'name'])}"
                       optionKey="id"
-                      value="${providerMapInstance?.collection?.id}"
+                      value="${providerMapInstance?.institution?.id}"
                       noSelection="${['null':'---- sélectionner une institution -----']}"
             />
         </div>

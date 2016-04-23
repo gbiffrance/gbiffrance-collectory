@@ -57,10 +57,10 @@ if (!bie.searchPath) {
     bie.searchPath = "/search"
 }
 if (!biocacheUiURL) {
-    biocacheUiURL = "http://185.26.127.140/generic-hub/"
+    biocacheUiURL = "http://metadonnee.gbif.fr"
 }
 if(!biocacheServicesUrl){
-    biocacheServicesUrl = "http://185.26.127.140/generic-hub/biocache-service/"
+    biocacheServicesUrl = "http://portail.gbif.fr/generic-hub/biocache-service/"
 }
 if (!spatial.baseURL) {
     spatial.baseURL = "http://spatial.ala.org.au/"
@@ -117,7 +117,7 @@ if(!projectNameShort){
     projectNameShort="GBIF France"
 }
 if(!projectName){
-    projectName="Atlas of Living France"
+    projectName="portail français du GBIF France"
 }
 if(!regionName){
     regionName="France"
@@ -176,7 +176,9 @@ grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
 
 // What URL patterns should be processed by the resources plugin
 //grails.resources.uri.prefix = ''
-grails.resources.adhoc.patterns = ['/img/**', '/images/*', '/data/*', '/css/*', '/js/**', '/plugins/**']
+grails.resources.adhoc.patterns = ['/img/**', '/images/*', '/data/*', '/css/*', '/js/**', '/plugins/**', '/bootstrap3/css/**', '/bootstrap3/js/**', '/bootstrap3/fonts/**']
+grails.resources.adhoc.includes = ['/img/**', '/images/*', '/data/*', '/css/*', '/js/**', '/plugins/**', '/bootstrap3/css/**', '/bootstrap3/js/**', '/bootstrap3/fonts/**']
+
 
 // The default codec used to encode data with ${}
 grails.views.default.codec="html" // none, html, base64

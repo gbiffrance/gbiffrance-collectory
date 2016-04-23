@@ -80,15 +80,16 @@
                     
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="providerMap.lastUpdated.label" default="Last Updated" /></td>
-                            
-                            <td valign="top" class="value"><g:formatDate date="${providerMapInstance?.lastUpdated}" /></td>
+
+
+                            <td valign="top" class="value">${providerMapInstance?.lastUpdated}</td>
                             
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="providerMap.dateCreated.label" default="Date Created" /></td>
                             
-                            <td valign="top" class="value"><g:formatDate date="${providerMapInstance?.dateCreated}" /></td>
+                            <td valign="top" class="value">${providerMapInstance?.dateCreated}</td>
                             
                         </tr>
                     

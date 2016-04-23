@@ -31,20 +31,20 @@ class ProviderMapController {
     }
 
     def list = {
-        if (!params.max) params.max = 10
+        if (!params.max) params.max = 30
         if (!params.offset) params.offset = 0
-//        if (!params.sort) params.sort = "collectionName"
+        if (!params.sort) params.sort = "collectionName"
         if (!params.order) params.order = "asc"
         def maps = ProviderMap.withCriteria {
             maxResults(params.max?.toInteger())
             firstResult(params.offset?.toInteger())
-//            if (params.sort == 'collectionName') {
-//                collection {
-//                    order('name', params.order)
-//                }
-//            } else {
-//                order(params.sort, params.order)
-//            }
+            if (params.sort == 'collectionName') {
+                collection {
+                    order('name', params.order)
+                }
+            } else {
+                order(params.sort, params.order)
+            }
         }
         [providerMapInstanceList: maps, providerMapInstanceTotal: ProviderMap.count(), returnTo: params.returnTo]
     }
@@ -63,6 +63,7 @@ class ProviderMapController {
     }
 
     def save = {
+
         def providerMapInstance = new ProviderMap(params)
         if (providerMapInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'providerMap.label', default: 'ProviderMap'), providerMapInstance.id])}"
@@ -91,7 +92,7 @@ class ProviderMapController {
             redirect(action: "list", params:[returnTo: params.returnTo])
         }
         else {
-            if (providerMapInstance.collection.uid) {
+            if (providerMapInstance) {
                 return [providerMapInstance: providerMapInstance, returnTo: params.returnTo]
             } else {
                 render "You are not authorised to access this page."
@@ -112,6 +113,7 @@ class ProviderMapController {
                 }
             }
             providerMapInstance.properties = params
+
             if (!providerMapInstance.hasErrors() && providerMapInstance.save(flush: true)) {
                 flash.message = "${message(code: 'default.updated.message', args: [message(code: 'providerMap.label', default: 'ProviderMap'), providerMapInstance.id])}"
                 redirect(action: "show", id: providerMapInstance.id, params:[returnTo: params.returnTo])
@@ -129,17 +131,27 @@ class ProviderMapController {
     def delete = {
         def providerMapInstance = ProviderMap.get(params.id)
         if (providerMapInstance) {
-            if (providerMapInstance.collection.uid) {
+            if (providerMapInstance) {
                 try {
                     // remove collection link
                     providerMapInstance.collection?.providerMap = null
+
                     // remove code links
-                    providerMapInstance.collectionCodes.each {
-                        providerMapInstance.removeFromCollectionCodes it
+
+                        
+
+//                    providerMapInstance.collectionCodes.each {
+//                        providerMapInstance.removeFromCollectionCodes it
+//                    }
+
+                    def institutionCodesList = providerMapInstance.getInstitutionCodes().toArray()
+                    for(int i=0; i<institutionCodesList.length;i++){
+                        providerMapInstance.removeFromInstitutionCodes(institutionCodesList[i])
                     }
-                    providerMapInstance.institutionCodes.each {
-                        providerMapInstance.removeFromInstitutionCodes it
-                    }
+
+//                    providerMapInstance.institutionCodes.each {
+//                        providerMapInstance.removeFromInstitutionCodes it
+//                    }
                     // remove map
                     providerMapInstance.delete(flush: true)
                     flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'providerMap.label', default: 'ProviderMap'), params.id])}"

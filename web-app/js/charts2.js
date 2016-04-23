@@ -600,11 +600,11 @@ var facetChartGroup = {
 
 /***** external services & links *****/
 // an instance of the collections app - used for name lookup services
-var collectionsUrl = "http://collections.ala.org.au";  // should be overridden from config by the calling page
+var collectionsUrl = "http://portail.gbif.fr/collectory/";  // should be overridden from config by the calling page
 // an instance of the biocache web services app - used for facet and taxonomic breakdowns
-var biocacheServicesUrl = "http://biocache.ala.org.au/ws";  // should be overridden from config by the calling page
+var biocacheServicesUrl = "http://portail.gbif.fr/biocache-service/";  // should be overridden from config by the calling page
 // an instance of a web app - used to display search results
-var biocacheWebappUrl = "http://biocache.ala.org.au";  // should be overridden from config by the calling page
+var biocacheWebappUrl = "http://portail.gbif.fr/generic-hub/";  // should be overridden from config by the calling page
 
 // defaults for taxa chart
 var taxonomyPieChartOptions = {

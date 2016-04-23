@@ -34,9 +34,9 @@
     <cl:pageOptionsPopup instance="${instance}"/>
     <cl:h1 value="${instance.name}"/>
     <div class="row-fluid">
-        
+
         <div class="col-md-8" id="row-public">
-            
+
             <g:set var="dp" value="${instance.dataProvider}"/>
             <g:if test="${dp}">
                 <p>Fournisseur de données : <g:link action="show" id="${dp.uid}">${dp.name}</g:link></p>
@@ -46,25 +46,26 @@
             </g:if>
             <cl:valueOrOtherwise value="${instance.acronym}"><span
                     class="acronym">Acronym: ${fieldValue(bean: instance, field: "acronym")}</span></cl:valueOrOtherwise>
-            <cl:valueOrOtherwise value="${instance.guid}"><p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p></cl:valueOrOtherwise>
+        %{--<cl:valueOrOtherwise value="${instance.guid}"><p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p></cl:valueOrOtherwise>--}%
+            <cl:valueOrOtherwise value="${instance.guid}"><p><a target="_blank" href="http://www.gbif.org/dataset/${instance.guid}"> <g:message code="public.international.dataset.page"></g:message> </a></p></cl:valueOrOtherwise>
         </div>
 
         <div class="col-md-4">
         <!-- provider -->
-            <g:if test="${dp?.logoRef?.file}">
-                <g:link action="show" id="${dp.uid}">
-                    <img class="institutionImage"
-                         src='${resource(absolute: "true", dir: "data/dataProvider/", file: fieldValue(bean: dp, field: 'logoRef.file'))}'/>
-                </g:link>
-                <!--div style="clear: both;"></div-->
-            </g:if>
+            %{--<g:if test="${dp?.logoRef?.file}">--}%
+                %{--<g:link action="show" id="${dp.uid}">--}%
+                    %{--<img class="institutionImage"--}%
+                         %{--src='${resource(absolute: "true", dir: "data/dataProvider/", file: fieldValue(bean: dp, field: 'logoRef.file'))}'/>--}%
+                %{--</g:link>--}%
+                %{--<!--div style="clear: both;"></div-->--}%
+            %{--</g:if>--}%
         </div>
     </div>
 </div><!--close header-->
 <div class="row" >
     <div class="col-md-8">
         <g:if test="${instance.pubDescription || instance.techDescription || instance.focus}">
-            <h2><g:message code="public.des" /></h2>
+            <h2 class="admin-h2"><g:message code="public.des" /></h2>
         </g:if>
         <cl:formattedText>${fieldValue(bean: instance, field: "pubDescription")}</cl:formattedText>
         <cl:formattedText>${fieldValue(bean: instance, field: "techDescription")}</cl:formattedText>
@@ -80,7 +81,7 @@
             <cl:formattedText>${fieldValue(bean: instance, field: "citation")}</cl:formattedText>
         </g:if>
         <g:else>
-            <p><g:message code="public.sdr.content.des01" />.</p>
+            <h2 class="admin-h2"><p><g:message code="public.sdr.content.des01" />.</p></h2>
         </g:else>
 
         <g:if test="${instance.rights || instance.creativeCommons}">
@@ -116,18 +117,18 @@
                 <cl:dataCurrency date="${instance.dataCurrency}"/></p>
         </g:if>
 
-        <g:if test="${instance.resourceType == 'website' || instance.resourceType == 'records'}">
-            <div id='usage-stats'>
-                <h2 class="admin-h2"><g:message code="public.sdr.usagestats.labe" /></h2>
+        %{--<g:if test="${instance.resourceType == 'website' || instance.resourceType == 'records'}">--}%
+            %{--<div id='usage-stats'>--}%
+                %{--<h2 class="admin-h2"><g:message code="public.sdr.usagestats.labe" /></h2>--}%
 
-                <div id='usage'>
-                    <p><g:message code="public.usage.des" />...</p>
-                </div>
-                <g:if test="${instance.resourceType == 'website'}">
-                    <div id="usage-visualization" style="width: 600px; height: 200px;"></div>
-                </g:if>
-            </div>
-        </g:if>
+                %{--<div id='usage'>--}%
+                    %{--<p><g:message code="public.usage.des" />...</p>--}%
+                %{--</div>--}%
+                %{--<g:if test="${instance.resourceType == 'website'}">--}%
+                    %{--<div id="usage-visualization" style="width: 600px; height: 200px;"></div>--}%
+                %{--</g:if>--}%
+            %{--</div>--}%
+        %{--</g:if>--}%
 
         <g:if test="${instance.resourceType == 'records'}">
             <h2 class="admin-h2"><g:message code="public.sdr.content.label09" /></h2>
@@ -390,7 +391,7 @@
                     drawFacetCharts(data, facetChartOptions);
                     if(data.totalRecords > 0){
                         $('#dataAccessWrapper').css({display:'block'});
-                        $('#totalRecordCountLink').html(data.totalRecords.toLocaleString() + ' records');
+                        $('#totalRecordCountLink').html(data.totalRecords.toLocaleString() + ' enregistrements');
                     }
                 }
             }

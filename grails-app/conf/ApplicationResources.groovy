@@ -11,7 +11,15 @@ modules = {
         resource url: [dir:'images', file:'ala-white.png']
         resource url: [dir:'images', file:'crowdin-white.png']
         resource url: [dir:'images', file:'gbif-fr.png']
-        resource url: [dir:'images', file:'logo-gbif.jpg'] 
+        resource url: [dir:'images', file:'logo-gbif.jpg']
+        resource url: [dir:'images/skin', file:'ExpandArrow.png']
+        resource url: [dir:'images/ala', file:'fauna_button_bgwd.png']
+        resource url: [dir:'images/ala', file:'insects_button_bgwd.png']
+        resource url: [dir:'images/ala', file:'microbes_button_bgwd.png']
+        resource url: [dir:'images/ala', file:'plants_button_bgwd.png']
+        resource url: [dir:'images/ala', file:'all_button_bgwd.png']
+        resource url: [dir:'images/ala', file:'mycetes_button_bgwd.png']
+        resource url: [dir:'images/ala', file:'paleontology_button_bgwd.png']
     }
     bootstrap {
         resource url:[dir:'js', file:'bootstrap.js', plugin: 'collectory-plugin', disposition: 'head']
@@ -19,8 +27,9 @@ modules = {
         resource url:[dir:'css', file:'bootstrap-responsive.css', plugin: 'collectory-plugin'], attrs:[media:'screen', id:'responsiveCss']
     }
     bootstrap3 {
-        resource url:[dir:'js', file:'bootstrap3.js', plugin: 'collectory-plugin', disposition: 'head']
-        resource url:[dir:'css', file:'bootstrap3.css', plugin: 'collectory-plugin'], attrs:[media:'screen, projection, print']
+        resource url: [dir: 'bootstrap3/js', file: 'bootstrap.js', disposition: 'head']
+        resource url: [dir: 'bootstrap3/css', file: 'bootstrap.css', attrs: [media: 'screen, projection, print']]
+        resource url: [dir: 'bootstrap3/css', file: 'bootstrap-theme.css', attrs: [media: 'screen, projection, print']]
     }
     generic {
         dependsOn 'bootstrap, collectory' //
