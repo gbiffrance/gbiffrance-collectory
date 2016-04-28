@@ -31,7 +31,7 @@
     </head>
     <body>
       <div id="content">
-        <div id="header">
+        <div id="header" class="collectory">
           <cl:pageOptionsPopup instance="${instance}"/>
           <cl:h1 value="${instance.name}" />
           <div class="row">
@@ -42,7 +42,7 @@
               </g:if>
               <span style="">
               <cl:valueOrOtherwise value="${instance.acronym}"><p><g:message code="public.show.header.acronym" /> : ${fieldValue(bean: instance, field: "acronym")}</p></cl:valueOrOtherwise>
-              <cl:valueOrOtherwise value="${instance.guid}"><p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p></cl:valueOrOtherwise>
+              %{--<cl:valueOrOtherwise value="${instance.guid}"><p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p></cl:valueOrOtherwise>--}%
                   %{-- <span class="lsid"><a href="#lsidText" id="lsid" class="local" title="Life Science Identifier (pop-up)"><g:message code="public.lsid" /></a></span> --}%
               </span>
             </div>
@@ -64,7 +64,7 @@
             <ul class="nav nav-tabs" id="overviewTabs">
                 <li><a id="tab1" href="#overviewTab" data-toggle="tab"><g:message code="public.show.overviewtabs.overview" /></a></li>
                 <li><a id="tab2" href="#recordsTab" data-toggle="tab"><g:message code="public.show.overviewtabs.records" /></a></li>
-                <li id="imagesTabEl" style="display:none;"><a id="tab3" href="#imagesTab" data-toggle="tab"><g:message code="public.show.overviewtabs.images" /></a></li>
+                %{--<li id="imagesTabEl" style="display:none;"><a id="tab3" href="#imagesTab" data-toggle="tab"><g:message code="public.show.overviewtabs.images" /></a></li>--}%
             </ul>
         </div>
 
@@ -115,7 +115,7 @@
                   <g:set var="nouns" value="${cl.nounForTypes(types:instance.listCollectionTypes())}"/>
                   <h2 class="admin-h2"><g:message code="public.show.oc.label04" /> <cl:nounForTypes types="${instance.listCollectionTypes()}"/> <g:message code="public.show.oc.label05" /></h2>
                   <g:if test="${fieldValue(bean: instance, field: 'numRecords') != '-1'}">
-                    <p><g:message code="public.show.oc.des07" /> ${nouns} in <cl:collectionName prefix="the " name="${instance.name}"/> <g:message code="public.show.oc.des08" /> ${fieldValue(bean: instance, field: "numRecords")}.</p>
+                    <p><g:message code="public.show.oc.des07" /> ${nouns} dans <cl:collectionName prefix="la " name="${instance.name}"/><g:message code="public.show.oc.des08" /> ${fieldValue(bean: instance, field: "numRecords")}.</p>
                   </g:if>
                   <g:if test="${fieldValue(bean: instance, field: 'numRecordsDigitised') != '-1'}">
                     <p><g:message code="public.show.oc.des09" /> ${fieldValue(bean: instance, field: "numRecordsDigitised")} <g:message code="public.show.oc.des10" />.

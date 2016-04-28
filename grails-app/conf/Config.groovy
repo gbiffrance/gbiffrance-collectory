@@ -57,16 +57,16 @@ if (!bie.searchPath) {
     bie.searchPath = "/search"
 }
 if (!biocacheUiURL) {
-    biocacheUiURL = "http://metadonnee.gbif.fr"
+    biocacheUiURL = "http://recherche.gbif.fr"
 }
 if(!biocacheServicesUrl){
-    biocacheServicesUrl = "http://portail.gbif.fr/generic-hub/biocache-service/"
+    biocacheServicesUrl = "http://recherche-ws.gbif.fr/"
 }
 if (!spatial.baseURL) {
     spatial.baseURL = "http://spatial.ala.org.au/"
 }
 if (!ala.baseURL) {
-    ala.baseURL = "http://185.26.127.140/generic-hub/"
+    ala.baseURL = "http://recherche.gbif.fr"
 }
 if (!headerAndFooter.baseURL) {
     headerAndFooter.baseURL = "http://www2.ala.org.au/commonui"

@@ -6,9 +6,9 @@
         <p>
             <span class="contactName">${cf?.contact?.buildName()}</span><br/>
             <g:if test="${cf?.role}">${cf?.role}<br/></g:if>
-            <g:if test="${cf?.contact?.phone}">phone: ${cf?.contact?.phone}<br/></g:if>
-            <g:if test="${cf?.contact?.fax}">phone: ${cf?.contact?.fax}<br/></g:if>
-            <cl:emailLink email="${cf?.contact?.email}">email this contact</cl:emailLink>
+            <g:if test="${cf?.contact?.phone}">Téléphone : ${cf?.contact?.phone}<br/></g:if>
+            <g:if test="${cf?.contact?.fax}">Fax : ${cf?.contact?.fax}<br/></g:if>
+            <cl:emailLink email="${cf?.contact?.email}">Contacter par mail</cl:emailLink>
         </p>
       </div>
     </g:each>

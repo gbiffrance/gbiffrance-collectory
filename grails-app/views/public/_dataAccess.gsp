@@ -3,8 +3,8 @@
     <g:set var="facet" value="${new CollectoryTagLib().getFacetForEntity(instance)}"/>
     <h3 class="public-h3"><g:message code="dataAccess.title"/></h3>
     <div class="dataAccess btn-group-vertical">
-        <p><a id="totalRecordCountLink" href="${grailsApplication.config.biocacheUiURL}/occurrences/search?q=${facet}:${instance.uid}"></a></p>
-
+        %{--<p><a id="totalRecordCountLink" href="${grailsApplication.config.biocacheUiURL}/occurrences/search?q=${facet}:${instance.uid}"></a></p>--}%
+        <p class="totalRecordCountLink"></p>
         <a href="${grailsApplication.config.biocacheUiURL}/occurrences/search?q=${facet}:${instance.uid}" id="access-occ" class="btn"><i class="icon icon-list"></i> <g:message code="dataAccess.view.records"/></a>
         %{--<a href="${grailsApplication.config.biocacheServicesUrl}/occurrences/download?q=${facet}:${instance.uid}" class="btn"><i class="icon icon-download"></i> Download records</a>--}%
 

@@ -36,4 +36,22 @@ modules = {
         resource url: [dir:'js', file:'application.js']
         resource url: [dir:'css', file:'generic.css']
     }
+    map {
+        resource url:[dir:'js', file:'map.js']
+    }
+    collectory {
+        dependsOn 'jquery_ui_custom,smoothness,jquery_i18n,jquery_json,jquery_tools,jquery_jsonp,fancybox,openlayers,map'
+        resource url:[dir:'js', file:'collectory.js']
+        resource url:[dir:'css', file:'temp-style.css', plugin:'collectory-plugin']
+    }
+
+    charts {
+        resource url:[dir:'js', file:'charts2.js']
+        resource url:[dir:'js', file:'charts.js']
+    }
+    jquery_migration{
+        // Needed to support legacy js components that do not work with latest versions of jQuery
+        dependsOn 'jquery'
+        resource url:[ dir: 'js',file:'jquery-migrate-1.2.1.min.js', plugin:'collectory-plugin']
+    }
 }

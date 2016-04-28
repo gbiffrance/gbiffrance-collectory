@@ -1049,7 +1049,7 @@ var taxonomyChart = {
         // draw the back button / instructions
         var $backLink = $('#backLink');
         if ($backLink.length == 0) {
-            $backLink = $('<div class="link" id="backLink">&laquo; Previous rank</div>').appendTo($outerContainer);  // create it
+            $backLink = $('<div class="btn btn-default access-data" id="backLink">&laquo; Rang précédent</div>').appendTo($outerContainer);  // create it
             $backLink.css('position','relative').css('top','-75px');
             $backLink.click(function() {
                 // only act if link was real

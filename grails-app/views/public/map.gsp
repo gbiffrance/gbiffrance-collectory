@@ -54,9 +54,10 @@
                 </ul>
               </li>
             </ul>
-            <div style="width:235px;margin-left:0;">
-              <p class="collectionsCount"><span id='numFeatures'></span></p>
-              <p class="collectionsCount"><span id='numVisible'></span> <span id="numUnMappable"></span></p>
+            <div class="total_compte">
+                <p class="collectionsCount"><span id='numFeatures'></span></p>
+                <p class="collectionsCount"><span id='numVisible'></span></p>
+                <p class="collectionsCount"><span id="numUnMappable"></span></p>
             </div>
           </div><!--close section-->
         </div><!--close column-one-->

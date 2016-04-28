@@ -13,10 +13,10 @@ var taxonomyPieChartOptions = {
     width: 700,
     height: 450,
     chartArea: {left:0, top:30, width:"100%", height: "70%"},
-    is3D: true,
-    titleTextStyle: {color: "#333", fontName: 'Open Sans', fontSize: 14},
+    is3D: false,
+    titleTextStyle: {color: "#a6ac1a", fontName: 'Open sans', fontSize: 14},
     sliceVisibilityThreshold: 0,
-    legend: {position: 'right', textStyle: {fontSize: 14}},
+    legend: {position: 'right', textStyle: {fontSize: 12}},
     backgroundColor: 'transparent'
 };
 
@@ -26,7 +26,7 @@ var genericChartOptions = {
     height: 450,
     chartArea: {left:0, top:30, width:"100%", height: "70%"},
     is3D: false,
-    titleTextStyle: {color: "#555", fontName: 'Arial', fontSize: 12},
+    titleTextStyle: {color: "#a6ac1a", fontWeight: '600', fontName: 'Open sans', fontSize: 14},
     sliceVisibilityThreshold: 0,
     legend: {position: 'right', textStyle: {fontSize: 12}},
     chartType: "pie",
@@ -67,9 +67,9 @@ var individualChartOptions = {
 // these override the facet names in chart titles
 var chartLabels = {
     institution_uid: 'institution',
-    data_resource_uid: 'Jeu de données',
+    data_resource_uid: 'jeu de données',
     assertions: 'data assertion',
-    biogeographic_region: 'biogeographic region',
+    biogeographic_region: 'région biogéographique',
     occurrence_year: 'décade'
 };
 // asynchronous transforms are applied after the chart is drawn, ie the chart is drawn with the original values
@@ -159,7 +159,17 @@ function buildGenericFacetChart(name, data, query, chartsDiv, chartOptions) {
 
     // resolve the chart options
     var opts = $.extend({}, genericChartOptions);
-    opts.title = "By " + chartLabel;  // default title
+    switch(chartLabel){
+        case "country" :
+            chartLabel="pays";
+            break;
+        case "state" :
+            chartLabel="région";
+            break;
+        default:
+            break;
+    }
+    opts.title = "Par " + chartLabel;  // default title
     var individualOptions = individualChartOptions[name] ? individualChartOptions[name] : {};
     // merge generic, individual and user options
     opts = $.extend(true, {}, opts, individualOptions, chartOptions[name]);
@@ -354,7 +364,7 @@ function drawTaxonomyChart(data, chartOptions, query) {
     // resolve the chart options
     var opts = $.extend({}, taxonomyPieChartOptions);
     opts = $.extend(true, opts, chartOptions);
-    opts.title = opts.name ? opts.name + " " + jQuery.i18n.prop('charts.js.recordsby') + " " + data.rank : "By " + data.rank;
+    opts.title = opts.name ? opts.name + " " + jQuery.i18n.prop('charts.js.recordsby') + " " + data.rank : "Par " + data.rank;
 
     // create the outer div that will contain the chart and the additional links
     var $outerContainer = $('#taxa');
@@ -379,10 +389,18 @@ function drawTaxonomyChart(data, chartOptions, query) {
     // draw the chart
     chart.draw(dataTable, opts);
 
+    $infoChart = $('.info-chart')
+    if ($infoChart.length == 0) {
+        $infoChart = $('<div class="info-chart"></div>').appendTo($outerContainer);
+        $infoChart.html(jQuery.i18n.prop('charts.js.slicetodrill'))
+    }
+
     // draw the back button / instructions
+    $centerButton = $('<div class="button-ext"></div>').appendTo($outerContainer);
+
     var $backLink = $('#backLink');
     if ($backLink.length == 0) {
-        $backLink = $('<div class="link" id="backLink">&laquo; Rang précédant</div>').appendTo($outerContainer);  // create it
+        $backLink = $('<div class="btn btn-default access-data link button-int" id="backLink">Rang précédent</div>').appendTo($centerButton);  // create it
         $backLink.css('position','relative').css('top','-75px');
         $backLink.click(function() {
             // only act if link was real
@@ -405,17 +423,20 @@ function drawTaxonomyChart(data, chartOptions, query) {
     }
     if (chartOptions.history) {
         // show the prev link
-        $backLink.html("&laquo; Previous rank").addClass('link');
+        //$backLink.html(jQuery.i18n.prop('charts.js.slicetodrill')).removeClass('info-chart');
+        $backLink.html("Rang précédent").addClass('btn btn-default access-data link');
     }
     else {
         // show the instruction
-        $backLink.html(jQuery.i18n.prop('charts.js.slicetodrill')).removeClass('link');
+        //$backLink.html("Rang précédent").addClass('info-chart');
+        //$backLink.html(jQuery.i18n.prop('charts.js.slicetodrill')).removeClass('btn btn-default access-data link');
+        $backLink.html("Rang précédent").removeClass(' link');
     }
 
     // draw records link
     var $recordsLink = $('#recordsLink');
     if ($recordsLink.length == 0) {
-        $recordsLink = $('<div class="link under" id="recordsLink">' + jQuery.i18n.prop('charts.js.viewrecords') + '</div>').appendTo($outerContainer);  // create it
+        $recordsLink = $('<div class="btn btn-default access-data link last button-int" id="recordsLink">' + jQuery.i18n.prop('charts.js.viewrecords') + '</div>').appendTo($centerButton);  // create it
         $recordsLink.css('position','relative').css('top','-75px');
         $recordsLink.click(function() {
             // show occurrence records
