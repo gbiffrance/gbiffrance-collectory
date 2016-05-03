@@ -25,246 +25,268 @@
                 'width': 300
             });
         });
+        $('#overviewTabs a:first').tab('show');
     </r:script>
 
 </head>
 <body class="nav-datasets">
 <div id="content">
-<div id="header">
-    <cl:pageOptionsPopup instance="${instance}"/>
-    <cl:h1 value="${instance.name}"/>
-    <div class="row-fluid">
+    <div id="header" class="collectory">
+        <cl:pageOptionsPopup instance="${instance}"/>
+        <cl:h1 value="${instance.name}"/>
+        <div class="row">
 
-        <div class="col-md-8" id="row-public">
+            <div class="col-md-9" id="row-public">
+            </div>
 
-            <g:set var="dp" value="${instance.dataProvider}"/>
-            <g:if test="${dp}">
-                <p>Fournisseur de données : <g:link action="show" id="${dp.uid}">${dp.name}</g:link></p>
-            </g:if>
-            <g:if test="${instance.institution}">
-                <p>Institution : <g:link action="show" id="${instance.institution.uid}">${instance.institution.name}</g:link></p>
-            </g:if>
-            <cl:valueOrOtherwise value="${instance.acronym}"><span
-                    class="acronym">Acronym: ${fieldValue(bean: instance, field: "acronym")}</span></cl:valueOrOtherwise>
-        %{--<cl:valueOrOtherwise value="${instance.guid}"><p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p></cl:valueOrOtherwise>--}%
-            <cl:valueOrOtherwise value="${instance.guid}"><p><a target="_blank" href="http://www.gbif.org/dataset/${instance.guid}"> <g:message code="public.international.dataset.page"></g:message> </a></p></cl:valueOrOtherwise>
+            <div class="col-md-3">
+                <div id="dataAccessWrapper" style="display:none;">
+                    <g:render template="dataAccess" model="[instance:instance]"/>
+                </div>
+            </div>
         </div>
+    </div><!--close header-->
 
-        <div class="col-md-4">
-        <!-- provider -->
-            %{--<g:if test="${dp?.logoRef?.file}">--}%
-                %{--<g:link action="show" id="${dp.uid}">--}%
-                    %{--<img class="institutionImage"--}%
-                         %{--src='${resource(absolute: "true", dir: "data/dataProvider/", file: fieldValue(bean: dp, field: 'logoRef.file'))}'/>--}%
-                %{--</g:link>--}%
-                %{--<!--div style="clear: both;"></div-->--}%
-            %{--</g:if>--}%
-        </div>
+    <div class="tabbable tabbable-dataresource">
+        <ul class="nav nav-tabs" id="overviewTabs">
+            <li><a id="tab1" href="#overviewTab" data-toggle="tab"><g:message code="public.show.overviewtabs.overview" /></a></li>
+            <li><a id="tab2" href="#statTab" data-toggle="tab"><g:message code="public.show.overviewtabs.stat" /></a></li>
+            %{--<li id="imagesTabEl" style="display:none;"><a id="tab3" href="#imagesTab" data-toggle="tab"><g:message code="public.show.overviewtabs.images" /></a></li>--}%
+        </ul>
     </div>
-</div><!--close header-->
-<div class="row" >
-    <div class="col-md-8">
-        <g:if test="${instance.pubDescription || instance.techDescription || instance.focus}">
-            <h2 class="admin-h2"><g:message code="public.des" /></h2>
-        </g:if>
-        <cl:formattedText>${fieldValue(bean: instance, field: "pubDescription")}</cl:formattedText>
-        <cl:formattedText>${fieldValue(bean: instance, field: "techDescription")}</cl:formattedText>
-        <cl:formattedText>${fieldValue(bean: instance, field: "focus")}</cl:formattedText>
-        <cl:dataResourceContribution resourceType="${instance.resourceType}" status="${instance.status}" tag="p"/>
 
-        <g:if test="${instance.contentTypes}">
-            <h2 class="admin-h2"><g:message code="public.sdr.content.label02" /></h2>
-            <cl:contentTypes types="${instance.contentTypes}"/>
-        </g:if>
-        <h2 class="admin-h2"><g:message code="public.sdr.content.label03" /></h2>
-        <g:if test="${instance.citation}">
-            <cl:formattedText>${fieldValue(bean: instance, field: "citation")}</cl:formattedText>
-        </g:if>
-        <g:else>
-            <h2 class="admin-h2"><p><g:message code="public.sdr.content.des01" />.</p></h2>
-        </g:else>
 
-        <g:if test="${instance.rights || instance.creativeCommons}">
-            <h2 class="admin-h2"><g:message code="public.sdr.content.label04" /></h2>
-            <cl:formattedText>${fieldValue(bean: instance, field: "rights")}</cl:formattedText>
-            <g:if test="${instance.creativeCommons}">
-                <p><cl:displayLicenseType type="${instance.licenseType}" version="${instance.licenseVersion}"/></p>
-            </g:if>
-        </g:if>
+    <div class="tab-content">
+        <div id="overviewTab"  class="tab-pane active row">
+            <div id="overview-content" class="col-md-8">
+                <g:set var="dp" value="${instance.dataProvider}"/>
+                <g:if test="${dp}">
+                    <p>Fournisseur de données : <g:link action="show" id="${dp.uid}">${dp.name}</g:link></p>
+                </g:if>
+                <g:if test="${instance.institution}">
+                    <p>Institution : <g:link action="show" id="${instance.institution.uid}">${instance.institution.name}</g:link></p>
+                </g:if>
+                <cl:valueOrOtherwise value="${instance.acronym}"><span
+                        class="acronym">Acronym: ${fieldValue(bean: instance, field: "acronym")}</span></cl:valueOrOtherwise>
+            %{--<cl:valueOrOtherwise value="${instance.guid}"><p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p></cl:valueOrOtherwise>--}%
 
-        <g:if test="${instance.dataGeneralizations}">
-            <h2 class="admin-h2"><g:message code="public.sdr.content.label05" /></h2>
-            <cl:formattedText>${fieldValue(bean: instance, field: "dataGeneralizations")}</cl:formattedText>
-        </g:if>
+                <g:if test="${instance.pubDescription || instance.techDescription || instance.focus}">
+                    <h2 class="admin-h2"><g:message code="public.des" /></h2>
+                </g:if>
+                <cl:formattedText>${fieldValue(bean: instance, field: "pubDescription")}</cl:formattedText>
+                <cl:formattedText>${fieldValue(bean: instance, field: "techDescription")}</cl:formattedText>
+                <cl:formattedText>${fieldValue(bean: instance, field: "focus")}</cl:formattedText>
+                <cl:dataResourceContribution resourceType="${instance.resourceType}" status="${instance.status}" tag="p"/>
 
-        <g:if test="${instance.informationWithheld}">
-            <h2 class="admin-h2"><g:message code="public.sdr.content.label06" /></h2>
-            <cl:formattedText>${fieldValue(bean: instance, field: "informationWithheld")}</cl:formattedText>
-        </g:if>
+                <g:if test="${instance.contentTypes}">
+                    <h2 class="admin-h2"><g:message code="public.sdr.content.label02" /></h2>
+                    <cl:contentTypes types="${instance.contentTypes}"/>
+                </g:if>
+                <h2 class="admin-h2"><g:message code="public.sdr.content.label03" /></h2>
+                <g:if test="${instance.citation}">
+                    <cl:formattedText>${fieldValue(bean: instance, field: "citation")}</cl:formattedText>
+                </g:if>
+                <g:else>
+                    <h2 class="admin-h2"><p><g:message code="public.sdr.content.des01" />.</p></h2>
+                </g:else>
 
-        <g:if test="${instance.downloadLimit}">
-            <h2><g:message code="public.sdr.content.label07" /></h2>
+                <g:if test="${instance.rights || instance.creativeCommons}">
+                    <h2 class="admin-h2"><g:message code="public.sdr.content.label04" /></h2>
+                    <cl:formattedText>${fieldValue(bean: instance, field: "rights")}</cl:formattedText>
+                    <g:if test="${instance.creativeCommons}">
+                        <p><cl:displayLicenseType type="${instance.licenseType}" version="${instance.licenseVersion}"/></p>
+                    </g:if>
+                </g:if>
 
-            <p><g:message code="public.sdr.content.des02" /> ${fieldValue(bean: instance, field: "downloadLimit")} <g:message code="public.sdr.content.des03" />.</p>
-        </g:if>
+                <g:if test="${instance.dataGeneralizations}">
+                    <h2 class="admin-h2"><g:message code="public.sdr.content.label05" /></h2>
+                    <cl:formattedText>${fieldValue(bean: instance, field: "dataGeneralizations")}</cl:formattedText>
+                </g:if>
 
-        <div id="pagesContributed"></div>
+                <g:if test="${instance.informationWithheld}">
+                    <h2 class="admin-h2"><g:message code="public.sdr.content.label06" /></h2>
+                    <cl:formattedText>${fieldValue(bean: instance, field: "informationWithheld")}</cl:formattedText>
+                </g:if>
 
-        <g:if test="${instance.resourceType == 'website' && (instance.lastChecked || instance.dataCurrency)}">
-            <h2><g:message code="public.sdr.content.label08" /></h2>
+                <g:if test="${instance.downloadLimit}">
+                    <h2><g:message code="public.sdr.content.label07" /></h2>
 
-            <p><cl:lastChecked date="${instance.lastChecked}"/>
-                <cl:dataCurrency date="${instance.dataCurrency}"/></p>
-        </g:if>
+                    <p><g:message code="public.sdr.content.des02" /> ${fieldValue(bean: instance, field: "downloadLimit")} <g:message code="public.sdr.content.des03" />.</p>
+                </g:if>
 
-        %{--<g:if test="${instance.resourceType == 'website' || instance.resourceType == 'records'}">--}%
-            %{--<div id='usage-stats'>--}%
-                %{--<h2 class="admin-h2"><g:message code="public.sdr.usagestats.labe" /></h2>--}%
+                <div id="pagesContributed"></div>
 
-                %{--<div id='usage'>--}%
-                    %{--<p><g:message code="public.usage.des" />...</p>--}%
-                %{--</div>--}%
-                %{--<g:if test="${instance.resourceType == 'website'}">--}%
-                    %{--<div id="usage-visualization" style="width: 600px; height: 200px;"></div>--}%
+                <g:if test="${instance.resourceType == 'website' && (instance.lastChecked || instance.dataCurrency)}">
+                    <h2><g:message code="public.sdr.content.label08" /></h2>
+
+                    <p><cl:lastChecked date="${instance.lastChecked}"/>
+                        <cl:dataCurrency date="${instance.dataCurrency}"/></p>
+                </g:if>
+
+                %{--<g:if test="${instance.resourceType == 'website' || instance.resourceType == 'records'}">--}%
+                    %{--<div id='usage-stats'>--}%
+                        %{--<h2 class="admin-h2"><g:message code="public.sdr.usagestats.labe" /></h2>--}%
+
+                        %{--<div id='usage'>--}%
+                            %{--<p><g:message code="public.usage.des" />...</p>--}%
+                        %{--</div>--}%
+                        %{--<g:if test="${instance.resourceType == 'website'}">--}%
+                            %{--<div id="usage-visualization" style="width: 600px; height: 200px;"></div>--}%
+                        %{--</g:if>--}%
+                    %{--</div>--}%
                 %{--</g:if>--}%
-            %{--</div>--}%
-        %{--</g:if>--}%
 
-        <g:if test="${instance.resourceType == 'records'}">
-            <h2 class="admin-h2"><g:message code="public.sdr.content.label09" /></h2>
 
-            <div>
-                <p><span
-                        id="numBiocacheRecords"><g:message code="public.sdr.content.des04" /></span> <g:message code="public.sdr.content.des05" />.
-                <cl:lastChecked date="${instance.lastChecked}"/>
-                <cl:dataCurrency date="${instance.dataCurrency}"/>
-                </p>
-                <cl:recordsLink
-                        collection="${instance}"><g:message code="public.sdr.content.link01" /> ${instance.name} <g:message code="public.sdr.content.link02" />.</cl:recordsLink>
-                <cl:downloadPublicArchive uid="${instance.uid}" available="${instance.publicArchiveAvailable}"/>
-            </div>
-        </g:if>
-        <g:if test="${instance.resourceType == 'records'}">
-            <div id="recordsBreakdown" class="section vertical-charts">
-                <g:if test="${!grailsApplication.config.disableOverviewMap}">
-                    <h3 class="public-h3"><g:message code="public.sdr.content.label10" /></h3>
-                    <cl:recordsMapDirect uid="${instance.uid}"/>
-                </g:if>
-                <div id="tree" class="well"></div>
-                <div id="charts"></div>
-            </div>
-        </g:if>
-        <cl:lastUpdated date="${instance.lastUpdated}"/>
-    </div><!--close column-one-->
-    <div class="col-md-4">
-        <g:if test="${fieldValue(bean: instance, field: 'imageRef') && fieldValue(bean: instance, field: 'imageRef.file')}">
-            <div class="section">
-                <img alt="${fieldValue(bean: instance, field: "imageRef.file")}"
-                     src="${resource(absolute: "true", dir: "data/dataResource/", file: instance.imageRef.file)}"/>
-                <cl:formattedText
-                        pClass="caption">${fieldValue(bean: instance, field: "imageRef.caption")}</cl:formattedText>
-                <cl:valueOrOtherwise value="${instance.imageRef?.attribution}"><p
-                        class="caption">${fieldValue(bean: instance, field: "imageRef.attribution")}</p></cl:valueOrOtherwise>
-                <cl:valueOrOtherwise value="${instance.imageRef?.copyright}"><p
-                        class="caption">${fieldValue(bean: instance, field: "imageRef.copyright")}</p></cl:valueOrOtherwise>
-            </div>
-        </g:if>
-
-        <div id="dataAccessWrapper" style="display:none;">
-            <g:render template="dataAccess" model="[instance:instance]"/>
-        </div>
-
-        <!-- use parent location if the collection is blank -->
-        <g:set var="address" value="${instance.address}"/>
-        <g:if test="${address == null || address.isEmpty()}">
-            <g:if test="${instance.dataProvider}">
-                <g:set var="address" value="${instance.dataProvider?.address}"/>
-            </g:if>
-        </g:if>
-
-        <g:if test="${address != null && !address?.isEmpty()}">
-            <div class="section">
-                <h3 class="public-h3"><g:message code="public.location" /></h3>
-
-                <g:if test="${!address?.isEmpty()}">
-                    <p>
-                        <cl:valueOrOtherwise value="${address?.street}">${address?.street}<br/></cl:valueOrOtherwise>
-                        <cl:valueOrOtherwise value="${address?.city}">${address?.city}<br/></cl:valueOrOtherwise>
-                        <cl:valueOrOtherwise value="${address?.state}">${address?.state}</cl:valueOrOtherwise>
-                        <cl:valueOrOtherwise value="${address?.postcode}">${address?.postcode}<br/></cl:valueOrOtherwise>
-                        <cl:valueOrOtherwise value="${address?.country}">${address?.country}<br/></cl:valueOrOtherwise>
-                    </p>
+            </div><!--close column-one-->
+            <div id="overview-sidebar" class="col-md-4">
+                <g:if test="${fieldValue(bean: instance, field: 'imageRef') && fieldValue(bean: instance, field: 'imageRef.file')}">
+                    <div class="section">
+                        <img alt="${fieldValue(bean: instance, field: "imageRef.file")}"
+                             src="${resource(absolute: "true", dir: "data/dataResource/", file: instance.imageRef.file)}"/>
+                        <cl:formattedText
+                                pClass="caption">${fieldValue(bean: instance, field: "imageRef.caption")}</cl:formattedText>
+                        <cl:valueOrOtherwise value="${instance.imageRef?.attribution}"><p
+                                class="caption">${fieldValue(bean: instance, field: "imageRef.attribution")}</p></cl:valueOrOtherwise>
+                        <cl:valueOrOtherwise value="${instance.imageRef?.copyright}"><p
+                                class="caption">${fieldValue(bean: instance, field: "imageRef.copyright")}</p></cl:valueOrOtherwise>
+                    </div>
                 </g:if>
 
-                <g:if test="${instance.email}"><cl:emailLink>${fieldValue(bean: instance, field: "email")}</cl:emailLink><br/></g:if>
-                <cl:ifNotBlank value='${fieldValue(bean: instance, field: "phone")}'/>
-            </div>
-        </g:if>
 
-    <!-- contacts -->
-        <g:set var="contacts" value="${instance.getPublicContactsPrimaryFirst()}"/>
-        <g:if test="${!contacts}">
-            <g:set var="contacts" value="${instance.dataProvider?.getContactsPrimaryFirst()}"/>
-        </g:if>
-        <g:render template="contacts" bean="${contacts}"/>
 
-    <!-- web site -->
-        <g:if test="${instance.resourceType == 'species-list'}">
-            <div class="section">
-                <h3 class="public-h3"><g:message code="public.sdr.content.label12" /></h3>
-                <div class="webSite">
-                    <a class='external_icon' target="_blank"
-                       href="${grailsApplication.config.speciesListToolUrl}${instance.uid}"><g:message code="public.sdr.content.link03" /></a>
-                </div>
-            </div>
-        </g:if>
-        <g:elseif test="${instance.websiteUrl}">
-            <div class="section">
+                <!-- use parent location if the collection is blank -->
+                <g:set var="address" value="${instance.address}"/>
+                <g:if test="${address == null || address.isEmpty()}">
+                    <g:if test="${instance.dataProvider}">
+                        <g:set var="address" value="${instance.dataProvider?.address}"/>
+                    </g:if>
+                </g:if>
+
+                <g:if test="${address != null && !address?.isEmpty()}">
+                    <div class="section">
+                        <h3 class="public-h3"><g:message code="public.location" /></h3>
+
+                        <g:if test="${!address?.isEmpty()}">
+                            <p>
+                                <cl:valueOrOtherwise value="${address?.street}">${address?.street}<br/></cl:valueOrOtherwise>
+                                <cl:valueOrOtherwise value="${address?.city}">${address?.city}<br/></cl:valueOrOtherwise>
+                                <cl:valueOrOtherwise value="${address?.state}">${address?.state}</cl:valueOrOtherwise>
+                                <cl:valueOrOtherwise value="${address?.postcode}">${address?.postcode}<br/></cl:valueOrOtherwise>
+                                <cl:valueOrOtherwise value="${address?.country}">${address?.country}<br/></cl:valueOrOtherwise>
+                            </p>
+                        </g:if>
+
+                        <g:if test="${instance.email}"><cl:emailLink>${fieldValue(bean: instance, field: "email")}</cl:emailLink><br/></g:if>
+                        <cl:ifNotBlank value='${fieldValue(bean: instance, field: "phone")}'/>
+                    </div>
+                </g:if>
+
+            <!-- contacts -->
+                <g:set var="contacts" value="${instance.getPublicContactsPrimaryFirst()}"/>
+                <g:if test="${!contacts}">
+                    <g:set var="contacts" value="${instance.dataProvider?.getContactsPrimaryFirst()}"/>
+                </g:if>
+                <g:render template="contacts" bean="${contacts}"/>
+
+            <!-- web site -->
+                <g:if test="${instance.resourceType == 'species-list'}">
+                    <div class="section">
+                        <h3 class="public-h3"><g:message code="public.sdr.content.label12" /></h3>
+                        <div class="webSite">
+                            <a class='external_icon' target="_blank"
+                               href="${grailsApplication.config.speciesListToolUrl}${instance.uid}"><g:message code="public.sdr.content.link03" /></a>
+                        </div>
+                    </div>
+                </g:if>
+                <g:elseif test="${instance.websiteUrl}">
+                    <div class="section">
+                        <h3 class="public-h3"><g:message code="public.website" /></h3>
+                        <div class="webSite">
+                            <a class='external_icon' target="_blank"
+                               href="${instance.websiteUrl}"><g:message code="public.sdr.content.link04" /></a>
+                        </div>
+                    </div>
+                </g:elseif>
+
+            <!-- network membership -->
+                <g:if test="${instance.networkMembership}">
+                    <div class="section">
+                        <h3 class="public-h3"><g:message code="public.network.membership.label" /></h3>
+                        <g:if test="${instance.isMemberOf('CHAEC')}">
+                            <p><g:message code="public.network.membership.des01" /></p>
+                            <img src="${resource(absolute: "true", dir: "data/network/", file: "butflyyl.gif")}"/>
+                        </g:if>
+                        <g:if test="${instance.isMemberOf('CHAH')}">
+                            <p><g:message code="public.network.membership.des02" /></p>
+                            <a target="_blank" href="http://www.chah.gov.au"><img
+                                    src="${resource(absolute: "true", dir: "data/network/", file: "CHAH_logo_col_70px_white.gif")}"/>
+                            </a>
+                        </g:if>
+                        <g:if test="${instance.isMemberOf('CHAFC')}">
+                            <p><g:message code="public.network.membership.des03" /></p>
+                            <img src="${resource(absolute: "true", dir: "data/network/", file: "CHAFC_sm.jpg")}"/>
+                        </g:if>
+                        <g:if test="${instance.isMemberOf('CHACM')}">
+                            <p><g:message code="public.network.membership.des04" /></p>
+                            <img src="${resource(absolute: "true", dir: "data/network/", file: "chacm.png")}"/>
+                        </g:if>
+                    </div>
+                </g:if>
+
+            <!-- attribution -->
+                <g:set var='attribs' value='${instance.getAttributionList()}'/>
+                <g:if test="${attribs.size() > 0}">
+                    <div class="section" id="infoSourceList">
+                        <h4><g:message code="public.sdr.infosourcelist.title" /></h4>
+                        <ul>
+                            <g:each var="a" in="${attribs}">
+                                <li><a href="${a.url}" class="external btn btn-default access-data" target="_blank">${a.name}</a></li>
+                            </g:each>
+                        </ul>
+                    </div>
+                </g:if>
                 <h3 class="public-h3"><g:message code="public.website" /></h3>
-                <div class="webSite">
-                    <a class='external_icon' target="_blank"
-                       href="${instance.websiteUrl}"><g:message code="public.sdr.content.link04" /></a>
-                </div>
-            </div>
-        </g:elseif>
+                <cl:valueOrOtherwise value="${instance.guid}"><p><a class="btn btn-default access-data" target="_blank" href="http://www.gbif.org/dataset/${instance.guid}"> <g:message code="public.international.dataset.page"></g:message> </a></p></cl:valueOrOtherwise>
 
-    <!-- network membership -->
-        <g:if test="${instance.networkMembership}">
-            <div class="section">
-                <h3 class="public-h3"><g:message code="public.network.membership.label" /></h3>
-                <g:if test="${instance.isMemberOf('CHAEC')}">
-                    <p><g:message code="public.network.membership.des01" /></p>
-                    <img src="${resource(absolute: "true", dir: "data/network/", file: "butflyyl.gif")}"/>
-                </g:if>
-                <g:if test="${instance.isMemberOf('CHAH')}">
-                    <p><g:message code="public.network.membership.des02" /></p>
-                    <a target="_blank" href="http://www.chah.gov.au"><img
-                            src="${resource(absolute: "true", dir: "data/network/", file: "CHAH_logo_col_70px_white.gif")}"/>
-                    </a>
-                </g:if>
-                <g:if test="${instance.isMemberOf('CHAFC')}">
-                    <p><g:message code="public.network.membership.des03" /></p>
-                    <img src="${resource(absolute: "true", dir: "data/network/", file: "CHAFC_sm.jpg")}"/>
-                </g:if>
-                <g:if test="${instance.isMemberOf('CHACM')}">
-                    <p><g:message code="public.network.membership.des04" /></p>
-                    <img src="${resource(absolute: "true", dir: "data/network/", file: "chacm.png")}"/>
-                </g:if>
-            </div>
-        </g:if>
+        </div>
+        </div>
+        <div id="statTab" class="tab-pane row">
+            <div class="col-md-12">
+                <g:if test="${instance.resourceType == 'records'}">
+                    <h2 class="admin-h2"><g:message code="public.sdr.content.label09" /></h2>
 
-    <!-- attribution -->
-        <g:set var='attribs' value='${instance.getAttributionList()}'/>
-        <g:if test="${attribs.size() > 0}">
-            <div class="section" id="infoSourceList">
-                <h4><g:message code="public.sdr.infosourcelist.title" /></h4>
-                <ul>
-                    <g:each var="a" in="${attribs}">
-                        <li><a href="${a.url}" class="external" target="_blank">${a.name}</a></li>
-                    </g:each>
-                </ul>
+                    <div class="col-md-12 dr-stat-col">
+                            <p><span id="numBiocacheRecords"><g:message code="public.sdr.content.des04" /></span> <g:message code="public.sdr.content.des05" />.
+                            <cl:lastChecked date="${instance.lastChecked}"/>
+                            <cl:dataCurrency date="${instance.dataCurrency}"/>
+                            </p>
+                        <div class=" button-ext">
+                            <div class="button-int">
+                                <cl:recordsLink
+                                    collection="${instance}"><g:message code="public.sdr.content.link01" /> <em>${instance.name}</em> <g:message code="public.sdr.content.link02" />.</cl:recordsLink>
+                                <cl:downloadPublicArchive uid="${instance.uid}" available="${instance.publicArchiveAvailable}"/>
+                            </div>
+                        </div>
+                    </div>
+                </g:if>
+
+                <g:if test="${instance.resourceType == 'records'}">
+
+                    <div id="recordsBreakdown" class="section vertical-charts">
+                        <g:if test="${!grailsApplication.config.disableOverviewMap}">
+                            <h2 class="admin-h2"><g:message code="public.sdr.content.label10" /></h2>
+
+                                <cl:recordsMapDirect uid="${instance.uid}"/>
+
+                        </g:if>
+                        <h2 class="admin-h2"><g:message code="public.sdr.content.label.stat" /></h2>
+                        <div id="tree" class="well"></div>
+                        <div id="charts"></div>
+                    </div>
+                </g:if>
+                <cl:lastUpdated date="${instance.lastUpdated}"/>
             </div>
-        </g:if>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -391,7 +413,7 @@
                     drawFacetCharts(data, facetChartOptions);
                     if(data.totalRecords > 0){
                         $('#dataAccessWrapper').css({display:'block'});
-                        $('#totalRecordCountLink').html(data.totalRecords.toLocaleString() + ' enregistrements');
+                        $('.totalRecordCountLink').html(data.totalRecords.toLocaleString() + ' enregistrements');
                     }
                 }
             }

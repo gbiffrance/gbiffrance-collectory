@@ -214,7 +214,7 @@ function dataRequestHandler(data) {
     var selectedFilters = getSelectedFiltersAsString();
     var selectedFrom = jQuery.i18n.prop('map.js.collectionstotal');
     if (selectedFilters != 'all') {
-        selectedFrom = jQuery.i18n.prop('map.js.collections.filtre')+ " " + jQuery.i18n.prop(selectedFilters)+"s"/*selectedFilters*/ ;
+        selectedFrom = jQuery.i18n.prop('map.js.collections.filtre')+ " " + jQuery.i18n.prop(selectedFilters).concat("s")/*selectedFilters*/  ;
     }
     var innerFeatures = "";
 
@@ -224,7 +224,7 @@ function dataRequestHandler(data) {
         //case 0: innerFeatures = "No collections are selected."; break;
         //case 1: innerFeatures = "One collection is selected."; break;
         case 0: innerFeatures = jQuery.i18n.prop('map.js.nocollectionsareselected'); break;
-        case 1: innerFeatures = jQuery.i18n.prop('map.js.collection.filtre') + selectedFilters + " " + jQuery.i18n.prop('map.js.onecollectionisselected'); break;
+        case 1: innerFeatures = jQuery.i18n.prop('map.js.collection.filtre') + " " + jQuery.i18n.prop(selectedFilters) + " " + jQuery.i18n.prop('map.js.onecollectionisselected'); break;
         default: innerFeatures = features.length + " "+ selectedFrom + "."; break;
     }
     $('span#numFeatures').html(innerFeatures);
@@ -253,11 +253,15 @@ function getSelectedFiltersAsString() {
         list = getAll();
     }
     // transform some
-    list = list.replace(/plants/,"botanique");
-    list = list.replace(/microbes/,"microbienne");
-    list = list.replace(/paleontology/,"fossile");
-    list = list.replace(/fungis/,"champignon");
-    list = list.replace(/fauna/,"zoologique");
+    //list = list.replace(/plants/,"botanique");
+    //list = list.replace(/microbes/,"microbienne");
+    //list = list.replace(/paleontology/,"fossile");
+    //list = list.replace(/fungis/,"champignon");
+    //list = list.replace(/fauna/,"zoologique");
+
+    list = list.replace(/plants/,"plant");
+    list = list.replace(/microbes/,"microbial");
+
 
 
 

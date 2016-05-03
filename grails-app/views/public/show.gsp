@@ -35,24 +35,19 @@
           <cl:pageOptionsPopup instance="${instance}"/>
           <cl:h1 value="${instance.name}" />
           <div class="row">
-            <div class="col-md-8">
-              <g:set var="inst" value="${instance.getInstitution()}"/>
-              <g:if test="${inst}">
-                <p>Institution <g:link action="show" id="${inst.uid}"> : ${inst.name}</g:link></p>
-              </g:if>
-              <span style="">
-              <cl:valueOrOtherwise value="${instance.acronym}"><p><g:message code="public.show.header.acronym" /> : ${fieldValue(bean: instance, field: "acronym")}</p></cl:valueOrOtherwise>
-              %{--<cl:valueOrOtherwise value="${instance.guid}"><p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p></cl:valueOrOtherwise>--}%
-                  %{-- <span class="lsid"><a href="#lsidText" id="lsid" class="local" title="Life Science Identifier (pop-up)"><g:message code="public.lsid" /></a></span> --}%
-              </span>
+            <div class="col-md-9">
+
             </div>
-            <div class="col-md-4">
-              <!-- institution logo -->
-              <g:if test="${inst?.logoRef?.file}">
-                <g:link action="showInstitution" id="${inst.id}">
-                  <img class="institutionImage" src='${resource(absolute:"true", dir:"data/institution/",file:fieldValue(bean: inst, field: 'logoRef.file'))}' />
-                </g:link>
-              </g:if>
+            <div class="col-md-3">
+              %{--<!-- institution logo -->--}%
+              %{--<g:if test="${inst?.logoRef?.file}">--}%
+                %{--<g:link action="showInstitution" id="${inst.id}">--}%
+                  %{--<img class="institutionImage" src='${resource(absolute:"true", dir:"data/institution/",file:fieldValue(bean: inst, field: 'logoRef.file'))}' />--}%
+                %{--</g:link>--}%
+              %{--</g:if>--}%
+                <div id="dataAccessWrapper" style="display:none;">
+                    <g:render template="dataAccess" model="[instance:instance]"/>
+                </div>
             </div>
           </div>
         </div><!--close header-->
@@ -71,6 +66,15 @@
         <div class="tab-content">
             <div id="overviewTab" class="tab-pane active row">
                <div id="overview-content" class="col-md-8">
+                   <g:set var="inst" value="${instance.getInstitution()}"/>
+                   <g:if test="${inst}">
+                       <p>Institution <g:link action="show" id="${inst.uid}"> : ${inst.name}</g:link></p>
+                   </g:if>
+                   <span style="">
+                       <cl:valueOrOtherwise value="${instance.acronym}"><p><g:message code="public.show.header.acronym" /> : ${fieldValue(bean: instance, field: "acronym")}</p></cl:valueOrOtherwise>
+                   %{--<cl:valueOrOtherwise value="${instance.guid}"><p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p></cl:valueOrOtherwise>--}%
+                   %{-- <span class="lsid"><a href="#lsidText" id="lsid" class="local" title="Life Science Identifier (pop-up)"><g:message code="public.lsid" /></a></span> --}%
+                   </span>
                   <h2 class="admin-h2"><g:message code="public.des" /></h2>
                   <cl:formattedText body="${instance.pubDescription}"/>
                   <cl:formattedText>${fieldValue(bean: instance, field: "techDescription")}</cl:formattedText>
@@ -78,16 +82,18 @@
                       <p><cl:temporalSpanText start='${fieldValue(bean: instance, field: "startDate")}' end='${fieldValue(bean: instance, field: "endDate")}'/></p>
                   </g:if>
 
-                  <h2 class="admin-h2" ><g:message code="public.show.oc.label02" /></h2>
-                  <g:if test="${fieldValue(bean: instance, field: 'focus')}">
-                    <cl:formattedText>${fieldValue(bean: instance, field: "focus")}</cl:formattedText>
-                  </g:if>
-                  <g:if test="${fieldValue(bean: instance, field: 'kingdomCoverage')}">
-                    <p><g:message code="public.show.oc.des01" />: <cl:concatenateStrings values='${fieldValue(bean: instance, field: "kingdomCoverage")}'/>.</p>
-                  </g:if>
-                  <g:if test="${fieldValue(bean: instance, field: 'scientificNames')}">
-                    <p><cl:collectionName name="${instance.name}" prefix="The "/> <g:message code="public.show.oc.des02" />:<br/>
-                    <cl:JSONListAsStrings json='${instance.scientificNames}'/>.</p>
+                  <g:if test="${instance?.focus || instance.kingdomCoverage || instance.scientificNames}">
+                      <h2 class="admin-h2" ><g:message code="public.show.oc.label02" /></h2>
+                      <g:if test="${fieldValue(bean: instance, field: 'focus')}">
+                        <cl:formattedText>${fieldValue(bean: instance, field: "focus")}</cl:formattedText>
+                      </g:if>
+                      <g:if test="${fieldValue(bean: instance, field: 'kingdomCoverage')}">
+                        <p><g:message code="public.show.oc.des01" />: <cl:concatenateStrings values='${fieldValue(bean: instance, field: "kingdomCoverage")}'/>.</p>
+                      </g:if>
+                      <g:if test="${fieldValue(bean: instance, field: 'scientificNames')}">
+                        <p><cl:collectionName name="${instance.name}" prefix="The "/> <g:message code="public.show.oc.des02" />:<br/>
+                        <cl:JSONListAsStrings json='${instance.scientificNames}'/>.</p>
+                      </g:if>
                   </g:if>
 
                   <g:if test="${instance?.geographicDescription || instance.states}">
@@ -115,10 +121,10 @@
                   <g:set var="nouns" value="${cl.nounForTypes(types:instance.listCollectionTypes())}"/>
                   <h2 class="admin-h2"><g:message code="public.show.oc.label04" /> <cl:nounForTypes types="${instance.listCollectionTypes()}"/> <g:message code="public.show.oc.label05" /></h2>
                   <g:if test="${fieldValue(bean: instance, field: 'numRecords') != '-1'}">
-                    <p><g:message code="public.show.oc.des07" /> ${nouns} dans <cl:collectionName prefix="la " name="${instance.name}"/><g:message code="public.show.oc.des08" /> ${fieldValue(bean: instance, field: "numRecords")}.</p>
+                    <p><g:message code="public.show.oc.des07" /> ${nouns} dans <cl:collectionName prefix="la " name="${instance.name}"/> <g:message code="public.show.oc.des08" /> <strong>${fieldValue(bean: instance, field: "numRecords")}</strong>.</p>
                   </g:if>
                   <g:if test="${fieldValue(bean: instance, field: 'numRecordsDigitised') != '-1'}">
-                    <p><g:message code="public.show.oc.des09" /> ${fieldValue(bean: instance, field: "numRecordsDigitised")} <g:message code="public.show.oc.des10" />.
+                    <p><g:message code="public.show.oc.des09" /> ${nouns},  ${fieldValue(bean: instance, field: "numRecordsDigitised")} <g:message code="public.show.oc.des10" />.
                     <g:message code="public.show.oc.des11" /> <cl:percentIfKnown dividend='${instance.numRecordsDigitised}' divisor='${instance.numRecords}' /> <g:message code="public.show.oc.des12" />.</p>
                   </g:if>
                   <p><g:message code="public.show.oc.des13" />.</p>
@@ -139,6 +145,12 @@
                   <cl:lastUpdated date="${instance.lastUpdated}"/>
                </div>
                <div id="overview-sidebar" class="col-md-4">
+               <!-- institution logo -->
+                   <g:if test="${inst?.logoRef?.file}">
+                       <g:link action="showInstitution" id="${inst.id}">
+                           <img class="institutionImage" src='${resource(absolute:"true", dir:"data/institution/",file:fieldValue(bean: inst, field: 'logoRef.file'))}' />
+                       </g:link>
+                   </g:if>
                   <g:if test="${fieldValue(bean: instance, field: 'imageRef') && fieldValue(bean: instance, field: 'imageRef.file')}">
                     <div class="section">
                       <img style="max-width:100%;max-height:350px;" alt="${fieldValue(bean: instance, field: "imageRef.file")}"
@@ -149,9 +161,9 @@
                     </div>
                   </g:if>
 
-                  <div id="dataAccessWrapper" style="display:none;">
-                      <g:render template="dataAccess" model="[instance:instance]"/>
-                  </div>
+                  %{--<div id="dataAccessWrapper" style="display:none;">--}%
+                      %{--<g:render template="dataAccess" model="[instance:instance]"/>--}%
+                  %{--</div>--}%
 
                   <div class="section">
                     <h3 class="public-h3"><g:message code="public.location" /></h3>
@@ -186,13 +198,13 @@
                       <h3 class="public-h3"><g:message code="public.website" /></h3>
                       <g:if test="${instance.websiteUrl}">
                         <div class="webSite">
-                          <a class='external' rel='nofollow' target="_blank" href="${instance.websiteUrl}"><g:message code="public.show.osb.link01" /></a>
+                          <a class='external btn btn-default access-data' rel='nofollow' target="_blank" href="${instance.websiteUrl}"><g:message code="public.show.osb.link01" /></a>
                         </div>
                       </g:if>
                       <g:if test="${instance.institution?.websiteUrl}">
                         <div class="webSite">
-                          <a class='external' rel='nofollow' target="_blank" href="${instance.institution?.websiteUrl}">
-                            <g:message code="public.show.osb.link02" /> <cl:institutionType inst="${instance.institution}"/><g:message code="public.show.osb.link03" /></a>
+                          <a class='external btn btn-default access-data' rel='nofollow' target="_blank" href="${instance.institution?.websiteUrl}">
+                            <g:message code="public.show.osb.link03" /></a>
                         </div>
                       </g:if>
                     </div>
@@ -245,32 +257,26 @@
               <div class="row">
                   <div class="col-md-8">
                     <g:if test="${instance.numRecords != -1}">
-                      <p><cl:collectionName prefix="La " name="${instance.name}"/> has an estimated ${fieldValue(bean: instance, field: "numRecords")} ${nouns}.
+                      <p><cl:collectionName prefix="La " name="${instance.name}"/> est composée de  ${fieldValue(bean: instance, field: "numRecords")} ${nouns} (estimation).
                         <g:if test="${instance.numRecordsDigitised != -1}">
-                          <br/><g:message code="public.show.rt.des01" /> <cl:percentIfKnown dividend='${instance.numRecordsDigitised}' divisor='${instance.numRecords}'/> <g:message code="public.show.rt.des02" /> (${fieldValue(bean: instance, field: "numRecordsDigitised")} <g:message code="public.show.rt.des03" />).
+                          <br/><g:message code="public.show.rt.des01" /> <cl:percentIfKnown dividend='${instance.numRecordsDigitised}' divisor='${instance.numRecords}'/> <g:message code="public.show.rt.des02" /> ${nouns} (${fieldValue(bean: instance, field: "numRecordsDigitised")} <g:message code="public.show.rt.des03" />).
                         </g:if>
                       </p>
                     </g:if>
                     <g:if test="${biocacheRecordsAvailable}">
                       <p><span id="numBiocacheRecords"><g:message code="public.show.rt.des04" /></span> <g:message code="public.show.rt.des05" />.</p>
                       <cl:warnIfInexactMapping collection="${instance}"/>
-                      <cl:recordsLink entity="${instance}">
-                      <g:message code="public.show.rt.des06" /> <cl:collectionName name="${instance.name}"/></cl:recordsLink>
+                        <div class="button-ext">
+                            <div class="button-int">
+                                <cl:recordsLink entity="${instance}">
+                                <g:message code="public.show.rt.des06" /> <em><cl:collectionName name="${instance.name}"/></em></cl:recordsLink>
+                            </div>
+                        </div>
                     </g:if>
                     <g:else>
                       <p><g:message code="public.show.rt.des07" />.</p>
                     </g:else>
-                    <g:if test="${biocacheRecordsAvailable}">
-                        <div style="clear:both;"></div>
-                          <g:if test="${!grailsApplication.config.disableOverviewMap?.asBoolean()}">
-                              <div id="collectionRecordsMapContainer">
-                                  <h3><g:message code="public.show.crmc.title" /> ${grailsApplication.config.disableOverviewMap?.asBoolean()}</h3>
-                                  <cl:recordsMapDirect uid="${instance.uid}"/>
-                              </div>
-                          </g:if>
-                          <div id="charts"></div>
-                          <div id="iehack"></div>
-                    </g:if>
+
                   </div>
                   <div class="col-md-4">
                     <div id="progress" class="well">
@@ -281,6 +287,18 @@
                     </div>
                   </div>
               </div>
+                <g:if test="${biocacheRecordsAvailable}">
+                    <div style="clear:both;"></div>
+                    <g:if test="${!grailsApplication.config.disableOverviewMap?.asBoolean()}">
+                        <div id="collectionRecordsMapContainer">
+                            <h2 class="admin-h2"><g:message code="public.show.crmc.title" /> ${grailsApplication.config.disableOverviewMap?.asBoolean()}</h2>
+                            <cl:recordsMapDirect uid="${instance.uid}"/>
+                        </div>
+                    </g:if>
+                    <h2 class="admin-h2"><g:message code="public.sdr.content.label.stat" /></h2>
+                    <div id="charts"></div>
+                    <div id="iehack"></div>
+                </g:if>
             </div>
             %{-- <div id="imagesTab" class="tab-pane">
                <style type="text/css">
@@ -387,7 +405,7 @@ function onLoadCallback() {
             drawFacetCharts(data, facetChartOptions);
             if(data.totalRecords > 0){
                 $('#dataAccessWrapper').css({display:'block'});
-                $('#totalRecordCountLink').html(data.totalRecords.toLocaleString() + ' enregistrements');
+                $('.totalRecordCountLink').html(data.totalRecords.toLocaleString() + ' enregistrements');
             }
         }
     }
@@ -532,7 +550,7 @@ function setProgress(percentage){
     if (percentage < 0.1) {displayPercent = percentage.toFixed(2)}
     if (percentage > 20) {displayPercent = percentage.toFixed(0)}
     if (percentage > 100) {displayPercent = "over 100"}
-    captionText = "Approximativement, " + displayPercent + "%  des enregistrements de ${nouns} de cette collection sont accessibles sur l'atlas.";
+    captionText = "Approximativement, " + displayPercent + "%  des enregistrements de ${nouns} de cette collection sont accessibles sur le portail de données du GBIF France.";
   }
   $('#speedoCaption').html(captionText);
   if (percentage > 100) {

@@ -20,6 +20,7 @@ modules = {
         resource url: [dir:'images/ala', file:'all_button_bgwd.png']
         resource url: [dir:'images/ala', file:'mycetes_button_bgwd.png']
         resource url: [dir:'images/ala', file:'paleontology_button_bgwd.png']
+        resource url: [dir:'images/ala', file:'olive-tick.png']
     }
     bootstrap {
         resource url:[dir:'js', file:'bootstrap.js', plugin: 'collectory-plugin', disposition: 'head']

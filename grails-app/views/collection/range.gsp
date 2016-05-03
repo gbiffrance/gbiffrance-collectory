@@ -28,7 +28,7 @@
                 <g:hiddenField name="version" value="${command.version}" />
                 <div class="col-md-3">
                     <div class="region-menu-gauche">
-                        <input type="submit" name="_action_updateDescription" value="${message(code:"collection.button.update")}" class="save-btn btn btn-sm">
+                        <input type="submit" name="_action_updateRange" value="${message(code:"collection.button.update")}" class="save-btn btn btn-sm">
                         <input type="submit" name="_action_cancel" value="${message(code:"collection.button.cancel")}" class="cancel-btn btn btn-sm">
                     </div>
                 </div>

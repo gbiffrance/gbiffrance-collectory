@@ -721,7 +721,7 @@ class CollectoryTagLib {
      * @body the text to use as the link text
      */
     def emailLink = { attrs, body ->
-        def strEncodedAtSign = "(SPAM_MAIL@ALA.ORG.AU)"
+        def strEncodedAtSign = "(SPAM_MAIL@GBIF.FR)"
         String email = attrs.email
         if (!email)
             email = body().toString()
@@ -755,7 +755,7 @@ class CollectoryTagLib {
      */
     def collectionName = { attrs ->
         def name = attrs.name
-        if (name && !(name =~ 'Collection' || name =~ 'Herbarium')) {
+        if (name && (!name.toLowerCase().startsWith('collection') || !name.toLowerCase().startsWith('herbarium'))) {
             name = "collection "+name
         }
         if (attrs.prefix && !name.toLowerCase().startsWith(attrs.prefix.toLowerCase())) {
@@ -950,7 +950,7 @@ class CollectoryTagLib {
                 out << body()
             }
             else {
-                out << "<a class='recordsLink' href='"
+                out << "<a class='recordsLink btn btn-default access-data' href='"
                 out << buildRecordsUrl(pg.uid)
                 out << "'>" << body() << "</a>"
             }
@@ -1058,7 +1058,7 @@ class CollectoryTagLib {
                 " <img id='recordsMap' class='no-radius' src='${resource(dir:'images/map',file:'map-loader.gif')}' width='340' />" +
                 " <img id='mapLegend' src='${resource(dir:'images/ala', file:'legend-not-available.png')}' width='128' />" +
                 "</div>" +
-                "<div class='learnMaps'><span class='asterisk-container'><a href='${ConfigurationHolder.config.ala.baseURL}/about/progress/map-ranges/'>Learn more about Atlas maps</a>&nbsp;</span></div>"
+                "<div class='learnMaps btn btn-default access-data'><span class='asterisk-container'><a href='${ConfigurationHolder.config.ala.baseURL}/about/progress/map-ranges/'>En apprendre plus sur les cartes du portail de données du GBIF France</a>&nbsp;</span></div>"
     }
 
     /**
@@ -1073,19 +1073,25 @@ class CollectoryTagLib {
             def urlBase = grailsApplication.config.biocacheServicesUrl + "/density/"
             def query = "?q=" + fieldNameForSearch(attrs.uid) + ":" + attrs.uid
             out <<
-                    "<div class='recordsMap'>" +
+                    "<div class='button-ext'>"+
+                    "<div class='recordsMap button-int'>" +
                     " <img id='recordsMap' class='no-radius' src='${urlBase}map${query}' width='340' />" +
                     " <img id='mapLegend' src='${urlBase}legend${query}' width='128' />" +
-                    "</div>" +
-                    "<div class='learnMaps'><span class='asterisk-container'><a href='${ConfigurationHolder.config.ala.baseURL}/faq/species-data/errors-in-maps/'>Learn more about Atlas maps</a>&nbsp;</span></div>"
+                    "</div> </div>" +
+                    "<div class='button-ext'>"+
+                    "<div class='learnMaps btn btn-default access-data'><span class='asterisk-container'><a href='${ConfigurationHolder.config.ala.baseURL}/faq/species-data/errors-in-maps/'>En apprendre plus sur les cartes du portail de données du GBIF France</a>&nbsp;</span></div>"+
+                    "</div>"
         }
         else {
             out <<
+                    "<div class='button-ext'>"+
                     "<div class='recordsMap'>" +
                     " <img id='recordsMap' class='no-radius' src='${resource(dir:'images/map',file:'mapping-data-not-available.png')}' width='340' />" +
                     " <img id='mapLegend' src='${resource(dir:'images/ala', file:'legend-not-available.png')}' width='128' />" +
-                    "</div>" +
-                    "<div class='learnMaps'><span class='asterisk-container'><a href='${ConfigurationHolder.config.ala.baseURL}/faq/species-data/errors-in-maps/'>Learn more about Atlas maps</a>&nbsp;</span></div>"
+                    "</div> </div>" +
+                    "<div class='button-ext'>"+
+                    "<div class='learnMaps btn btn-default access-data button-int'><span class='asterisk-container'><a href='${ConfigurationHolder.config.ala.baseURL}/faq/species-data/errors-in-maps/'>En apprendre plus sur les cartes du portail de données du GBIF France</a>&nbsp;</span></div>" +
+                    "</div>"
         }
     }
 
@@ -1101,8 +1107,9 @@ class CollectoryTagLib {
                 "<div class='collectionRecordsMap'>" +
                 " <img id='recordsMap' class='no-radius' src='${resource(dir:'images/map',file:'map-loader.gif')}' width='340' />" +
                 " <img id='mapLegend' src='${resource(dir:'images/ala', file:'legend-not-available.png')}' width='128' />" +
-                " <div class='learnMaps'><span class='asterisk-container'><a href='${ConfigurationHolder.config.ala.baseURL}/about/progress/map-ranges/'>Learn more about Atlas maps</a>&nbsp;</span></div>" +
-                "</div>"
+                " <div class='button-ext'" +
+                " <div class='learnMaps btn btn-default access-data button-int'><span class='asterisk-container'><a href='${ConfigurationHolder.config.ala.baseURL}/about/progress/map-ranges/'>En apprendre plus sur les cartes du portail de données du GBIF France</a>&nbsp;</span></div>" +
+                "</div> </div>"
     }
 
     /**
@@ -1140,7 +1147,7 @@ class CollectoryTagLib {
                 "<div id='taxonChartCaption' style='visibility:hidden;'>" +
                 " <span class='taxonChartCaption'>Click a slice or legend to drill into a group.</span><br/>" +
                 " <span id='resetTaxonChart' onclick='resetTaxonChart()'></span>&nbsp;" +
-                " <div class='taxonCaveat'><span class='asterisk-container'><a href='${ConfigurationHolder.config.ala.baseURL}/about/progress/wrong-classification/'>Learn more about classification errors</a>&nbsp;</span></div>" +
+                " <div class='taxonCaveat'><span class='asterisk-container'><a href='${ConfigurationHolder.config.ala.baseURL}/about/progress/wrong-classification/'>En apprendre plus sur les cartes du portail de données du GBIF France</a>&nbsp;</span></div>" +
                 "</div>"
 
         /*out << '<div id="taxonChart">\n' +
@@ -1950,14 +1957,14 @@ class CollectoryTagLib {
 
     def lastChecked = { attrs ->
         if (attrs.date) {
-            out << """<span id="updated">This resource was last checked for updated data on
+            out << """<span id="updated"><br /> Dernière mise à jour :
                 <b>${new SimpleDateFormat("dd MMM yyyy").format(attrs.date)}</b>.</span>"""
         }
     }
 
     def dataCurrency = { attrs ->
         if (attrs.date) {
-            out << """<span id="currency">The most recent data was published on
+            out << """<span id="currency"><br /> Dernière publication :
                 <b>${new SimpleDateFormat("dd MMM yyyy").format(attrs.date)}</b>.</span>"""
         }
     }
@@ -2050,7 +2057,7 @@ class CollectoryTagLib {
     def contentTypes = { attrs ->
         if (attrs.types) {
             def list = JSON.parse(attrs.types as String).collect {it.toString()}
-            out << '<p>Includes: ' + list.join(', ') + '.</p>'
+            out << '<p>Inclus : ' + list.join(', ') + '.</p>'
         }
     }
 

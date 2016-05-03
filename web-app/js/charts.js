@@ -14,7 +14,7 @@ var taxonomyPieChartOptions = {
     height: 450,
     chartArea: {left:0, top:30, width:"100%", height: "70%"},
     is3D: false,
-    titleTextStyle: {color: "#a6ac1a", fontName: 'Open sans', fontSize: 14},
+    titleTextStyle: {color: "#a6ac1a", fontName: 'Open sans', fontSize: 14, fontWeight: '600', bold: 'false'},
     sliceVisibilityThreshold: 0,
     legend: {position: 'right', textStyle: {fontSize: 12}},
     backgroundColor: 'transparent'
@@ -26,7 +26,7 @@ var genericChartOptions = {
     height: 450,
     chartArea: {left:0, top:30, width:"100%", height: "70%"},
     is3D: false,
-    titleTextStyle: {color: "#a6ac1a", fontWeight: '600', fontName: 'Open sans', fontSize: 14},
+    titleTextStyle: {color: "#a6ac1a", fontWeight: '600', fontName: 'Open sans', fontSize: 14, bold: 'false'},
     sliceVisibilityThreshold: 0,
     legend: {position: 'right', textStyle: {fontSize: 12}},
     chartType: "pie",
@@ -51,26 +51,26 @@ var individualChartOptions = {
 ///*
 var individualChartOptions = {
     state_conservation: {chartType: 'column', width: 450, chartArea: {left:60, height: "58%"},
-        title: 'By state conservation status', hAxis: {slantedText: true}},
+        title: 'PAR ETAT DE CONSERVATION', hAxis: {slantedText: true}},
     occurrence_year: {chartType: 'column', width: 450, chartArea: {left:60, height: "65%"},
         hAxis: {slantedText: true}},
-    species_group: {title: 'By higher-level group', ignore: ['Animals'], chartType: 'column',
+    species_group: {title: 'PAR NIVEAU TAXONOMIQUE SUPERIEUR', ignore: ['Animals'], chartType: 'column',
         width: 450, chartArea: {left:60, height:"58%"}, vAxis: {minValue: 0},
         colors: ['#108628']},
     state: {ignore: ['Unknown1']},
-    type_status: {title: 'By type status (as % of all type specimens)', ignore: ['notatype']},
-    assertions: {chartType: 'bar', chartArea: {left:170}}
+    type_status: {title: 'PAR TYPE (en pourcentage de tous les spécimens types)', ignore: ['notatype']},
+    assertions: {chartType: 'bar', width: 800, chartArea: {left:250}}
 };
 //*/
 
 /*----------------- FACET-BASED CHARTS USING DIRECT CALLS TO BIO-CACHE SERVICES ---------------------*/
 // these override the facet names in chart titles
 var chartLabels = {
-    institution_uid: 'institution',
-    data_resource_uid: 'jeu de données',
-    assertions: 'data assertion',
-    biogeographic_region: 'région biogéographique',
-    occurrence_year: 'décade'
+    institution_uid: 'INSTITUTION',
+    data_resource_uid: 'JEU DE DONNEES',
+    assertions: 'TYPE D ERREUR',
+    biogeographic_region: 'REGION BIO-GEOGRAPHIQUE',
+    occurrence_year: 'DECADE'
 };
 // asynchronous transforms are applied after the chart is drawn, ie the chart is drawn with the original values
 // then redrawn when the ajax call for transform data returns
@@ -161,15 +161,15 @@ function buildGenericFacetChart(name, data, query, chartsDiv, chartOptions) {
     var opts = $.extend({}, genericChartOptions);
     switch(chartLabel){
         case "country" :
-            chartLabel="pays";
+            chartLabel="PAYS";
             break;
         case "state" :
-            chartLabel="région";
+            chartLabel="REGION";
             break;
         default:
             break;
     }
-    opts.title = "Par " + chartLabel;  // default title
+    opts.title = "PAR " + chartLabel;  // default title
     var individualOptions = individualChartOptions[name] ? individualChartOptions[name] : {};
     // merge generic, individual and user options
     opts = $.extend(true, {}, opts, individualOptions, chartOptions[name]);
@@ -211,6 +211,7 @@ function buildGenericFacetChart(name, data, query, chartsDiv, chartOptions) {
 
     // specify the type (for css tweaking)
     $container.addClass('chart-' + opts.chartType);
+    $container.addClass('button-ext');
             
     // create the chart
     var chart;
@@ -219,6 +220,7 @@ function buildGenericFacetChart(name, data, query, chartsDiv, chartOptions) {
         case 'bar': chart = new google.visualization.BarChart(document.getElementById(name)); break;
         default: chart = new google.visualization.PieChart(document.getElementById(name)); break;
     }
+
 
     chart.draw(dataTable, opts);
 
@@ -262,12 +264,12 @@ function transformDecadeData(data) {
     var transformedData = [];
     $.each(data, function(i,obj) {
         if (obj.label == 'before') {
-            transformedData.splice(0,0,{label: "before " + firstDecade, count: obj.count});
+            transformedData.splice(0,0,{label: "avant " + firstDecade, count: obj.count});
         }
         else {
             var decade = obj.label.substr(0,4);
             if (i == 0) { firstDecade = decade; }
-            transformedData.push({label: decade + "s", count: obj.count});
+            transformedData.push({label: "années " + decade, count: obj.count});
         }
     });
     return transformedData;
@@ -364,7 +366,29 @@ function drawTaxonomyChart(data, chartOptions, query) {
     // resolve the chart options
     var opts = $.extend({}, taxonomyPieChartOptions);
     opts = $.extend(true, opts, chartOptions);
-    opts.title = opts.name ? opts.name + " " + jQuery.i18n.prop('charts.js.recordsby') + " " + data.rank : "Par " + data.rank;
+
+    var rang = "";
+    switch(data.rank){
+        case "genus" :
+            rang="GENRE";
+            break;
+        case "species" :
+            rang="ESPECES";
+            break;
+        case "class" :
+            rang="CLASSE";
+            break;
+        case "order" :
+            rang="ORDRE";
+            break;
+        case "family":
+            rang="FAMILLE";
+            break;
+        default:
+            rang= (data.rank).toUpperCase();
+            break;
+    }
+    opts.title = opts.name ? (opts.name).toUpperCase() + " : " + (jQuery.i18n.prop('charts.js.recordsby')).toUpperCase() + " " + rang : "PAR " + rang;
 
     // create the outer div that will contain the chart and the additional links
     var $outerContainer = $('#taxa');
@@ -379,7 +403,7 @@ function drawTaxonomyChart(data, chartOptions, query) {
     // create the chart container if not already there
     var $container = $('#taxaChart');
     if ($container.length == 0) {
-        $container = $("<div id='taxaChart' class='chart-pie'></div>");
+        $container = $("<div id='taxaChart' class='chart-pie button-ext'></div>");
         $outerContainer.append($container);
     }
 
@@ -518,7 +542,7 @@ function initTaxonTree(treeOptions) {
 
     var targetDivId = treeOptions.targetDivId ? treeOptions.targetDivId : 'tree';
     var $container = $('#' + targetDivId);
-    $container.append($('<h4>Explorer les enregistrements par taxonomie</h4>'));
+    $container.append($('<h3 class="public-h3">Explorer les enregistrements par taxonomie</h3>'));
     var $treeContainer = $('<div id="treeContainer"></div>').appendTo($container);
     $treeContainer.resizable({
         maxHeight: 900,

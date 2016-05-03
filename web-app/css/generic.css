@@ -464,7 +464,7 @@ td a:hover{
 .public-h3{
     color: #a6ac1a;
     font-size: 14px;
-    font-weight: 600;
+    /*font-weight: 600;*/
     line-height: 1.5em;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -856,10 +856,6 @@ a, a:hover, a:focus, a:active{
     font-style: italic;
 }
 
-.tabbable-institution{
-    margin-top:20px;
-}
-
 .last{
     margin-left:10px;
 }
@@ -869,4 +865,52 @@ a, a:hover, a:focus, a:active{
     margin-bottom: 10px;
     position: relative;
     top: -75px;
+}
+
+.totalRecordCountLink{
+    font-size: 10px;
+    margin-bottom: 0px;
+}
+
+#access-occ{
+    margin-top:0px;
+}
+
+#dataAccessWrapper{
+    margin-top:10px;
+}
+
+.dr-stat-col{
+    padding: 0;
+}
+
+.webSite{
+    margin-bottom: 2%;
+}
+
+.chart-pie, .chart-bar{
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.chart-bar{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.chart-column{
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.recordsLink{
+    margin-bottom: 2%;
+}
+
+#tree{
+    background-color:white;
+    background-image: none;
 }

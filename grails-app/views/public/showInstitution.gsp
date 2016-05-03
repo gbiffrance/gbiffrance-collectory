@@ -37,7 +37,7 @@
         <cl:h1 value="${instance.name}"/>
         <div class="row">
 
-            <div class="col-md-8" id="row-public">
+            <div class="col-md-9" id="row-public">
                 <g:set var="parents" value="${instance.listParents()}"/>
                 <g:each var="p" in="${parents}">
                     <p><g:link action="show" id="${p.uid}">${p.name}</g:link></p>
@@ -49,14 +49,18 @@
                     %{--<p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p>--}%
                 %{--</cl:valueOrOtherwise>--}%
             </div>
+            <div class="col-md-3">
+                 <div id="dataAccessWrapper" style="display:none;">
+                     <g:render template="dataAccess" model="[instance:instance]"/>
+                 </div>
+                %{--<g:if test="${fieldValue(bean: instance, field: 'logoRef') && fieldValue(bean: instance, field: 'logoRef.file')}">--}%
+                %{--<img class="institutionImage"--}%
+                %{--src='${resource(absolute: "true", dir: "data/institution/", file: fieldValue(bean: instance, field: 'logoRef.file'))}'/>--}%
+                %{--</g:if>--}%
+            </div>
          </div>
 
-            %{--<div class="col-md-4">--}%
-                %{--<g:if test="${fieldValue(bean: instance, field: 'logoRef') && fieldValue(bean: instance, field: 'logoRef.file')}">--}%
-                    %{--<img class="institutionImage"--}%
-                         %{--src='${resource(absolute: "true", dir: "data/institution/", file: fieldValue(bean: instance, field: 'logoRef.file'))}'/>--}%
-                %{--</g:if>--}%
-            %{--</div>--}%
+
 
     </div><!--close header-->
 
@@ -116,9 +120,9 @@
                         </div>
                     </g:if>
 
-                    <div id="dataAccessWrapper" style="display:none;">
-                        <g:render template="dataAccess" model="[instance:instance]"/>
-                    </div>
+                    %{--<div id="dataAccessWrapper" style="display:none;">--}%
+                        %{--<g:render template="dataAccess" model="[instance:instance]"/>--}%
+                    %{--</div>--}%
 
                     <div class="section">
                         <h3 class="public-h3"><g:message code="public.location" /></h3>
@@ -144,41 +148,39 @@
                     <g:render template="contacts" bean="${instance.getPublicContactsPrimaryFirst()}"/>
 
                     <!-- web site -->
-                    <g:if test="${instance.websiteUrl}">
-                        <div class="section">
-                            <h3 class="public-h3"><g:message code="public.website" /></h3>
-                            <div class="webSite">
-                                <a class='external' target="_blank"
-                                   href="${instance.websiteUrl}"><g:message code="public.si.website.link01" /> <g:message code="public.si.website.link02.voy" /><cl:institutionType value="${instance.name}"/></a>
-                            </div>
-                        </div>
-                    </g:if>
-
-                </div>
+                     <div class="section">
+                        <h3 class="public-h3"><g:message code="public.website" /></h3>
+                            <g:if test="${instance.websiteUrl}">
+                                    <div class="webSite">
+                                        <a class='external btn btn-default access-data' target="_blank"
+                                           href="${instance.websiteUrl}"><g:message code="public.si.website.link01" /> <g:message code="public.si.website.link02.voy" /><cl:institutionType value="${instance.name}"/></a>
+                                    </div>
+                            </g:if>
+                         <div class="webSite">
+                            <cl:valueOrOtherwise value="${instance.guid}"><p><a class="btn btn-default access-data" target="_blank" href="http://www.gbif.org/publisher/${instance.guid}"> <g:message code="public.international.institution.page"></g:message> </a></p></cl:valueOrOtherwise>
+                             </div>
+                    </div>
+            </div>
         </div>
         <div id="statTab" class="tab-pane row">
-                %{--<h2 class="admin-h2"><g:message code="public.si.content.label04" /></h2>--}%
-            <div id="stat-content" class="col-md-8">
-                %{--<div>--}%
-                    %{--<p style="padding-bottom:8px;"><span--}%
-                            %{--id="numBiocacheRecords"><g:message code="public.numbrs.des01" /></span> <g:message code="public.numbrs.des02" />.--}%
-                    %{--</p>--}%
+            %{--<div id="stat-content" class="col-md-8">--}%
 
-                %{--</div>--}%
-
+            <div class="col-md-12">
+            <h2 class="admin-h2"><g:message code="public.sdr.content.label.stat" /></h2>
                 <div id="recordsBreakdown" class="section vertical-charts">
                     <div id="charts"></div>
                 </div>
+            </div>
 
                 <cl:lastUpdated date="${instance.lastUpdated}"/>
-            </div>
-            <div id="stat-sidebar" class="col-md-4">
+            %{--</div>--}%
+            %{--<div id="stat-sidebar" class="col-md-4">--}%
                 %{--<cl:recordsLink--}%
                         %{--entity="${instance}"><g:message code="public.numbrs.link" /> ${instance.name}.</cl:recordsLink>--}%
 
-                <g:render template="dataAccess" model="[instance:instance]"/>
+                %{--<g:render template="dataAccess" model="[instance:instance]"/>--}%
 
-            </div>
+            %{--</div>--}%
         </div><!--close section-->
     </div>
 </div>

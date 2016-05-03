@@ -58,9 +58,8 @@
           <!--div class="section" style="margin-top:5px;margin-bottom:5px;"><p style="margin-left:8px;padding-bottom:0;color:#666">Note that fauna includes insects.</p></div-->
           <div id="collectionTypesFooter">
             <h4 class="collectionsCount"><span id='numFeatures'></span></h4>
-            <h4 class="collectionsCount"><span id='numVisible'></span>
-                <br/><span id="numUnMappable"></span>
-            </h4>
+            <h4 class="collectionsCount"><span id='numVisible'></span></h4>
+            <h4 class="collectionsCount"><span id="numUnMappable"></span></h4>
           </div>
 
           %{-- <div id="adminLink" class="dropdown" style="margin-top:110px;">

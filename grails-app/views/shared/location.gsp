@@ -150,7 +150,7 @@
               <input type="button" class="edit-btn btn" onclick="return codeAddress();" value="Recherche"/> <p id="lookup-desc"> <g:message code="shared.location.lookup" />. <br /> <g:message code="shared.location.main.des01" /> ${entityNameLower}. <br /><g:message code="shared.location.main.des02" />. </p>
               <g:if test="${command.ENTITY_TYPE == 'Collection'}">
                 <g:if test="${(command.latitude == -1 || command.longitude == -1) && command.inheritedLatLng()}">
-                  <input type="button" class="classicButton" onclick="return useInherited();" value="Use inherited"/> <g:message code="shared.location.button.useinherited" />.<div style="width:100%;"></div>
+                  <input type="button" class="classicButton" onclick="return useInherited();" value="Utiliser les informations héritées"/> <g:message code="shared.location.button.useinherited" />.<div style="width:100%;"></div>
                 </g:if>
               </g:if>
             </div>
@@ -169,10 +169,8 @@
     if (geocoder) {
       geocoder.geocode({ 'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-          var lat = results[0].geometry.location.lat();
-          var lng = results[0].geometry.location.lng();
-          $('input#latitude').val(lat);
-          $('input#longitude').val(lng);
+          var latLng = results[0].geometry.location;
+          updateMarkerPosition(latLng);
           map.setCenter(results[0].geometry.location);
           marker.setPosition(results[0].geometry.location);
           return true;
@@ -208,8 +206,10 @@ function load() {
 }
 
 function updateMarkerPosition(latLng) {
-  $('input#latitude').val(latLng.lat());
-  $('input#longitude').val(latLng.lng());
+  var language = navigator.language || navigator.userLanguage;
+  var option = {minimumFractionDigits:10};
+  $('input#latitude').val(latLng.lat().toLocaleString(language, option));
+  $('input#longitude').val(latLng.lng().toLocaleString(language, option));
 }
 
 function initialize() {

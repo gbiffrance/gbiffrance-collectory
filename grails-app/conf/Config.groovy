@@ -240,9 +240,14 @@ auditLog.verbose = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+        grails.serverURL="http://metadonnee.gbif.fr"
+    }
+    test{
+        grails.serverURL="http://metadonnee.gbif.fr"
     }
     production {
         grails.logging.jul.usebridge = false
+        grails.serverURL="http://metadonnee.gbif.fr"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
