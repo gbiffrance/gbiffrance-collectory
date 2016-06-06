@@ -330,7 +330,7 @@ function updateList(features) {
             content += "<a href=" + baseUrl + "/public/show/" + coll.attributes.uid + ">" +
                 coll.attributes.name + acronym + "</a>";
             if (!coll.attributes.isMappable) {
-                content += "<img style='vertical-align:middle' src='" + baseUrl + "/images/map/nomap.gif'/>";
+                content += "<img style='vertical-align:middle; width:3%' src='" + baseUrl + "/images/map/nomap.gif'/>";
             }
             content += "</li>";
         }

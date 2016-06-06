@@ -1736,36 +1736,62 @@ class CollectoryTagLib {
             def image
             def link
             def version = attrs.version ?: '3.0'
-            switch (license) {
-                case "CC BY":
-                    image = "http://i.creativecommons.org/l/by/${version}/88x31.png";
-                    link = "http://creativecommons.org/licenses/by/${version}/au/"
-                    break
-                case "CC BY-NC":
-                    image = "http://i.creativecommons.org/l/by-nc/${version}/88x31.png";
-                    link = "http://creativecommons.org/licenses/by-nc/${version}/au/"
-                    break
-                case "CC BY-SA":
-                    image = "http://i.creativecommons.org/l/by-sa/${version}/88x31.png";
-                    link = "http://creativecommons.org/licenses/by-sa/${version}/au/"
-                    break
-                case "CC BY-NC-SA":
-                    image = "http://i.creativecommons.org/l/by-nc-sa/${version}/88x31.png";
-                    link = "http://creativecommons.org/licenses/by-nc-sa/${version}/au/"
-                    break
-                default:
-                    image = null
-                    link = null
+            if(version.equalsIgnoreCase('4.0')){
+                switch (license) {
+                    case "CC BY":
+                        image = "http://i.creativecommons.org/l/by/${version}/88x31.png";
+                        link = "http://creativecommons.org/licenses/by/${version}/"
+                        break
+                    case "CC BY-NC":
+                        image = "http://i.creativecommons.org/l/by-nc/${version}/88x31.png";
+                        link = "http://creativecommons.org/licenses/by-nc/${version}/"
+                        break
+                    case "CC BY-SA":
+                        image = "http://i.creativecommons.org/l/by-sa/${version}/88x31.png";
+                        link = "http://creativecommons.org/licenses/by-sa/${version}/"
+                        break
+                    case "CC BY-NC-SA":
+                        image = "http://i.creativecommons.org/l/by-nc-sa/${version}/88x31.png";
+                        link = "http://creativecommons.org/licenses/by-nc-sa/${version}/"
+                        break
+                    default:
+                        image = null
+                        link = null
+                }
+            }else{
+                switch (license) {
+                    case "CC BY":
+                        image = "http://i.creativecommons.org/l/by/${version}/88x31.png";
+                        link = "http://creativecommons.org/licenses/by/${version}/fr/"
+                        break
+                    case "CC BY-NC":
+                        image = "http://i.creativecommons.org/l/by-nc/${version}/88x31.png";
+                        link = "http://creativecommons.org/licenses/by-nc/${version}/fr/"
+                        break
+                    case "CC BY-SA":
+                        image = "http://i.creativecommons.org/l/by-sa/${version}/88x31.png";
+                        link = "http://creativecommons.org/licenses/by-sa/${version}/fr/"
+                        break
+                    case "CC BY-NC-SA":
+                        image = "http://i.creativecommons.org/l/by-nc-sa/${version}/88x31.png";
+                        link = "http://creativecommons.org/licenses/by-nc-sa/${version}/fr/"
+                        break
+                    default:
+                        image = null
+                        link = null
+                }
             }
+
+
             def imageHtml = "<a rel='license' target='_blank' href='${link}'><img class='ccimage no-radius' src='${image}' alt='Creative Commons License' style='border:none;' height='31' width='88'></a>"
             if (attrs.imageOnly && image) {
                 out << imageHtml
             }
             else if (image) {
-                out << "${display.display?:'No licence specified'} ${attrs.version?:''} Australia (${license}) ${imageHtml}"
+                out << "${display.display?:'No licence specified'} ${attrs.version?:''} France (${license}) ${imageHtml}"
             }
             else {
-                out << "${display.display?:'No licence specified'} ${attrs.version?:''} Australia (${license})"
+                out << "${display.display?:'No licence specified'} ${attrs.version?:''} France (${license})"
             }
         }
     }

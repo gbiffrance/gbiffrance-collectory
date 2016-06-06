@@ -361,6 +361,7 @@
     \************************************************************/
     function onLoadCallback() {
       // stats
+        console.log("${instance.name}");
       if(loadLoggerStats){
           if (${instance.resourceType == 'website'}) {
               loadDownloadStats("${grailsApplication.config.loggerURL}", "${instance.uid}","${instance.name}", "2000");
@@ -411,6 +412,7 @@
                     // draw the charts
                     drawFacetCharts(data, facetChartOptions);
                     drawFacetCharts(data, facetChartOptions);
+                    console.log(data.totalRecords);
                     if(data.totalRecords > 0){
                         $('#dataAccessWrapper').css({display:'block'});
                         $('.totalRecordCountLink').html(data.totalRecords.toLocaleString() + ' enregistrements');

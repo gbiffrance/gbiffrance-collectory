@@ -110,14 +110,14 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="http://185.26.127.140">
+                            <a href="http://portail.gbif.fr">
                                 consulter
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="http://185.26.127.140">Acc&egraves au portail fran&ccedilais du GBIF</a></li>
+                                <li><a href="http://portail.gbif.fr">Acc&egraves au portail fran&ccedilais du GBIF</a></li>
                                 <li><a href="http://www.gbif.fr/page/consult/acces-aux-donnees-et-metadonnees">Acc&egraves au portail international du GBIF</a></li>
-                                <li><a href="http://185.26.127.140/collectory/admin">Acc&egraves à l'administration du portail français du GBIF</a></li>
+                                <li><a href="http://metadonnee.gbif.fr/admin">Acc&egraves à l'administration du portail français du GBIF</a></li>
                             </ul>   
                        </li>
                         <li class="dropdown">
@@ -178,7 +178,7 @@
                             <span class="divider">/</span>
                         </li>
                         <li>
-                            <a href="http://185.26.127.140">Portail Atlas of Living France</a>
+                            <a href="http://portail.gbif.fr">Portail Atlas of Living France</a>
                             <span class="divider">/</span>
                         </li>
                         <li>

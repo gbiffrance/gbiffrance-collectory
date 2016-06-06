@@ -914,3 +914,7 @@ a, a:hover, a:focus, a:active{
     background-color:white;
     background-image: none;
 }
+
+.img-no-map{
+    width: 3%;
+}

@@ -68,7 +68,7 @@
               <div id="map-container">
                 <div id="map_canvas"></div>
               </div>
-              <p style="padding-left:150px;"><img style="vertical-align: middle;" src="${resource(dir:'images/map', file:'orange-dot-multiple.png')}" width="20" height="20"/><g:message code="public.map.map.des02" />.<br/></p>
+              <p style="padding-left:150px;"><img style="vertical-align: middle;" src="${resource(dir:'images/map', file:'orange-dot-multiple.png')}"/><g:message code="public.map.map.des02" />.<br/></p>
             </div><!--close section-->
           </div><!--close column-two-->
         </div><!--close map-->
@@ -78,7 +78,7 @@
               <p><g:message code="public.map.list.des01" />.</p>
               <ul id="filtered-list">
               </ul>
-              <p><g:message code="public.map.list.des02" /> <img style="vertical-align:middle" src="${resource(dir:'images/map', file:'nomap.gif')}"/>.</p>
+              <p><g:message code="public.map.list.des02" /> <img style="vertical-align:middle; width: 3%" src="${resource(dir:'images/map', file:'nomap.gif')}"/>.</p>
             </div><!--close nameList-->
           </div><!--close column-one-->
         </div><!--close list-->

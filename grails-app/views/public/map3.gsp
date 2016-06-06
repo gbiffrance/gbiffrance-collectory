@@ -82,7 +82,7 @@
                   <div id="map-container">
                     <div id="map_canvas"></div>
                   </div>
-                  <p style="padding-left:150px;"><img style="vertical-align: middle;" src="${resource(dir:'images/map', file:'orange-dot-multiple.png')}" width="20" height="20"/><g:message code="public.map3.maplistcol.des02" />.<br/></p>
+                  <p style="padding-left:150px;"><img style="vertical-align: middle;" src="${resource(dir:'images/map', file:'orange-dot-multiple.png')}" /><g:message code="public.map3.maplistcol.des02" />.<br/></p>
                 </div><!--close section-->
               </div><!--close column-two-->
             </div><!--close map-->
@@ -90,16 +90,16 @@
             <div id="list" class="tab-pane">
               <div  class="list-column">
                 <div class="nameList section" id="names">
-                  <p><span id="numFilteredCollections"><g:message code="public.map3.maplistcol.des03" /></span>. <g:message code="public.map3.maplistcol.des04" /> <img style="vertical-align:middle" src="${resource(dir:'images/map', file:'nomap.gif')}"/>.</p>
+                  <p><span id="numFilteredCollections"><g:message code="public.map3.maplistcol.des03" /></span>. <g:message code="public.map3.maplistcol.des04" /> <img style="vertical-align:middle; width: 3%;" src="${resource(dir:'images/map', file:'nomap.gif')}" />.</p>
                   <ul id="filtered-list" style="padding-left:15px;">
                     <g:each var="c" in="${collections}" status="i">
                       <li>
                         <g:link controller="public" action="show" id="${c.uid}">${fieldValue(bean: c, field: "name")}</g:link>
                         <g:if test="${!c.canBeMapped()}">
-                          <img style="vertical-align:middle" src="${resource(dir:'images/map', file:'nomap.gif')}"/>
+                          <img style="vertical-align:middle; width: 3%;" src="${resource(dir:'images/map', file:'nomap.gif')}" />
                         </g:if>
                       </li>
-                    </g:each>
+                    </g:each>   
                   </ul>
                 </div><!--close nameList-->
               </div><!--close column-one-->

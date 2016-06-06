@@ -92,6 +92,14 @@
                         </g:each>
                     </ol>
 
+                %{--<h2 class="admin-h2"><g:message code="public.si.content.label05" /></h2>--}%
+                %{--<ol>--}%
+                    %{--<g:each var="dr" in="${instance.listDataResource().sort { it.uid }}">--}%
+                        %{--<li><g:link controller="public" action="show"--}%
+                                    %{--id="${dr.uid}">plop</g:link> <br /></li>--}%
+                    %{--</g:each>--}%
+                %{--</ol>--}%
+
                     %{--<div id='usage-stats'>--}%
                         %{--<h2 class="admin-h2"><g:message code="public.usagestats.label" /></h2>--}%
 
