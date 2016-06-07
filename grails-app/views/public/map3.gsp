@@ -30,7 +30,7 @@
       </div><!--close header-->
 
       <div class="row"><!-- wrap map and list-->
-        <div class="col-xs-6 col-md-4">
+        <div class="col-md-4">
           
           <div class="section filter-buttons">
             <div class="all selected" id="all" onclick="toggleButton(this);return false;">
@@ -67,7 +67,7 @@
           </div> --}%
         </div><!--close column-one-->
 
-        <div class="col-xs-12 col-md-8" id="map-list-col">
+        <div class="col-md-8" id="map-list-col">
             <div class="tabbable">
                 <ul class="nav nav-tabs" id="home-tabs">
                     <li class="active"><a href="#map" data-toggle="tab"><g:message code="public.map3.maplistcol.map" /></a></li>

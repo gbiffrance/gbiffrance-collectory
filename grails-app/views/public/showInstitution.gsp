@@ -178,9 +178,10 @@
                 <div id="recordsBreakdown" class="section vertical-charts">
                     <div id="charts"></div>
                 </div>
+                <cl:lastUpdated date="${instance.lastUpdated}"/>
             </div>
 
-                <cl:lastUpdated date="${instance.lastUpdated}"/>
+
             %{--</div>--}%
             %{--<div id="stat-sidebar" class="col-md-4">--}%
                 %{--<cl:recordsLink--}%
