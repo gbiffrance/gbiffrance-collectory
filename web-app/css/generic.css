@@ -11,6 +11,8 @@ body{
 
 .row{
     clear: both;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .contenu_page{
@@ -223,6 +225,10 @@ ul.nav ul > li {
     padding-bottom: 2px;
 }
 
+ul li{
+    list-style-type: none;
+}
+
 /* FIL D'ARIANE */
 
 #block-block-6{
@@ -233,7 +239,7 @@ ul.nav ul > li {
 .breadcrumb {
     background-color: transparent;
     float: left;
-    font-size: 11px;
+    font-size: 80%;
     margin-bottom: 10px;
     padding: 0;
 
@@ -243,7 +249,7 @@ ul.nav ul > li {
     background-image: url("images/arrow_state_grey_right.png");
     background-position: -1px center;
     background-repeat: no-repeat;
-    padding-left: 15px;
+    padding-left: 5%;
 }
 
 .breadcrumb li:last-child{
@@ -251,10 +257,18 @@ ul.nav ul > li {
     font-weight: 700;
 }
 
+.breadcrumb>li {
+    display: inline;
+    margin-left: 0.5%;
+}
+
 .currentdate {
-    font-size: 11px;
+    float: right;
+    font-size: 80%;
+    padding-right: 2.5%;
     font-weight: 700;
     text-align: right;
+    margin-bottom: 0;
 }
 
 .breadcrumb a {
@@ -738,6 +752,11 @@ td a:hover{
     color: white;
 }
 
+.region-footer ul.social_icons li{
+    padding-right: 0.5%;
+    padding-left: 0.5%;
+}
+
 .region-footer .nav li a {
     padding-left: 0.5%;
 }
@@ -746,7 +765,7 @@ td a:hover{
     background-color: transparent;
 }
 
-.region-footer #block-block-1, .region-footer #block-block-2 {
+.region-footer{
     display: none;
 }
 
@@ -1107,9 +1126,13 @@ a, a:hover, a:focus, a:active{
         font-size: 75%;
     }
 
+    .navbar-header .nav>li:hover {
+        border-bottom: 5px solid #CB3B59;
+    }
+
     .navbar-header .nav>li {
         display: inline-block;
-        font-size: 100%;
+        font-size: 98%;
         margin: 2%;
         padding-bottom: 2%;
     }
@@ -1120,8 +1143,12 @@ a, a:hover, a:focus, a:active{
         /*height: 50px;*/
     }
 
-    .region-footer #block-block-1, .region-footer #block-block-2 {
+    .region-footer {
         display: block;
+    }
+
+    .breadcrumb{
+        margin-left: -1.7%;
     }
 }
 
@@ -1133,6 +1160,7 @@ a, a:hover, a:focus, a:active{
     .navbar-header .nav > li {
         margin: 1.5%;
         padding-bottom: 2%;
+        margin-top: -4px;
     }
 
     .navbar-header {
@@ -1142,6 +1170,10 @@ a, a:hover, a:focus, a:active{
     .menu-gbif{
         margin-right: 15px;
         margin-left: 15px;
+    }
+
+    .col-sm-12{
+        width: 98%;
     }
 }
 

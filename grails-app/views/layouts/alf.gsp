@@ -164,7 +164,7 @@
     %{--</div><!--/.navbar -->--}%
 
     <header class="row-fluid">
-        <a href="http://www.gbif.fr"><img src="picture/header_gbif_site.png" alt="Le GBIF France"></a>
+        <a href="http://www.gbif.fr"><img src="/images/header_gbif_site.png" alt="Le GBIF France"></a>
     </header>
     <div class="navbar-header format">
         <div class="contenu_page">
@@ -244,7 +244,7 @@
          </div>
     </div>
     <div class="container" id="main-content">
-        <div class="content">
+        <div class="content format">
             <div class="row">
                 <div class="block-breadcrumb col-sm-12 col-md-8">
                     <ul class="breadcrumb">
@@ -265,7 +265,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="currentdate col-sm-6 col-md-4">
+                <div class="currentdate">
                     <div id="block-block-6" class="block block-block clearfix">
                         <script language="javascript">
                         today = new Date();
@@ -352,12 +352,12 @@
                     <ul>
                         <li>
                             <a target="_blank" href="http://twitter.com/gbiffrance" title="Rejoignez sous sur Twitter !">
-                                <img width="28" height="28" src="picture/Logo-Twitter-white.png" alt="twitter logo">
+                                <img width="28" height="28" src="/images/Logo-Twitter-white.png" alt="twitter logo">
                             </a>
                         </li>
                         <li>
                             <a target="_blank" title="Page Facebook du GBIF" href="https://www.facebook.com/gbifnews">
-                                <img width="28" height="28" src="picture/Logo-Facebook.png" alt="Facebook logo">
+                                <img width="28" height="28" src="/images/Logo-Facebook.png" alt="Facebook logo">
                             </a>
                         </li>
                     </ul>
@@ -368,6 +368,7 @@
                         <li ><a target="_blank" title="" href="http://www.gbif.fr/contact">Contact</a></li>
                         <li ><a title="" href="http://www.gbif.fr/content/mentions-legales">Mentions l&eacutegales</a></li>
                         <li ><a href="http://www.gbif.fr/sitemap">Plan du site</a> </li>
+                        <li ><a href="http://www.gbif.fr/user">Administration</a> </li>
                     </ul>
                 </div>
                 <address class="footer-margin">
