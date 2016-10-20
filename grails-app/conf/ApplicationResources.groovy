@@ -1,12 +1,12 @@
-modules = {
+def cl = modules = {
     alf {
         dependsOn 'bootstrap3, collectory' //
         resource url: [dir:'js', file:'application.js']
         resource url: [dir:'css', file:'generic.css']
-        resource url: [dir:'images', file:'header_gbif_site.png'] 
-        resource url: [dir:'images', file:'rss.png'] 
-        resource url: [dir:'images', file:'facebook.png'] 
-        resource url: [dir:'images', file:'twitter.png'] 
+        resource url: [dir:'images', file:'header_gbif_site.png']
+        resource url: [dir:'images', file:'rss.png']
+        resource url: [dir:'images', file:'facebook.png']
+        resource url: [dir:'images', file:'twitter.png']
         resource url: [dir:'css/images', file:'arrow_state_grey_right.png']
         resource url: [dir:'images', file:'ala-white.png']
         resource url: [dir:'images', file:'crowdin-white.png']
@@ -56,3 +56,4 @@ modules = {
         resource url:[ dir: 'js',file:'jquery-migrate-1.2.1.min.js', plugin:'collectory-plugin']
     }
 }
+cl

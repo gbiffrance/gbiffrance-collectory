@@ -75,94 +75,7 @@
 </head>
 <body class="${pageProperty(name:'body.class')?:'nav-collections'}" id="${pageProperty(name:'body.id')}" onload="${pageProperty(name:'body.onload')}">
 
-    %{--<header class="${fluidLayout?'row-fluid':'container'}">--}%
-        %{--<a href="http://www.gbif.fr"><img src="/images/header_gbif_site.png" alt="GBIF France"></a>--}%
-    %{--</header>--}%
-
-    %{--<div class="navbar navbar-inverse navbar-static ">--}%
-        %{--<div class="navbar-inner ">--}%
-            %{--<div class="${fluidLayout?'container-fluid':'container'}">--}%
-                %{--<div id="block-menu-block-2" class="block block-menu-block clearfix">--}%
-                    %{--<ul class="menu nav">--}%
-                        %{--<li class="dropdown">--}%
-                            %{--<a id="sinformer" class="dropdown-toggle" data-target="#" href="http://www.gbif.fr/page/infos/quest-ce-que-le-gbif" role="button">--}%
-                                %{--s'informer --}%
-                                %{--<span class="caret"></span> --}%
-                            %{--</a>--}%
-                            %{--<ul class="dropdown-menu" role="menu">--}%
-                                %{--<li><a href="http://www.gbif.fr/page/infos/quest-ce-que-le-gbif">Accueil</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/infos/presentation-du-gbif-france">Point Nodal Fran&ccedilais</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/infos/actions-du-point-nodal">Actions du point nodal</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/actualites">Actualit&eacutes</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/agenda">Agenda</a></li>--}%
-                            %{--</ul>--}%
-                        %{--</li>--}%
-                        %{--<li class="dropdown">--}%
-                            %{--<a href="http://www.gbif.fr/page/contrib/connecter-des-donnees-au-gbif">--}%
-                                %{--contribuer--}%
-                                %{--<span class="caret"></span>--}%
-                            %{--</a>--}%
-                            %{--<ul class="dropdown-menu">--}%
-                                %{--<li><a href="http://www.gbif.fr/page/contrib/connecter-des-donnees-au-gbif">Connecter des donn&eacutees au GBIF</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/contrib/publier-un-datapaper">Publier un datapaper</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/contrib/numerisation-des-donnees">Num&eacuterisation des donn&eacutees</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/contrib/metadonnees">M&eacutetadonn&eacutees</a></li>--}%
-                            %{--</ul>--}%
-                        %{--</li>--}%
-                        %{--<li class="dropdown">--}%
-                            %{--<a href="http://portail.gbif.fr">--}%
-                                %{--consulter--}%
-                                %{--<span class="caret"></span>--}%
-                            %{--</a>--}%
-                            %{--<ul class="dropdown-menu">--}%
-                                %{--<li><a href="http://portail.gbif.fr">Acc&egraves au portail fran&ccedilais du GBIF</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/consult/acces-aux-donnees-et-metadonnees">Acc&egraves au portail international du GBIF</a></li>--}%
-                                %{--<li><a href="http://metadonnee.gbif.fr/admin">Acc&egraves à l'administration du portail français du GBIF</a></li>--}%
-                            %{--</ul>   --}%
-                       %{--</li>--}%
-                        %{--<li class="dropdown">--}%
-                            %{--<a href="http://www.gbif.fr/page/utiliser/exemples-dutilisation-des-donnees">--}%
-                                %{--utiliser--}%
-                                %{--<span class="caret"></span>--}%
-                            %{--</a>--}%
-                            %{--<ul class="dropdown-menu">--}%
-                                %{--<li><a href="http://www.gbif.fr/page/utiliser/exemples-dutilisation-des-donnees">Exemples d'utilisation des donn&eacutees du GBIF</a></li>--}%
-                            %{--</ul>--}%
-                        %{--</li>--}%
-
-                        %{--<li class="dropdown">--}%
-                            %{--<a href="http://www.gbif.fr/page/ressources/documentation">--}%
-                                %{--ressources--}%
-                                %{--<span class="caret"></span>--}%
-                            %{--</a>--}%
-                            %{--<ul class="dropdown-menu">--}%
-                                %{--<li><a href="http://www.gbif.fr/page/ressources/documentation">Documentation</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/ressources/rapports-comptes-rendus">Rapports et comptes rendus</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/ressources/guides">Guides GBIF/Manuels</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/datapapers">Data Papers</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/ressources/posters">Posters</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/ressources/liens">Sites Internet utiles</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/ressources/outils-du-gbif">Outils du GBIF</a></li>--}%
-
-                            %{--</ul>--}%
-                        %{--</li>--}%
-                        %{--<li class="dropdown">--}%
-                            %{--<a href="http://www.gbif.fr/page/partenaires">--}%
-                                %{--partenaires--}%
-                                %{--<span class="caret"></span>--}%
-                            %{--</a>--}%
-                            %{--<ul class="dropdown-menu">--}%
-                                %{--<li><a href="http://www.gbif.fr/page/partenaires">Organismes de tutelle</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/partenaires/partenaires">Partenaires</a></li>--}%
-                                %{--<li><a href="http://www.gbif.fr/page/partenaires/fournisseurs-de-donnees">Fournisseurs de donn&eacutees</a></li>--}%
-                            %{--</ul>--}%
-                        %{--</li>--}%
-                    %{--</ul>--}%
-                %{--</div>--}%
-            %{--</div><!--/.container-fluid -->--}%
-        %{--</div><!--/.navbar-inner -->--}%
-    %{--</div><!--/.navbar -->--}%
-
+    <div class="contenu-total">
     <header class="row-fluid">
         <a href="http://www.gbif.fr"><img src="/images/header_gbif_site.png" alt="Le GBIF France"></a>
     </header>
@@ -181,6 +94,8 @@
                                 <li><a href="http://www.gbif.fr/page/infos/actions-du-point-nodal">Actions du point nodal</a></li>
                                 <li><a href="http://www.gbif.fr/actualites">Actualit&eacutes</a></li>
                                 <li><a href="http://www.gbif.fr/agenda">Agenda</a></li>
+                                <li><a href="http://www.gbif.fr/page/infos/foire-aux-questions">Foire aux Questions</a></li>
+                                <li><a href="http://www.gbif.fr/newsletter/subscriptions">Inscriptions aux Newsletters</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -246,7 +161,7 @@
     <div class="container" id="main-content">
         <div class="content format">
             <div class="row">
-                <div class="block-breadcrumb col-sm-12 col-md-8">
+                <div class="block-breadcrumb col-sm-6 col-md-6">
                     <ul class="breadcrumb">
                         <li>
                             <a href="http://www.gbif.fr">Accueil</a>
@@ -379,6 +294,7 @@
              </div>
         </div>
     </div>
+        </div>
     <r:layoutResources/>
 </body>
 </html>

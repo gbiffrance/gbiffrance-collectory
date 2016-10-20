@@ -30,7 +30,7 @@
       </div><!--close header-->
 
       <div class="row"><!-- wrap map and list-->
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-4">
           
           <div class="section filter-buttons">
             <div class="all selected" id="all" onclick="toggleButton(this);return false;">
