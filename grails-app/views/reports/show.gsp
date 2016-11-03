@@ -12,6 +12,7 @@
             </ul>
         </div>
         <div class="body">
+
             <h1><g:message code="reports.li.reports" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>

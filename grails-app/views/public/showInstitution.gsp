@@ -45,18 +45,11 @@
                 <cl:valueOrOtherwise value="${instance.acronym}">
                     <p>Acronym: ${fieldValue(bean: instance, field: "acronym")}</p>
                 </cl:valueOrOtherwise>
-                %{--<cl:valueOrOtherwise value="${instance.guid}">--}%
-                    %{--<p><g:message code="public.show.header.guid" /> : ${fieldValue(bean: instance, field: "guid")}</p>--}%
-                %{--</cl:valueOrOtherwise>--}%
             </div>
             <div class="col-md-3">
                  <div id="dataAccessWrapper" style="display:none;">
                      <g:render template="dataAccess" model="[instance:instance]"/>
                  </div>
-                %{--<g:if test="${fieldValue(bean: instance, field: 'logoRef') && fieldValue(bean: instance, field: 'logoRef.file')}">--}%
-                %{--<img class="institutionImage"--}%
-                %{--src='${resource(absolute: "true", dir: "data/institution/", file: fieldValue(bean: instance, field: 'logoRef.file'))}'/>--}%
-                %{--</g:if>--}%
             </div>
          </div>
 
@@ -92,13 +85,13 @@
                         </g:each>
                     </ol>
 
-                %{--<h2 class="admin-h2"><g:message code="public.si.content.label05" /></h2>--}%
-                %{--<ol>--}%
-                    %{--<g:each var="dr" in="${instance.listDataResource().sort { it.uid }}">--}%
-                        %{--<li><g:link controller="public" action="show"--}%
-                                    %{--id="${dr.uid}">plop</g:link> <br /></li>--}%
-                    %{--</g:each>--}%
-                %{--</ol>--}%
+                    <h2 class="admin-h2"><g:message code="public.si.content.label05" /></h2>
+                    <ol>
+                        %{--<g:each var="dr" in="${instance.listDataResource().sort { it.uid }}">--}%
+                            %{--<li><g:link controller="public" action="show"--}%
+                                        %{--id="${dr.uid}">plop</g:link> <br /></li>--}%
+                        %{--</g:each>--}%
+                    </ol>
 
                     %{--<div id='usage-stats'>--}%
                         %{--<h2 class="admin-h2"><g:message code="public.usagestats.label" /></h2>--}%

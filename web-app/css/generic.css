@@ -560,9 +560,6 @@ td a:hover{
 
 /* ADMINISTRATION : INSTITUTION */ 
 
-#instit{
-    margin-top: 20px;
-}
 
 
 /* ADMINISTRATION : COLLECTION ADD / EDIT */
@@ -582,6 +579,11 @@ td a:hover{
     border-radius: 4px;
     color: white;
     margin-top: 10px;
+    text-shadow: none;
+}
+
+.edit-btn:hover, .edit-btn:active{
+    background-color: rgba(136, 126, 124, 1);
 }
 
 .save-btn{
@@ -1129,6 +1131,49 @@ a, a:hover, a:focus, a:active{
     width: 3%;
 }
 
+.stat-report{
+    color: #a6ac1a;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+#SidebarBoxZ{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+#BoxY{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    padding-top: 20px;
+}
+.BoxY{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+#BoxX{
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
 
 @media (min-width: 768px){
     .col-sm-8 {

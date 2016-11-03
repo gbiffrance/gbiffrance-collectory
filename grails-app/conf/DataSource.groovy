@@ -28,11 +28,8 @@ environments {
         dataSource {
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
             dbCreate = "update"
-//            url = "jdbc:mysql://localhost:3306/collectory?autoReconnect=true&connectTimeout=0&characterEncoding=UTF-8"
-            url = "jdbc:mysql://10.1.1.3:3306/collectory?autoReconnect=true&connectTimeout=0&characterEncoding=UTF-8"
+            url = "jdbc:mysql://localhost:3306/collectory?autoReconnect=true&connectTimeout=0&characterEncoding=UTF-8"
             logSql = false
-//            username = "root"
-//            password = "password"
             username = "root"
             password = ""
             properties {
@@ -49,20 +46,22 @@ environments {
     }
     production {
         dataSource {
-            // dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-            // dbCreate = "update"
-            // url = "jdbc:mysql://alaproddb1-cbr.vm.csiro.au:3306/collectory?autoReconnect=true&connectTimeout=0"
-            // logSql = false
-            // properties {
-            //     maxActive = 50
-            //     maxIdle = 25
-            //     minIdle = 5
-            //     initialSize = 5
-            //     minEvictableIdleTimeMillis = 60000
-            //     timeBetweenEvictionRunsMillis = 60000
-            //     maxWait = 10000
-            //     validationQuery = ""
-            // }
+            dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+            dbCreate = "update"
+            url = "jdbc:mysql://localhost:3306/collectory?autoReconnect=true&connectTimeout=0&characterEncoding=UTF-8"
+            logSql = false
+            username = "root"
+            password = ""
+             properties {
+                 maxActive = 50
+                 maxIdle = 25
+                 minIdle = 5
+                 initialSize = 5
+                 minEvictableIdleTimeMillis = 60000
+                 timeBetweenEvictionRunsMillis = 60000
+                 maxWait = 10000
+                 validationQuery = ""
+             }
         }
     }
 }

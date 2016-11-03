@@ -18,7 +18,7 @@
                 </ul>
             </div>
         </div>
-        <div id="instit" class="col-md-9">
+        <div class="col-md-9">
             <g:if test="${flash.message}">
                 <div class="message">${flash.message}</div>
             </g:if>

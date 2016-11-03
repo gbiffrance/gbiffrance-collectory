@@ -15,7 +15,7 @@ if (new File(default_config).exists()) {
 
 println "[${appName}] (*) grails.config.locations = ${grails.config.locations}"
 println "default_config = ${default_config}"
-
+security.cas.bypass=true
 /******************************************************************************\
 *  SKINNING
 \******************************************************************************/
